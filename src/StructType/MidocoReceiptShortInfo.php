@@ -84,6 +84,21 @@ class MidocoReceiptShortInfo extends AbstractStructBase
      */
     protected ?string $originalCurrency = null;
     /**
+     * The bookingText
+     * @var string|null
+     */
+    protected ?string $bookingText = null;
+    /**
+     * The costCentre
+     * @var string|null
+     */
+    protected ?string $costCentre = null;
+    /**
+     * The creationUser
+     * @var int|null
+     */
+    protected ?int $creationUser = null;
+    /**
      * Constructor method for MidocoReceiptShortInfo
      * @uses MidocoReceiptShortInfo::setReceiptId()
      * @uses MidocoReceiptShortInfo::setCashBookId()
@@ -98,6 +113,9 @@ class MidocoReceiptShortInfo extends AbstractStructBase
      * @uses MidocoReceiptShortInfo::setDescription()
      * @uses MidocoReceiptShortInfo::setOriginalAmount()
      * @uses MidocoReceiptShortInfo::setOriginalCurrency()
+     * @uses MidocoReceiptShortInfo::setBookingText()
+     * @uses MidocoReceiptShortInfo::setCostCentre()
+     * @uses MidocoReceiptShortInfo::setCreationUser()
      * @param int $receiptId
      * @param int $cashBookId
      * @param int $receiptNo
@@ -111,8 +129,11 @@ class MidocoReceiptShortInfo extends AbstractStructBase
      * @param string $description
      * @param float $originalAmount
      * @param string $originalCurrency
+     * @param string $bookingText
+     * @param string $costCentre
+     * @param int $creationUser
      */
-    public function __construct(int $receiptId, int $cashBookId, ?int $receiptNo = null, ?int $customerId = null, ?string $name = null, ?float $totalAmount = null, ?string $receiptDate = null, ?int $orderNo = null, ?string $paymentType = null, ?bool $isVoided = null, ?string $description = null, ?float $originalAmount = null, ?string $originalCurrency = null)
+    public function __construct(int $receiptId, int $cashBookId, ?int $receiptNo = null, ?int $customerId = null, ?string $name = null, ?float $totalAmount = null, ?string $receiptDate = null, ?int $orderNo = null, ?string $paymentType = null, ?bool $isVoided = null, ?string $description = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?string $bookingText = null, ?string $costCentre = null, ?int $creationUser = null)
     {
         $this
             ->setReceiptId($receiptId)
@@ -127,7 +148,10 @@ class MidocoReceiptShortInfo extends AbstractStructBase
             ->setIsVoided($isVoided)
             ->setDescription($description)
             ->setOriginalAmount($originalAmount)
-            ->setOriginalCurrency($originalCurrency);
+            ->setOriginalCurrency($originalCurrency)
+            ->setBookingText($bookingText)
+            ->setCostCentre($costCentre)
+            ->setCreationUser($creationUser);
     }
     /**
      * Get receiptId value
@@ -425,6 +449,75 @@ class MidocoReceiptShortInfo extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($originalCurrency, true), gettype($originalCurrency)), __LINE__);
         }
         $this->originalCurrency = $originalCurrency;
+        
+        return $this;
+    }
+    /**
+     * Get bookingText value
+     * @return string|null
+     */
+    public function getBookingText(): ?string
+    {
+        return $this->bookingText;
+    }
+    /**
+     * Set bookingText value
+     * @param string $bookingText
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoReceiptShortInfo
+     */
+    public function setBookingText(?string $bookingText = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($bookingText) && !is_string($bookingText)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($bookingText, true), gettype($bookingText)), __LINE__);
+        }
+        $this->bookingText = $bookingText;
+        
+        return $this;
+    }
+    /**
+     * Get costCentre value
+     * @return string|null
+     */
+    public function getCostCentre(): ?string
+    {
+        return $this->costCentre;
+    }
+    /**
+     * Set costCentre value
+     * @param string $costCentre
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoReceiptShortInfo
+     */
+    public function setCostCentre(?string $costCentre = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($costCentre) && !is_string($costCentre)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($costCentre, true), gettype($costCentre)), __LINE__);
+        }
+        $this->costCentre = $costCentre;
+        
+        return $this;
+    }
+    /**
+     * Get creationUser value
+     * @return int|null
+     */
+    public function getCreationUser(): ?int
+    {
+        return $this->creationUser;
+    }
+    /**
+     * Set creationUser value
+     * @param int $creationUser
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoReceiptShortInfo
+     */
+    public function setCreationUser(?int $creationUser = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($creationUser) && !(is_int($creationUser) || ctype_digit($creationUser))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($creationUser, true), gettype($creationUser)), __LINE__);
+        }
+        $this->creationUser = $creationUser;
         
         return $this;
     }

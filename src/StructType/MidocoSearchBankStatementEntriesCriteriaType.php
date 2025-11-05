@@ -22,6 +22,13 @@ class MidocoSearchBankStatementEntriesCriteriaType extends AbstractStructBase
      */
     protected ?bool $isExported = null;
     /**
+     * The isIgnored
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var bool|null
+     */
+    protected ?bool $isIgnored = null;
+    /**
      * The infoName
      * Meta information extracted from the WSDL
      * - minOccurs: 0
@@ -136,6 +143,7 @@ class MidocoSearchBankStatementEntriesCriteriaType extends AbstractStructBase
     /**
      * Constructor method for MidocoSearchBankStatementEntriesCriteriaType
      * @uses MidocoSearchBankStatementEntriesCriteriaType::setIsExported()
+     * @uses MidocoSearchBankStatementEntriesCriteriaType::setIsIgnored()
      * @uses MidocoSearchBankStatementEntriesCriteriaType::setInfoName()
      * @uses MidocoSearchBankStatementEntriesCriteriaType::setInfoName1()
      * @uses MidocoSearchBankStatementEntriesCriteriaType::setInfoBankNo()
@@ -153,6 +161,7 @@ class MidocoSearchBankStatementEntriesCriteriaType extends AbstractStructBase
      * @uses MidocoSearchBankStatementEntriesCriteriaType::setUser()
      * @uses MidocoSearchBankStatementEntriesCriteriaType::setIsBooked()
      * @param bool $isExported
+     * @param bool $isIgnored
      * @param string $infoName
      * @param string $infoName1
      * @param string $infoBankNo
@@ -170,10 +179,11 @@ class MidocoSearchBankStatementEntriesCriteriaType extends AbstractStructBase
      * @param string $user
      * @param bool $isBooked
      */
-    public function __construct(?bool $isExported = null, ?string $infoName = null, ?string $infoName1 = null, ?string $infoBankNo = null, ?string $infoAccountNo = null, ?bool $isDebit = null, ?string $bankNo = null, ?string $accountNo = null, ?string $statementNo = null, ?string $pageNo = null, ?string $bookingDateFrom = null, ?string $bookingDateTo = null, ?string $valutaDateFrom = null, ?string $valutaDateTo = null, ?float $amount = null, ?string $user = null, ?bool $isBooked = null)
+    public function __construct(?bool $isExported = null, ?bool $isIgnored = null, ?string $infoName = null, ?string $infoName1 = null, ?string $infoBankNo = null, ?string $infoAccountNo = null, ?bool $isDebit = null, ?string $bankNo = null, ?string $accountNo = null, ?string $statementNo = null, ?string $pageNo = null, ?string $bookingDateFrom = null, ?string $bookingDateTo = null, ?string $valutaDateFrom = null, ?string $valutaDateTo = null, ?float $amount = null, ?string $user = null, ?bool $isBooked = null)
     {
         $this
             ->setIsExported($isExported)
+            ->setIsIgnored($isIgnored)
             ->setInfoName($infoName)
             ->setInfoName1($infoName1)
             ->setInfoBankNo($infoBankNo)
@@ -211,6 +221,29 @@ class MidocoSearchBankStatementEntriesCriteriaType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isExported, true), gettype($isExported)), __LINE__);
         }
         $this->isExported = $isExported;
+        
+        return $this;
+    }
+    /**
+     * Get isIgnored value
+     * @return bool|null
+     */
+    public function getIsIgnored(): ?bool
+    {
+        return $this->isIgnored;
+    }
+    /**
+     * Set isIgnored value
+     * @param bool $isIgnored
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSearchBankStatementEntriesCriteriaType
+     */
+    public function setIsIgnored(?bool $isIgnored = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isIgnored) && !is_bool($isIgnored)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isIgnored, true), gettype($isIgnored)), __LINE__);
+        }
+        $this->isIgnored = $isIgnored;
         
         return $this;
     }

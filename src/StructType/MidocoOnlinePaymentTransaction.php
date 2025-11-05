@@ -23,14 +23,22 @@ class MidocoOnlinePaymentTransaction extends OnlinePaymentTransactionDTO
      */
     protected ?array $errorArgs = null;
     /**
+     * The originalErrorCode
+     * @var string|null
+     */
+    protected ?string $originalErrorCode = null;
+    /**
      * Constructor method for MidocoOnlinePaymentTransaction
      * @uses MidocoOnlinePaymentTransaction::setErrorArgs()
+     * @uses MidocoOnlinePaymentTransaction::setOriginalErrorCode()
      * @param string[] $errorArgs
+     * @param string $originalErrorCode
      */
-    public function __construct(?array $errorArgs = null)
+    public function __construct(?array $errorArgs = null, ?string $originalErrorCode = null)
     {
         $this
-            ->setErrorArgs($errorArgs);
+            ->setErrorArgs($errorArgs)
+            ->setOriginalErrorCode($originalErrorCode);
     }
     /**
      * Get errorArgs value
@@ -96,6 +104,29 @@ class MidocoOnlinePaymentTransaction extends OnlinePaymentTransactionDTO
             throw new InvalidArgumentException(sprintf('The errorArgs property can only contain items of type string, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
         }
         $this->errorArgs[] = $item;
+        
+        return $this;
+    }
+    /**
+     * Get originalErrorCode value
+     * @return string|null
+     */
+    public function getOriginalErrorCode(): ?string
+    {
+        return $this->originalErrorCode;
+    }
+    /**
+     * Set originalErrorCode value
+     * @param string $originalErrorCode
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoOnlinePaymentTransaction
+     */
+    public function setOriginalErrorCode(?string $originalErrorCode = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($originalErrorCode) && !is_string($originalErrorCode)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($originalErrorCode, true), gettype($originalErrorCode)), __LINE__);
+        }
+        $this->originalErrorCode = $originalErrorCode;
         
         return $this;
     }

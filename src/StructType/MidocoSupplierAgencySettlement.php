@@ -55,6 +55,26 @@ class MidocoSupplierAgencySettlement extends SupplierAgencySettlementDTO
      */
     protected ?float $exchangeRateMasterData = null;
     /**
+     * The settlementTotalAmount
+     * @var float|null
+     */
+    protected ?float $settlementTotalAmount = null;
+    /**
+     * The totalBookedAmount
+     * @var float|null
+     */
+    protected ?float $totalBookedAmount = null;
+    /**
+     * The ignoredVsTotalPositions
+     * @var string|null
+     */
+    protected ?string $ignoredVsTotalPositions = null;
+    /**
+     * The isDeletable
+     * @var bool|null
+     */
+    protected ?bool $isDeletable = null;
+    /**
      * Constructor method for MidocoSupplierAgencySettlement
      * @uses MidocoSupplierAgencySettlement::setStatusChecked()
      * @uses MidocoSupplierAgencySettlement::setStatusBooked()
@@ -64,6 +84,10 @@ class MidocoSupplierAgencySettlement extends SupplierAgencySettlementDTO
      * @uses MidocoSupplierAgencySettlement::setChecked()
      * @uses MidocoSupplierAgencySettlement::setCheckSum()
      * @uses MidocoSupplierAgencySettlement::setExchangeRateMasterData()
+     * @uses MidocoSupplierAgencySettlement::setSettlementTotalAmount()
+     * @uses MidocoSupplierAgencySettlement::setTotalBookedAmount()
+     * @uses MidocoSupplierAgencySettlement::setIgnoredVsTotalPositions()
+     * @uses MidocoSupplierAgencySettlement::setIsDeletable()
      * @param string $statusChecked
      * @param string $statusBooked
      * @param string $status
@@ -72,8 +96,12 @@ class MidocoSupplierAgencySettlement extends SupplierAgencySettlementDTO
      * @param bool $checked
      * @param float $checkSum
      * @param float $exchangeRateMasterData
+     * @param float $settlementTotalAmount
+     * @param float $totalBookedAmount
+     * @param string $ignoredVsTotalPositions
+     * @param bool $isDeletable
      */
-    public function __construct(?string $statusChecked = null, ?string $statusBooked = null, ?string $status = null, ?string $supplierId = null, ?string $settlementParty = null, ?bool $checked = null, ?float $checkSum = null, ?float $exchangeRateMasterData = null)
+    public function __construct(?string $statusChecked = null, ?string $statusBooked = null, ?string $status = null, ?string $supplierId = null, ?string $settlementParty = null, ?bool $checked = null, ?float $checkSum = null, ?float $exchangeRateMasterData = null, ?float $settlementTotalAmount = null, ?float $totalBookedAmount = null, ?string $ignoredVsTotalPositions = null, ?bool $isDeletable = null)
     {
         $this
             ->setStatusChecked($statusChecked)
@@ -83,7 +111,11 @@ class MidocoSupplierAgencySettlement extends SupplierAgencySettlementDTO
             ->setSettlementParty($settlementParty)
             ->setChecked($checked)
             ->setCheckSum($checkSum)
-            ->setExchangeRateMasterData($exchangeRateMasterData);
+            ->setExchangeRateMasterData($exchangeRateMasterData)
+            ->setSettlementTotalAmount($settlementTotalAmount)
+            ->setTotalBookedAmount($totalBookedAmount)
+            ->setIgnoredVsTotalPositions($ignoredVsTotalPositions)
+            ->setIsDeletable($isDeletable);
     }
     /**
      * Get statusChecked value
@@ -266,6 +298,98 @@ class MidocoSupplierAgencySettlement extends SupplierAgencySettlementDTO
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($exchangeRateMasterData, true), gettype($exchangeRateMasterData)), __LINE__);
         }
         $this->exchangeRateMasterData = $exchangeRateMasterData;
+        
+        return $this;
+    }
+    /**
+     * Get settlementTotalAmount value
+     * @return float|null
+     */
+    public function getSettlementTotalAmount(): ?float
+    {
+        return $this->settlementTotalAmount;
+    }
+    /**
+     * Set settlementTotalAmount value
+     * @param float $settlementTotalAmount
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSupplierAgencySettlement
+     */
+    public function setSettlementTotalAmount(?float $settlementTotalAmount = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($settlementTotalAmount) && !(is_float($settlementTotalAmount) || is_numeric($settlementTotalAmount))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($settlementTotalAmount, true), gettype($settlementTotalAmount)), __LINE__);
+        }
+        $this->settlementTotalAmount = $settlementTotalAmount;
+        
+        return $this;
+    }
+    /**
+     * Get totalBookedAmount value
+     * @return float|null
+     */
+    public function getTotalBookedAmount(): ?float
+    {
+        return $this->totalBookedAmount;
+    }
+    /**
+     * Set totalBookedAmount value
+     * @param float $totalBookedAmount
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSupplierAgencySettlement
+     */
+    public function setTotalBookedAmount(?float $totalBookedAmount = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($totalBookedAmount) && !(is_float($totalBookedAmount) || is_numeric($totalBookedAmount))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($totalBookedAmount, true), gettype($totalBookedAmount)), __LINE__);
+        }
+        $this->totalBookedAmount = $totalBookedAmount;
+        
+        return $this;
+    }
+    /**
+     * Get ignoredVsTotalPositions value
+     * @return string|null
+     */
+    public function getIgnoredVsTotalPositions(): ?string
+    {
+        return $this->ignoredVsTotalPositions;
+    }
+    /**
+     * Set ignoredVsTotalPositions value
+     * @param string $ignoredVsTotalPositions
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSupplierAgencySettlement
+     */
+    public function setIgnoredVsTotalPositions(?string $ignoredVsTotalPositions = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($ignoredVsTotalPositions) && !is_string($ignoredVsTotalPositions)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($ignoredVsTotalPositions, true), gettype($ignoredVsTotalPositions)), __LINE__);
+        }
+        $this->ignoredVsTotalPositions = $ignoredVsTotalPositions;
+        
+        return $this;
+    }
+    /**
+     * Get isDeletable value
+     * @return bool|null
+     */
+    public function getIsDeletable(): ?bool
+    {
+        return $this->isDeletable;
+    }
+    /**
+     * Set isDeletable value
+     * @param bool $isDeletable
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSupplierAgencySettlement
+     */
+    public function setIsDeletable(?bool $isDeletable = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isDeletable) && !is_bool($isDeletable)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isDeletable, true), gettype($isDeletable)), __LINE__);
+        }
+        $this->isDeletable = $isDeletable;
         
         return $this;
     }

@@ -28,6 +28,20 @@ class CheckBankBookingJournalRequest extends AbstractStructBase
      */
     protected ?float $bookingValue = null;
     /**
+     * The originalValue
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $originalValue = null;
+    /**
+     * The paymentValue
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $paymentValue = null;
+    /**
      * The checkBookingValue
      * @var bool|null
      */
@@ -43,18 +57,24 @@ class CheckBankBookingJournalRequest extends AbstractStructBase
      * Constructor method for CheckBankBookingJournalRequest
      * @uses CheckBankBookingJournalRequest::setCheckMidocoBankBookingJournal()
      * @uses CheckBankBookingJournalRequest::setBookingValue()
+     * @uses CheckBankBookingJournalRequest::setOriginalValue()
+     * @uses CheckBankBookingJournalRequest::setPaymentValue()
      * @uses CheckBankBookingJournalRequest::setCheckBookingValue()
      * @uses CheckBankBookingJournalRequest::setDontStopByFirstError()
      * @param \Pggns\MidocoApi\Bank\StructType\CheckMidocoBankBookingJournalType[] $checkMidocoBankBookingJournal
      * @param float $bookingValue
+     * @param float $originalValue
+     * @param float $paymentValue
      * @param bool $checkBookingValue
      * @param bool $dontStopByFirstError
      */
-    public function __construct(?array $checkMidocoBankBookingJournal = null, ?float $bookingValue = null, ?bool $checkBookingValue = null, ?bool $dontStopByFirstError = null)
+    public function __construct(?array $checkMidocoBankBookingJournal = null, ?float $bookingValue = null, ?float $originalValue = null, ?float $paymentValue = null, ?bool $checkBookingValue = null, ?bool $dontStopByFirstError = null)
     {
         $this
             ->setCheckMidocoBankBookingJournal($checkMidocoBankBookingJournal)
             ->setBookingValue($bookingValue)
+            ->setOriginalValue($originalValue)
+            ->setPaymentValue($paymentValue)
             ->setCheckBookingValue($checkBookingValue)
             ->setDontStopByFirstError($dontStopByFirstError);
     }
@@ -145,6 +165,52 @@ class CheckBankBookingJournalRequest extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($bookingValue, true), gettype($bookingValue)), __LINE__);
         }
         $this->bookingValue = $bookingValue;
+        
+        return $this;
+    }
+    /**
+     * Get originalValue value
+     * @return float|null
+     */
+    public function getOriginalValue(): ?float
+    {
+        return $this->originalValue;
+    }
+    /**
+     * Set originalValue value
+     * @param float $originalValue
+     * @return \Pggns\MidocoApi\Bank\StructType\CheckBankBookingJournalRequest
+     */
+    public function setOriginalValue(?float $originalValue = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($originalValue) && !(is_float($originalValue) || is_numeric($originalValue))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($originalValue, true), gettype($originalValue)), __LINE__);
+        }
+        $this->originalValue = $originalValue;
+        
+        return $this;
+    }
+    /**
+     * Get paymentValue value
+     * @return float|null
+     */
+    public function getPaymentValue(): ?float
+    {
+        return $this->paymentValue;
+    }
+    /**
+     * Set paymentValue value
+     * @param float $paymentValue
+     * @return \Pggns\MidocoApi\Bank\StructType\CheckBankBookingJournalRequest
+     */
+    public function setPaymentValue(?float $paymentValue = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($paymentValue) && !(is_float($paymentValue) || is_numeric($paymentValue))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($paymentValue, true), gettype($paymentValue)), __LINE__);
+        }
+        $this->paymentValue = $paymentValue;
         
         return $this;
     }

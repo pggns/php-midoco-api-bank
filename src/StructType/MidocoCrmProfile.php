@@ -18,9 +18,9 @@ class MidocoCrmProfile extends AbstractStructBase
      * The MidocoCrmCustomer
      * Meta information extracted from the WSDL
      * - ref: MidocoCrmCustomer
-     * @var \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO|null
+     * @var \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer|null
      */
-    protected ?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $MidocoCrmCustomer = null;
+    protected ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $MidocoCrmCustomer = null;
     /**
      * The ExternalProfile
      * Meta information extracted from the WSDL
@@ -84,7 +84,7 @@ class MidocoCrmProfile extends AbstractStructBase
      * @uses MidocoCrmProfile::setMidocoFrequentFlyerNumber()
      * @uses MidocoCrmProfile::setMidocoCrmAddress()
      * @uses MidocoCrmProfile::setMidocoContactEntry()
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer
      * @param \Pggns\MidocoApi\Bank\StructType\ExternalProfile[] $externalProfile
      * @param \Pggns\MidocoApi\Bank\StructType\ProfileAttributes $profileAttributes
      * @param \Pggns\MidocoApi\Bank\StructType\CrmCustomerLinkDTO[] $midocoCrmCustomerLink
@@ -92,7 +92,7 @@ class MidocoCrmProfile extends AbstractStructBase
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmAddress[] $midocoCrmAddress
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoContactEntryType[] $midocoContactEntry
      */
-    public function __construct(?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer = null, ?array $externalProfile = null, ?\Pggns\MidocoApi\Bank\StructType\ProfileAttributes $profileAttributes = null, ?array $midocoCrmCustomerLink = null, ?array $midocoFrequentFlyerNumber = null, ?array $midocoCrmAddress = null, ?array $midocoContactEntry = null)
+    public function __construct(?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer = null, ?array $externalProfile = null, ?\Pggns\MidocoApi\Bank\StructType\ProfileAttributes $profileAttributes = null, ?array $midocoCrmCustomerLink = null, ?array $midocoFrequentFlyerNumber = null, ?array $midocoCrmAddress = null, ?array $midocoContactEntry = null)
     {
         $this
             ->setMidocoCrmCustomer($midocoCrmCustomer)
@@ -105,18 +105,18 @@ class MidocoCrmProfile extends AbstractStructBase
     }
     /**
      * Get MidocoCrmCustomer value
-     * @return \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO|null
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer|null
      */
-    public function getMidocoCrmCustomer(): ?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO
+    public function getMidocoCrmCustomer(): ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer
     {
         return $this->MidocoCrmCustomer;
     }
     /**
      * Set MidocoCrmCustomer value
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer
      * @return \Pggns\MidocoApi\Bank\StructType\MidocoCrmProfile
      */
-    public function setMidocoCrmCustomer(?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer = null): self
+    public function setMidocoCrmCustomer(?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer = null): self
     {
         $this->MidocoCrmCustomer = $midocoCrmCustomer;
         

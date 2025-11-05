@@ -40,6 +40,11 @@ class TravelitemDTO extends AbstractStructBase
      */
     protected ?int $bookingReference = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The destination
      * @var string|null
      */
@@ -246,6 +251,7 @@ class TravelitemDTO extends AbstractStructBase
      * @uses TravelitemDTO::setBookingDate()
      * @uses TravelitemDTO::setBookingId()
      * @uses TravelitemDTO::setBookingReference()
+     * @uses TravelitemDTO::setCo2Emission()
      * @uses TravelitemDTO::setDestination()
      * @uses TravelitemDTO::setEndTravel()
      * @uses TravelitemDTO::setExpired()
@@ -291,6 +297,7 @@ class TravelitemDTO extends AbstractStructBase
      * @param string $bookingDate
      * @param string $bookingId
      * @param int $bookingReference
+     * @param float $co2Emission
      * @param string $destination
      * @param string $endTravel
      * @param bool $expired
@@ -332,7 +339,7 @@ class TravelitemDTO extends AbstractStructBase
      * @param float $voucherSinglePrice
      * @param string $voucherTypeId
      */
-    public function __construct(?string $articleType = null, ?string $bookingConfirmationNumber = null, ?string $bookingDate = null, ?string $bookingId = null, ?int $bookingReference = null, ?string $destination = null, ?string $endTravel = null, ?bool $expired = null, ?string $extChannel = null, ?string $extId = null, ?string $extSystem = null, ?string $extUrl = null, ?string $feeCode = null, ?string $forCustomer = null, ?string $fromCustomer = null, ?bool $groupItemFlag = null, ?string $groupItemName = null, ?bool $isOneWay = null, ?bool $isOption = null, ?bool $isRequest = null, ?bool $isStorno = null, ?int $itemId = null, ?string $mainUnitName = null, ?string $ndcOrderId = null, ?int $noOfPersons = null, ?int $optionPeriod = null, ?string $originalBookingId = null, ?string $originalStatus = null, ?string $originalSupplierId = null, ?string $sourceExtId = null, ?string $sourceExtSystem = null, ?string $startTravel = null, ?string $status = null, ?string $stornoConfirmationNo = null, ?string $stornoDate = null, ?string $stornoText = null, ?string $supplierId = null, ?int $transferStatus = null, ?string $transferTimestamp = null, ?string $travelNo = null, ?string $travelNoHandling = null, ?string $traveltype = null, ?int $voucherQuantity = null, ?float $voucherSinglePrice = null, ?string $voucherTypeId = null)
+    public function __construct(?string $articleType = null, ?string $bookingConfirmationNumber = null, ?string $bookingDate = null, ?string $bookingId = null, ?int $bookingReference = null, ?float $co2Emission = null, ?string $destination = null, ?string $endTravel = null, ?bool $expired = null, ?string $extChannel = null, ?string $extId = null, ?string $extSystem = null, ?string $extUrl = null, ?string $feeCode = null, ?string $forCustomer = null, ?string $fromCustomer = null, ?bool $groupItemFlag = null, ?string $groupItemName = null, ?bool $isOneWay = null, ?bool $isOption = null, ?bool $isRequest = null, ?bool $isStorno = null, ?int $itemId = null, ?string $mainUnitName = null, ?string $ndcOrderId = null, ?int $noOfPersons = null, ?int $optionPeriod = null, ?string $originalBookingId = null, ?string $originalStatus = null, ?string $originalSupplierId = null, ?string $sourceExtId = null, ?string $sourceExtSystem = null, ?string $startTravel = null, ?string $status = null, ?string $stornoConfirmationNo = null, ?string $stornoDate = null, ?string $stornoText = null, ?string $supplierId = null, ?int $transferStatus = null, ?string $transferTimestamp = null, ?string $travelNo = null, ?string $travelNoHandling = null, ?string $traveltype = null, ?int $voucherQuantity = null, ?float $voucherSinglePrice = null, ?string $voucherTypeId = null)
     {
         $this
             ->setArticleType($articleType)
@@ -340,6 +347,7 @@ class TravelitemDTO extends AbstractStructBase
             ->setBookingDate($bookingDate)
             ->setBookingId($bookingId)
             ->setBookingReference($bookingReference)
+            ->setCo2Emission($co2Emission)
             ->setDestination($destination)
             ->setEndTravel($endTravel)
             ->setExpired($expired)
@@ -493,6 +501,29 @@ class TravelitemDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($bookingReference, true), gettype($bookingReference)), __LINE__);
         }
         $this->bookingReference = $bookingReference;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\TravelitemDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

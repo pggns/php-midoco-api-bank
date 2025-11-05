@@ -19,33 +19,33 @@ class DeleteMidocoAttributeDefinitionResponse extends AbstractStructBase
      * Meta information extracted from the WSDL
      * - minOccurs: 0
      * - ref: MidocoSystemAttributeDefinition
-     * @var \Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO|null
+     * @var \Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition|null
      */
-    protected ?\Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO $MidocoSystemAttributeDefinition = null;
+    protected ?\Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition $MidocoSystemAttributeDefinition = null;
     /**
      * Constructor method for DeleteMidocoAttributeDefinitionResponse
      * @uses DeleteMidocoAttributeDefinitionResponse::setMidocoSystemAttributeDefinition()
-     * @param \Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO $midocoSystemAttributeDefinition
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition $midocoSystemAttributeDefinition
      */
-    public function __construct(?\Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO $midocoSystemAttributeDefinition = null)
+    public function __construct(?\Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition $midocoSystemAttributeDefinition = null)
     {
         $this
             ->setMidocoSystemAttributeDefinition($midocoSystemAttributeDefinition);
     }
     /**
      * Get MidocoSystemAttributeDefinition value
-     * @return \Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO|null
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition|null
      */
-    public function getMidocoSystemAttributeDefinition(): ?\Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO
+    public function getMidocoSystemAttributeDefinition(): ?\Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition
     {
         return $this->MidocoSystemAttributeDefinition;
     }
     /**
      * Set MidocoSystemAttributeDefinition value
-     * @param \Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO $midocoSystemAttributeDefinition
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition $midocoSystemAttributeDefinition
      * @return \Pggns\MidocoApi\Bank\StructType\DeleteMidocoAttributeDefinitionResponse
      */
-    public function setMidocoSystemAttributeDefinition(?\Pggns\MidocoApi\Bank\StructType\AttributeDefinitionDTO $midocoSystemAttributeDefinition = null): self
+    public function setMidocoSystemAttributeDefinition(?\Pggns\MidocoApi\Bank\StructType\MidocoSystemAttributeDefinition $midocoSystemAttributeDefinition = null): self
     {
         $this->MidocoSystemAttributeDefinition = $midocoSystemAttributeDefinition;
         

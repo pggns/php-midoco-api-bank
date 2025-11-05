@@ -175,6 +175,11 @@ class DocFlightDetailDTO extends AbstractStructBase
      */
     protected ?string $serviceStatus = null;
     /**
+     * The stopIndicator
+     * @var string|null
+     */
+    protected ?string $stopIndicator = null;
+    /**
      * Constructor method for DocFlightDetailDTO
      * @uses DocFlightDetailDTO::setAircraftType()
      * @uses DocFlightDetailDTO::setArrivalDate()
@@ -208,6 +213,7 @@ class DocFlightDetailDTO extends AbstractStructBase
      * @uses DocFlightDetailDTO::setSegmentNo()
      * @uses DocFlightDetailDTO::setServiceCode()
      * @uses DocFlightDetailDTO::setServiceStatus()
+     * @uses DocFlightDetailDTO::setStopIndicator()
      * @param string $aircraftType
      * @param string $arrivalDate
      * @param string $arrivalTime
@@ -240,8 +246,9 @@ class DocFlightDetailDTO extends AbstractStructBase
      * @param int $segmentNo
      * @param string $serviceCode
      * @param string $serviceStatus
+     * @param string $stopIndicator
      */
-    public function __construct(?string $aircraftType = null, ?string $arrivalDate = null, ?string $arrivalTime = null, ?string $baggageAllowance = null, ?string $bookingClass = null, ?string $carrier = null, ?string $checkinTime = null, ?string $classDescription = null, ?float $co2Emission = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDescription = null, ?string $departureTerminal = null, ?string $departureTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $duration = null, ?string $fareBase = null, ?string $flightNo = null, ?bool $isDeleted = null, ?int $itemId = null, ?int $miles = null, ?bool $openSegment = null, ?string $operatingCarrier = null, ?string $operatingCarrierFlightNo = null, ?string $personAssignment = null, ?int $position = null, ?bool $preventPrinting = null, ?int $referencePosition = null, ?int $segmentNo = null, ?string $serviceCode = null, ?string $serviceStatus = null)
+    public function __construct(?string $aircraftType = null, ?string $arrivalDate = null, ?string $arrivalTime = null, ?string $baggageAllowance = null, ?string $bookingClass = null, ?string $carrier = null, ?string $checkinTime = null, ?string $classDescription = null, ?float $co2Emission = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDescription = null, ?string $departureTerminal = null, ?string $departureTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $duration = null, ?string $fareBase = null, ?string $flightNo = null, ?bool $isDeleted = null, ?int $itemId = null, ?int $miles = null, ?bool $openSegment = null, ?string $operatingCarrier = null, ?string $operatingCarrierFlightNo = null, ?string $personAssignment = null, ?int $position = null, ?bool $preventPrinting = null, ?int $referencePosition = null, ?int $segmentNo = null, ?string $serviceCode = null, ?string $serviceStatus = null, ?string $stopIndicator = null)
     {
         $this
             ->setAircraftType($aircraftType)
@@ -275,7 +282,8 @@ class DocFlightDetailDTO extends AbstractStructBase
             ->setReferencePosition($referencePosition)
             ->setSegmentNo($segmentNo)
             ->setServiceCode($serviceCode)
-            ->setServiceStatus($serviceStatus);
+            ->setServiceStatus($serviceStatus)
+            ->setStopIndicator($stopIndicator);
     }
     /**
      * Get aircraftType value
@@ -1010,6 +1018,29 @@ class DocFlightDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($serviceStatus, true), gettype($serviceStatus)), __LINE__);
         }
         $this->serviceStatus = $serviceStatus;
+        
+        return $this;
+    }
+    /**
+     * Get stopIndicator value
+     * @return string|null
+     */
+    public function getStopIndicator(): ?string
+    {
+        return $this->stopIndicator;
+    }
+    /**
+     * Set stopIndicator value
+     * @param string $stopIndicator
+     * @return \Pggns\MidocoApi\Bank\StructType\DocFlightDetailDTO
+     */
+    public function setStopIndicator(?string $stopIndicator = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($stopIndicator) && !is_string($stopIndicator)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($stopIndicator, true), gettype($stopIndicator)), __LINE__);
+        }
+        $this->stopIndicator = $stopIndicator;
         
         return $this;
     }

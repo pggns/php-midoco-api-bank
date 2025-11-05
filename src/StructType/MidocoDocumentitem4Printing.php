@@ -138,6 +138,15 @@ class MidocoDocumentitem4Printing extends DocumentitemDTO
      */
     protected ?float $buyCurrencyRate = null;
     /**
+     * The MidocoTransactionJournal
+     * Meta information extracted from the WSDL
+     * - maxOccurs: unbounded
+     * - minOccurs: 0
+     * - ref: MidocoTransactionJournal
+     * @var \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal[]
+     */
+    protected ?array $MidocoTransactionJournal = null;
+    /**
      * Constructor method for MidocoDocumentitem4Printing
      * @uses MidocoDocumentitem4Printing::setIsReferenced()
      * @uses MidocoDocumentitem4Printing::setMidocoPassengerInfo4Printing()
@@ -155,6 +164,7 @@ class MidocoDocumentitem4Printing extends DocumentitemDTO
      * @uses MidocoDocumentitem4Printing::setMidocoSellPassenger()
      * @uses MidocoDocumentitem4Printing::setMidocoTouchedVatCode()
      * @uses MidocoDocumentitem4Printing::setBuyCurrencyRate()
+     * @uses MidocoDocumentitem4Printing::setMidocoTransactionJournal()
      * @param bool $isReferenced
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoPassengerInfo4Printing $midocoPassengerInfo4Printing
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoFlightDetailsInfo4Printing[] $midocoFlightDetailsInfo4Printing
@@ -171,8 +181,9 @@ class MidocoDocumentitem4Printing extends DocumentitemDTO
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoSellPassenger[] $midocoSellPassenger
      * @param \Pggns\MidocoApi\Bank\StructType\TouchedVatCodeType[] $midocoTouchedVatCode
      * @param float $buyCurrencyRate
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal[] $midocoTransactionJournal
      */
-    public function __construct(?bool $isReferenced = true, ?\Pggns\MidocoApi\Bank\StructType\MidocoPassengerInfo4Printing $midocoPassengerInfo4Printing = null, ?array $midocoFlightDetailsInfo4Printing = null, ?array $midocoRemarks = null, ?bool $isPrinted = false, ?bool $needsInvoicePrint = false, ?array $midocoDocumentTaxInfo4Printing = null, ?string $bspValidatorName = null, ?bool $preventPrinting = false, ?array $midocoOrdersDbiInfo = null, ?array $midocoInvoicePosition = null, ?array $midocoInvoiceVatPosition = null, ?float $oldPrice = null, ?array $midocoSellPassenger = null, ?array $midocoTouchedVatCode = null, ?float $buyCurrencyRate = null)
+    public function __construct(?bool $isReferenced = true, ?\Pggns\MidocoApi\Bank\StructType\MidocoPassengerInfo4Printing $midocoPassengerInfo4Printing = null, ?array $midocoFlightDetailsInfo4Printing = null, ?array $midocoRemarks = null, ?bool $isPrinted = false, ?bool $needsInvoicePrint = false, ?array $midocoDocumentTaxInfo4Printing = null, ?string $bspValidatorName = null, ?bool $preventPrinting = false, ?array $midocoOrdersDbiInfo = null, ?array $midocoInvoicePosition = null, ?array $midocoInvoiceVatPosition = null, ?float $oldPrice = null, ?array $midocoSellPassenger = null, ?array $midocoTouchedVatCode = null, ?float $buyCurrencyRate = null, ?array $midocoTransactionJournal = null)
     {
         $this
             ->setIsReferenced($isReferenced)
@@ -190,7 +201,8 @@ class MidocoDocumentitem4Printing extends DocumentitemDTO
             ->setOldPrice($oldPrice)
             ->setMidocoSellPassenger($midocoSellPassenger)
             ->setMidocoTouchedVatCode($midocoTouchedVatCode)
-            ->setBuyCurrencyRate($buyCurrencyRate);
+            ->setBuyCurrencyRate($buyCurrencyRate)
+            ->setMidocoTransactionJournal($midocoTransactionJournal);
     }
     /**
      * Get isReferenced value
@@ -905,6 +917,73 @@ class MidocoDocumentitem4Printing extends DocumentitemDTO
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($buyCurrencyRate, true), gettype($buyCurrencyRate)), __LINE__);
         }
         $this->buyCurrencyRate = $buyCurrencyRate;
+        
+        return $this;
+    }
+    /**
+     * Get MidocoTransactionJournal value
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal[]
+     */
+    public function getMidocoTransactionJournal(): ?array
+    {
+        return $this->MidocoTransactionJournal;
+    }
+    /**
+     * This method is responsible for validating the value(s) passed to the setMidocoTransactionJournal method
+     * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoTransactionJournal method
+     * This has to validate that each item contained by the array match the itemType constraint
+     * @param array $values
+     * @return string A non-empty message if the values does not match the validation rules
+     */
+    public static function validateMidocoTransactionJournalForArrayConstraintFromSetMidocoTransactionJournal(?array $values = []): string
+    {
+        if (!is_array($values)) {
+            return '';
+        }
+        $message = '';
+        $invalidValues = [];
+        foreach ($values as $midocoDocumentitem4PrintingMidocoTransactionJournalItem) {
+            // validation for constraint: itemType
+            if (!$midocoDocumentitem4PrintingMidocoTransactionJournalItem instanceof \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal) {
+                $invalidValues[] = is_object($midocoDocumentitem4PrintingMidocoTransactionJournalItem) ? get_class($midocoDocumentitem4PrintingMidocoTransactionJournalItem) : sprintf('%s(%s)', gettype($midocoDocumentitem4PrintingMidocoTransactionJournalItem), var_export($midocoDocumentitem4PrintingMidocoTransactionJournalItem, true));
+            }
+        }
+        if (!empty($invalidValues)) {
+            $message = sprintf('The MidocoTransactionJournal property can only contain items of type \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal, %s given', is_object($invalidValues) ? get_class($invalidValues) : (is_array($invalidValues) ? implode(', ', $invalidValues) : gettype($invalidValues)));
+        }
+        unset($invalidValues);
+        
+        return $message;
+    }
+    /**
+     * Set MidocoTransactionJournal value
+     * @throws InvalidArgumentException
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal[] $midocoTransactionJournal
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoDocumentitem4Printing
+     */
+    public function setMidocoTransactionJournal(?array $midocoTransactionJournal = null): self
+    {
+        // validation for constraint: array
+        if ('' !== ($midocoTransactionJournalArrayErrorMessage = self::validateMidocoTransactionJournalForArrayConstraintFromSetMidocoTransactionJournal($midocoTransactionJournal))) {
+            throw new InvalidArgumentException($midocoTransactionJournalArrayErrorMessage, __LINE__);
+        }
+        $this->MidocoTransactionJournal = $midocoTransactionJournal;
+        
+        return $this;
+    }
+    /**
+     * Add item to MidocoTransactionJournal value
+     * @throws InvalidArgumentException
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal $item
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoDocumentitem4Printing
+     */
+    public function addToMidocoTransactionJournal(\Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal $item): self
+    {
+        // validation for constraint: itemType
+        if (!$item instanceof \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal) {
+            throw new InvalidArgumentException(sprintf('The MidocoTransactionJournal property can only contain items of type \Pggns\MidocoApi\Bank\StructType\MidocoTransactionJournal, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
+        }
+        $this->MidocoTransactionJournal[] = $item;
         
         return $this;
     }

@@ -20,6 +20,11 @@ class BookingJournalDTO extends AbstractStructBase
      */
     protected ?bool $automaticVat = null;
     /**
+     * The billingPositionId
+     * @var int|null
+     */
+    protected ?int $billingPositionId = null;
+    /**
      * The bookingAmount
      * @var float|null
      */
@@ -215,6 +220,21 @@ class BookingJournalDTO extends AbstractStructBase
      */
     protected ?string $travelDate = null;
     /**
+     * The vat2Amount
+     * @var float|null
+     */
+    protected ?float $vat2Amount = null;
+    /**
+     * The vat2Code
+     * @var string|null
+     */
+    protected ?string $vat2Code = null;
+    /**
+     * The vat2Percent
+     * @var float|null
+     */
+    protected ?float $vat2Percent = null;
+    /**
      * The vatAmount
      * @var float|null
      */
@@ -237,6 +257,7 @@ class BookingJournalDTO extends AbstractStructBase
     /**
      * Constructor method for BookingJournalDTO
      * @uses BookingJournalDTO::setAutomaticVat()
+     * @uses BookingJournalDTO::setBillingPositionId()
      * @uses BookingJournalDTO::setBookingAmount()
      * @uses BookingJournalDTO::setBookingPeriod()
      * @uses BookingJournalDTO::setBookingPeriodManuallyChanged()
@@ -276,11 +297,15 @@ class BookingJournalDTO extends AbstractStructBase
      * @uses BookingJournalDTO::setSkontoAmount()
      * @uses BookingJournalDTO::setSkontoVatAmount()
      * @uses BookingJournalDTO::setTravelDate()
+     * @uses BookingJournalDTO::setVat2Amount()
+     * @uses BookingJournalDTO::setVat2Code()
+     * @uses BookingJournalDTO::setVat2Percent()
      * @uses BookingJournalDTO::setVatAmount()
      * @uses BookingJournalDTO::setVatCode()
      * @uses BookingJournalDTO::setVatId()
      * @uses BookingJournalDTO::setVatPercent()
      * @param bool $automaticVat
+     * @param int $billingPositionId
      * @param float $bookingAmount
      * @param int $bookingPeriod
      * @param bool $bookingPeriodManuallyChanged
@@ -320,15 +345,19 @@ class BookingJournalDTO extends AbstractStructBase
      * @param float $skontoAmount
      * @param float $skontoVatAmount
      * @param string $travelDate
+     * @param float $vat2Amount
+     * @param string $vat2Code
+     * @param float $vat2Percent
      * @param float $vatAmount
      * @param string $vatCode
      * @param string $vatId
      * @param float $vatPercent
      */
-    public function __construct(?bool $automaticVat = null, ?float $bookingAmount = null, ?int $bookingPeriod = null, ?bool $bookingPeriodManuallyChanged = null, ?bool $bookingReversal = null, ?int $bookingSource = null, ?string $bookingText = null, ?int $bookingYear = null, ?string $costCentre = null, ?string $costUnit = null, ?string $creationDate = null, ?string $creationTimestamp = null, ?int $creationUser = null, ?string $creditAccount = null, ?string $creditEntry = null, ?string $currency = null, ?string $debitAccount = null, ?string $debitEntry = null, ?int $deferralPositionId = null, ?int $documentId = null, ?string $dueDate = null, ?float $exchangeRate = null, ?string $exportCode = null, ?string $exportDate = null, ?int $exportId = null, ?bool $isExported = null, ?bool $isInvoice = null, ?int $itemId = null, ?int $journalId = null, ?int $masterJournalId = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?string $planId = null, ?string $receiptDate = null, ?string $receiptNo = null, ?int $revenueId = null, ?string $reverseChargeCountry = null, ?float $skontoAmount = null, ?float $skontoVatAmount = null, ?string $travelDate = null, ?float $vatAmount = null, ?string $vatCode = null, ?string $vatId = null, ?float $vatPercent = null)
+    public function __construct(?bool $automaticVat = null, ?int $billingPositionId = null, ?float $bookingAmount = null, ?int $bookingPeriod = null, ?bool $bookingPeriodManuallyChanged = null, ?bool $bookingReversal = null, ?int $bookingSource = null, ?string $bookingText = null, ?int $bookingYear = null, ?string $costCentre = null, ?string $costUnit = null, ?string $creationDate = null, ?string $creationTimestamp = null, ?int $creationUser = null, ?string $creditAccount = null, ?string $creditEntry = null, ?string $currency = null, ?string $debitAccount = null, ?string $debitEntry = null, ?int $deferralPositionId = null, ?int $documentId = null, ?string $dueDate = null, ?float $exchangeRate = null, ?string $exportCode = null, ?string $exportDate = null, ?int $exportId = null, ?bool $isExported = null, ?bool $isInvoice = null, ?int $itemId = null, ?int $journalId = null, ?int $masterJournalId = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?string $planId = null, ?string $receiptDate = null, ?string $receiptNo = null, ?int $revenueId = null, ?string $reverseChargeCountry = null, ?float $skontoAmount = null, ?float $skontoVatAmount = null, ?string $travelDate = null, ?float $vat2Amount = null, ?string $vat2Code = null, ?float $vat2Percent = null, ?float $vatAmount = null, ?string $vatCode = null, ?string $vatId = null, ?float $vatPercent = null)
     {
         $this
             ->setAutomaticVat($automaticVat)
+            ->setBillingPositionId($billingPositionId)
             ->setBookingAmount($bookingAmount)
             ->setBookingPeriod($bookingPeriod)
             ->setBookingPeriodManuallyChanged($bookingPeriodManuallyChanged)
@@ -368,6 +397,9 @@ class BookingJournalDTO extends AbstractStructBase
             ->setSkontoAmount($skontoAmount)
             ->setSkontoVatAmount($skontoVatAmount)
             ->setTravelDate($travelDate)
+            ->setVat2Amount($vat2Amount)
+            ->setVat2Code($vat2Code)
+            ->setVat2Percent($vat2Percent)
             ->setVatAmount($vatAmount)
             ->setVatCode($vatCode)
             ->setVatId($vatId)
@@ -393,6 +425,29 @@ class BookingJournalDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($automaticVat, true), gettype($automaticVat)), __LINE__);
         }
         $this->automaticVat = $automaticVat;
+        
+        return $this;
+    }
+    /**
+     * Get billingPositionId value
+     * @return int|null
+     */
+    public function getBillingPositionId(): ?int
+    {
+        return $this->billingPositionId;
+    }
+    /**
+     * Set billingPositionId value
+     * @param int $billingPositionId
+     * @return \Pggns\MidocoApi\Bank\StructType\BookingJournalDTO
+     */
+    public function setBillingPositionId(?int $billingPositionId = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($billingPositionId) && !(is_int($billingPositionId) || ctype_digit($billingPositionId))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($billingPositionId, true), gettype($billingPositionId)), __LINE__);
+        }
+        $this->billingPositionId = $billingPositionId;
         
         return $this;
     }
@@ -1290,6 +1345,75 @@ class BookingJournalDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($travelDate, true), gettype($travelDate)), __LINE__);
         }
         $this->travelDate = $travelDate;
+        
+        return $this;
+    }
+    /**
+     * Get vat2Amount value
+     * @return float|null
+     */
+    public function getVat2Amount(): ?float
+    {
+        return $this->vat2Amount;
+    }
+    /**
+     * Set vat2Amount value
+     * @param float $vat2Amount
+     * @return \Pggns\MidocoApi\Bank\StructType\BookingJournalDTO
+     */
+    public function setVat2Amount(?float $vat2Amount = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($vat2Amount) && !(is_float($vat2Amount) || is_numeric($vat2Amount))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($vat2Amount, true), gettype($vat2Amount)), __LINE__);
+        }
+        $this->vat2Amount = $vat2Amount;
+        
+        return $this;
+    }
+    /**
+     * Get vat2Code value
+     * @return string|null
+     */
+    public function getVat2Code(): ?string
+    {
+        return $this->vat2Code;
+    }
+    /**
+     * Set vat2Code value
+     * @param string $vat2Code
+     * @return \Pggns\MidocoApi\Bank\StructType\BookingJournalDTO
+     */
+    public function setVat2Code(?string $vat2Code = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($vat2Code) && !is_string($vat2Code)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($vat2Code, true), gettype($vat2Code)), __LINE__);
+        }
+        $this->vat2Code = $vat2Code;
+        
+        return $this;
+    }
+    /**
+     * Get vat2Percent value
+     * @return float|null
+     */
+    public function getVat2Percent(): ?float
+    {
+        return $this->vat2Percent;
+    }
+    /**
+     * Set vat2Percent value
+     * @param float $vat2Percent
+     * @return \Pggns\MidocoApi\Bank\StructType\BookingJournalDTO
+     */
+    public function setVat2Percent(?float $vat2Percent = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($vat2Percent) && !(is_float($vat2Percent) || is_numeric($vat2Percent))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($vat2Percent, true), gettype($vat2Percent)), __LINE__);
+        }
+        $this->vat2Percent = $vat2Percent;
         
         return $this;
     }

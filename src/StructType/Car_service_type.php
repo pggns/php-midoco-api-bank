@@ -115,6 +115,13 @@ class Car_service_type extends AbstractStructBase
      */
     protected ?string $return_time = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The service_status
      * @var string|null
      */
@@ -297,6 +304,7 @@ class Car_service_type extends AbstractStructBase
      * @uses Car_service_type::setReturn_description()
      * @uses Car_service_type::setReturn_date()
      * @uses Car_service_type::setReturn_time()
+     * @uses Car_service_type::setCo2_emission()
      * @uses Car_service_type::setService_status()
      * @uses Car_service_type::setService_price()
      * @uses Car_service_type::setNo_of_services()
@@ -337,6 +345,7 @@ class Car_service_type extends AbstractStructBase
      * @param string $return_description
      * @param string $return_date
      * @param string $return_time
+     * @param float $co2_emission
      * @param string $service_status
      * @param float $service_price
      * @param int $no_of_services
@@ -364,7 +373,7 @@ class Car_service_type extends AbstractStructBase
      * @param string $sourceSystem
      * @param string $sourceExtId
      */
-    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $category = null, ?string $car_type = null, ?string $car_description = null, ?string $pickup_code = null, ?string $pickup_description = null, ?string $pickup_date = null, ?string $pickup_time = null, ?string $return_code = null, ?string $return_description = null, ?string $return_date = null, ?string $return_time = null, ?string $service_status = null, ?float $service_price = null, ?int $no_of_services = null, ?string $currency = null, ?string $insurance_type = null, ?string $insurance_description = null, ?bool $vat_included = false, ?string $country_code = null, ?string $country_description = null, ?string $return_country_code = null, ?string $return_country_description = null, ?string $car_supplier = null, ?string $region_code = null, ?string $region_description = null, ?string $corporate_discount = null, ?array $traveler_ref_id = null, ?string $destination_area = null, ?string $area_description = null, ?string $return_destination_area = null, ?string $return_area_description = null, ?string $bookingId = null, ?string $bookingDate = null, ?string $supplierId = null, ?string $extId = null, ?string $sourceSystem = null, ?string $sourceExtId = null)
+    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $category = null, ?string $car_type = null, ?string $car_description = null, ?string $pickup_code = null, ?string $pickup_description = null, ?string $pickup_date = null, ?string $pickup_time = null, ?string $return_code = null, ?string $return_description = null, ?string $return_date = null, ?string $return_time = null, ?float $co2_emission = null, ?string $service_status = null, ?float $service_price = null, ?int $no_of_services = null, ?string $currency = null, ?string $insurance_type = null, ?string $insurance_description = null, ?bool $vat_included = false, ?string $country_code = null, ?string $country_description = null, ?string $return_country_code = null, ?string $return_country_description = null, ?string $car_supplier = null, ?string $region_code = null, ?string $region_description = null, ?string $corporate_discount = null, ?array $traveler_ref_id = null, ?string $destination_area = null, ?string $area_description = null, ?string $return_destination_area = null, ?string $return_area_description = null, ?string $bookingId = null, ?string $bookingDate = null, ?string $supplierId = null, ?string $extId = null, ?string $sourceSystem = null, ?string $sourceExtId = null)
     {
         $this
             ->setPosition($position)
@@ -381,6 +390,7 @@ class Car_service_type extends AbstractStructBase
             ->setReturn_description($return_description)
             ->setReturn_date($return_date)
             ->setReturn_time($return_time)
+            ->setCo2_emission($co2_emission)
             ->setService_status($service_status)
             ->setService_price($service_price)
             ->setNo_of_services($no_of_services)
@@ -743,6 +753,29 @@ class Car_service_type extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a literal that is among the set of character sequences denoted by the regular expression /[0-9]{2}:[0-9]{2}/', var_export($return_time, true)), __LINE__);
         }
         $this->return_time = $this->{'return-time'} = $return_time;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Car_service_type
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

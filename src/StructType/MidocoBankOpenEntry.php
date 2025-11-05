@@ -20,14 +20,22 @@ class MidocoBankOpenEntry extends DebitorAccountEntryType
      */
     protected ?float $assignedAmount = null;
     /**
+     * The assignedOriginalAmount
+     * @var float|null
+     */
+    protected ?float $assignedOriginalAmount = null;
+    /**
      * Constructor method for MidocoBankOpenEntry
      * @uses MidocoBankOpenEntry::setAssignedAmount()
+     * @uses MidocoBankOpenEntry::setAssignedOriginalAmount()
      * @param float $assignedAmount
+     * @param float $assignedOriginalAmount
      */
-    public function __construct(?float $assignedAmount = null)
+    public function __construct(?float $assignedAmount = null, ?float $assignedOriginalAmount = null)
     {
         $this
-            ->setAssignedAmount($assignedAmount);
+            ->setAssignedAmount($assignedAmount)
+            ->setAssignedOriginalAmount($assignedOriginalAmount);
     }
     /**
      * Get assignedAmount value
@@ -49,6 +57,29 @@ class MidocoBankOpenEntry extends DebitorAccountEntryType
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($assignedAmount, true), gettype($assignedAmount)), __LINE__);
         }
         $this->assignedAmount = $assignedAmount;
+        
+        return $this;
+    }
+    /**
+     * Get assignedOriginalAmount value
+     * @return float|null
+     */
+    public function getAssignedOriginalAmount(): ?float
+    {
+        return $this->assignedOriginalAmount;
+    }
+    /**
+     * Set assignedOriginalAmount value
+     * @param float $assignedOriginalAmount
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoBankOpenEntry
+     */
+    public function setAssignedOriginalAmount(?float $assignedOriginalAmount = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($assignedOriginalAmount) && !(is_float($assignedOriginalAmount) || is_numeric($assignedOriginalAmount))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($assignedOriginalAmount, true), gettype($assignedOriginalAmount)), __LINE__);
+        }
+        $this->assignedOriginalAmount = $assignedOriginalAmount;
         
         return $this;
     }

@@ -45,6 +45,11 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      */
     protected ?int $captureDone = null;
     /**
+     * The cardholderAuthVerification
+     * @var string|null
+     */
+    protected ?string $cardholderAuthVerification = null;
+    /**
      * The ccNo
      * @var string|null
      */
@@ -95,6 +100,11 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      */
     protected ?string $dstid = null;
     /**
+     * The electronicCommerceIndicator
+     * @var string|null
+     */
+    protected ?string $electronicCommerceIndicator = null;
+    /**
      * The errorBundle
      * @var string|null
      */
@@ -115,6 +125,11 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      */
     protected ?string $externalId = null;
     /**
+     * The importStatus
+     * @var string|null
+     */
+    protected ?string $importStatus = null;
+    /**
      * The initialEcomTransactionId
      * @var string|null
      */
@@ -124,6 +139,11 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @var bool|null
      */
     protected ?bool $isDeposit = null;
+    /**
+     * The isImported
+     * @var bool|null
+     */
+    protected ?bool $isImported = null;
     /**
      * The isRecurring
      * @var bool|null
@@ -185,6 +205,11 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      */
     protected ?string $usedMerchantId = null;
     /**
+     * The v3ds
+     * @var string|null
+     */
+    protected ?string $v3ds = null;
+    /**
      * The vat2AmountExtern
      * @var float|null
      */
@@ -227,6 +252,7 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @uses OnlinePaymentTransactionDTO::setCalculatedPaymentDate()
      * @uses OnlinePaymentTransactionDTO::setCaptureDate()
      * @uses OnlinePaymentTransactionDTO::setCaptureDone()
+     * @uses OnlinePaymentTransactionDTO::setCardholderAuthVerification()
      * @uses OnlinePaymentTransactionDTO::setCcNo()
      * @uses OnlinePaymentTransactionDTO::setCcReceiptNo()
      * @uses OnlinePaymentTransactionDTO::setCcToken()
@@ -237,12 +263,15 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @uses OnlinePaymentTransactionDTO::setCreationTimestamp()
      * @uses OnlinePaymentTransactionDTO::setCurrency()
      * @uses OnlinePaymentTransactionDTO::setDstid()
+     * @uses OnlinePaymentTransactionDTO::setElectronicCommerceIndicator()
      * @uses OnlinePaymentTransactionDTO::setErrorBundle()
      * @uses OnlinePaymentTransactionDTO::setErrorCode()
      * @uses OnlinePaymentTransactionDTO::setErrorDescriptionCode()
      * @uses OnlinePaymentTransactionDTO::setExternalId()
+     * @uses OnlinePaymentTransactionDTO::setImportStatus()
      * @uses OnlinePaymentTransactionDTO::setInitialEcomTransactionId()
      * @uses OnlinePaymentTransactionDTO::setIsDeposit()
+     * @uses OnlinePaymentTransactionDTO::setIsImported()
      * @uses OnlinePaymentTransactionDTO::setIsRecurring()
      * @uses OnlinePaymentTransactionDTO::setItemId()
      * @uses OnlinePaymentTransactionDTO::setManualApprovalCode()
@@ -255,6 +284,7 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @uses OnlinePaymentTransactionDTO::setTransactionRefId()
      * @uses OnlinePaymentTransactionDTO::setUsedAdapter()
      * @uses OnlinePaymentTransactionDTO::setUsedMerchantId()
+     * @uses OnlinePaymentTransactionDTO::setV3ds()
      * @uses OnlinePaymentTransactionDTO::setVat2AmountExtern()
      * @uses OnlinePaymentTransactionDTO::setVat2BaseExtern()
      * @uses OnlinePaymentTransactionDTO::setVat2PercentExtern()
@@ -268,6 +298,7 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @param string $calculatedPaymentDate
      * @param string $captureDate
      * @param int $captureDone
+     * @param string $cardholderAuthVerification
      * @param string $ccNo
      * @param int $ccReceiptNo
      * @param string $ccToken
@@ -278,12 +309,15 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @param string $creationTimestamp
      * @param string $currency
      * @param string $dstid
+     * @param string $electronicCommerceIndicator
      * @param string $errorBundle
      * @param string $errorCode
      * @param string $errorDescriptionCode
      * @param string $externalId
+     * @param string $importStatus
      * @param string $initialEcomTransactionId
      * @param bool $isDeposit
+     * @param bool $isImported
      * @param bool $isRecurring
      * @param int $itemId
      * @param string $manualApprovalCode
@@ -296,6 +330,7 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @param string $transactionRefId
      * @param string $usedAdapter
      * @param string $usedMerchantId
+     * @param string $v3ds
      * @param float $vat2AmountExtern
      * @param float $vat2BaseExtern
      * @param float $vat2PercentExtern
@@ -304,7 +339,7 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
      * @param float $vatPercentExtern
      * @param string $xid
      */
-    public function __construct(?float $amount = null, ?string $approvalCode = null, ?int $basePositionId = null, ?string $calculatedPaymentDate = null, ?string $captureDate = null, ?int $captureDone = null, ?string $ccNo = null, ?int $ccReceiptNo = null, ?string $ccToken = null, ?string $ccTokenType = null, ?string $ccType = null, ?int $ccValidMonth = null, ?int $ccValidYear = null, ?string $creationTimestamp = null, ?string $currency = null, ?string $dstid = null, ?string $errorBundle = null, ?string $errorCode = null, ?string $errorDescriptionCode = null, ?string $externalId = null, ?string $initialEcomTransactionId = null, ?bool $isDeposit = null, ?bool $isRecurring = null, ?int $itemId = null, ?string $manualApprovalCode = null, ?int $orderId = null, ?string $paymentChannelIndicator = null, ?string $posCode = null, ?string $settlementDate = null, ?bool $tokenChecked = null, ?int $transactionId = null, ?string $transactionRefId = null, ?string $usedAdapter = null, ?string $usedMerchantId = null, ?float $vat2AmountExtern = null, ?float $vat2BaseExtern = null, ?float $vat2PercentExtern = null, ?float $vatAmountExtern = null, ?float $vatBaseExtern = null, ?float $vatPercentExtern = null, ?string $xid = null)
+    public function __construct(?float $amount = null, ?string $approvalCode = null, ?int $basePositionId = null, ?string $calculatedPaymentDate = null, ?string $captureDate = null, ?int $captureDone = null, ?string $cardholderAuthVerification = null, ?string $ccNo = null, ?int $ccReceiptNo = null, ?string $ccToken = null, ?string $ccTokenType = null, ?string $ccType = null, ?int $ccValidMonth = null, ?int $ccValidYear = null, ?string $creationTimestamp = null, ?string $currency = null, ?string $dstid = null, ?string $electronicCommerceIndicator = null, ?string $errorBundle = null, ?string $errorCode = null, ?string $errorDescriptionCode = null, ?string $externalId = null, ?string $importStatus = null, ?string $initialEcomTransactionId = null, ?bool $isDeposit = null, ?bool $isImported = null, ?bool $isRecurring = null, ?int $itemId = null, ?string $manualApprovalCode = null, ?int $orderId = null, ?string $paymentChannelIndicator = null, ?string $posCode = null, ?string $settlementDate = null, ?bool $tokenChecked = null, ?int $transactionId = null, ?string $transactionRefId = null, ?string $usedAdapter = null, ?string $usedMerchantId = null, ?string $v3ds = null, ?float $vat2AmountExtern = null, ?float $vat2BaseExtern = null, ?float $vat2PercentExtern = null, ?float $vatAmountExtern = null, ?float $vatBaseExtern = null, ?float $vatPercentExtern = null, ?string $xid = null)
     {
         $this
             ->setAmount($amount)
@@ -313,6 +348,7 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
             ->setCalculatedPaymentDate($calculatedPaymentDate)
             ->setCaptureDate($captureDate)
             ->setCaptureDone($captureDone)
+            ->setCardholderAuthVerification($cardholderAuthVerification)
             ->setCcNo($ccNo)
             ->setCcReceiptNo($ccReceiptNo)
             ->setCcToken($ccToken)
@@ -323,12 +359,15 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
             ->setCreationTimestamp($creationTimestamp)
             ->setCurrency($currency)
             ->setDstid($dstid)
+            ->setElectronicCommerceIndicator($electronicCommerceIndicator)
             ->setErrorBundle($errorBundle)
             ->setErrorCode($errorCode)
             ->setErrorDescriptionCode($errorDescriptionCode)
             ->setExternalId($externalId)
+            ->setImportStatus($importStatus)
             ->setInitialEcomTransactionId($initialEcomTransactionId)
             ->setIsDeposit($isDeposit)
+            ->setIsImported($isImported)
             ->setIsRecurring($isRecurring)
             ->setItemId($itemId)
             ->setManualApprovalCode($manualApprovalCode)
@@ -341,6 +380,7 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
             ->setTransactionRefId($transactionRefId)
             ->setUsedAdapter($usedAdapter)
             ->setUsedMerchantId($usedMerchantId)
+            ->setV3ds($v3ds)
             ->setVat2AmountExtern($vat2AmountExtern)
             ->setVat2BaseExtern($vat2BaseExtern)
             ->setVat2PercentExtern($vat2PercentExtern)
@@ -484,6 +524,29 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($captureDone, true), gettype($captureDone)), __LINE__);
         }
         $this->captureDone = $captureDone;
+        
+        return $this;
+    }
+    /**
+     * Get cardholderAuthVerification value
+     * @return string|null
+     */
+    public function getCardholderAuthVerification(): ?string
+    {
+        return $this->cardholderAuthVerification;
+    }
+    /**
+     * Set cardholderAuthVerification value
+     * @param string $cardholderAuthVerification
+     * @return \Pggns\MidocoApi\Bank\StructType\OnlinePaymentTransactionDTO
+     */
+    public function setCardholderAuthVerification(?string $cardholderAuthVerification = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($cardholderAuthVerification) && !is_string($cardholderAuthVerification)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($cardholderAuthVerification, true), gettype($cardholderAuthVerification)), __LINE__);
+        }
+        $this->cardholderAuthVerification = $cardholderAuthVerification;
         
         return $this;
     }
@@ -718,6 +781,29 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get electronicCommerceIndicator value
+     * @return string|null
+     */
+    public function getElectronicCommerceIndicator(): ?string
+    {
+        return $this->electronicCommerceIndicator;
+    }
+    /**
+     * Set electronicCommerceIndicator value
+     * @param string $electronicCommerceIndicator
+     * @return \Pggns\MidocoApi\Bank\StructType\OnlinePaymentTransactionDTO
+     */
+    public function setElectronicCommerceIndicator(?string $electronicCommerceIndicator = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($electronicCommerceIndicator) && !is_string($electronicCommerceIndicator)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($electronicCommerceIndicator, true), gettype($electronicCommerceIndicator)), __LINE__);
+        }
+        $this->electronicCommerceIndicator = $electronicCommerceIndicator;
+        
+        return $this;
+    }
+    /**
      * Get errorBundle value
      * @return string|null
      */
@@ -810,6 +896,29 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get importStatus value
+     * @return string|null
+     */
+    public function getImportStatus(): ?string
+    {
+        return $this->importStatus;
+    }
+    /**
+     * Set importStatus value
+     * @param string $importStatus
+     * @return \Pggns\MidocoApi\Bank\StructType\OnlinePaymentTransactionDTO
+     */
+    public function setImportStatus(?string $importStatus = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($importStatus) && !is_string($importStatus)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($importStatus, true), gettype($importStatus)), __LINE__);
+        }
+        $this->importStatus = $importStatus;
+        
+        return $this;
+    }
+    /**
      * Get initialEcomTransactionId value
      * @return string|null
      */
@@ -852,6 +961,29 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isDeposit, true), gettype($isDeposit)), __LINE__);
         }
         $this->isDeposit = $isDeposit;
+        
+        return $this;
+    }
+    /**
+     * Get isImported value
+     * @return bool|null
+     */
+    public function getIsImported(): ?bool
+    {
+        return $this->isImported;
+    }
+    /**
+     * Set isImported value
+     * @param bool $isImported
+     * @return \Pggns\MidocoApi\Bank\StructType\OnlinePaymentTransactionDTO
+     */
+    public function setIsImported(?bool $isImported = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isImported) && !is_bool($isImported)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isImported, true), gettype($isImported)), __LINE__);
+        }
+        $this->isImported = $isImported;
         
         return $this;
     }
@@ -1128,6 +1260,29 @@ class OnlinePaymentTransactionDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($usedMerchantId, true), gettype($usedMerchantId)), __LINE__);
         }
         $this->usedMerchantId = $usedMerchantId;
+        
+        return $this;
+    }
+    /**
+     * Get v3ds value
+     * @return string|null
+     */
+    public function getV3ds(): ?string
+    {
+        return $this->v3ds;
+    }
+    /**
+     * Set v3ds value
+     * @param string $v3ds
+     * @return \Pggns\MidocoApi\Bank\StructType\OnlinePaymentTransactionDTO
+     */
+    public function setV3ds(?string $v3ds = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($v3ds) && !is_string($v3ds)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($v3ds, true), gettype($v3ds)), __LINE__);
+        }
+        $this->v3ds = $v3ds;
         
         return $this;
     }

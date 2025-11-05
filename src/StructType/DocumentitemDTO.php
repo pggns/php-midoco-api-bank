@@ -90,6 +90,11 @@ class DocumentitemDTO extends AbstractStructBase
      */
     protected ?bool $deletable = null;
     /**
+     * The destinationCode
+     * @var string|null
+     */
+    protected ?string $destinationCode = null;
+    /**
      * The docSubtypeDescription
      * @var string|null
      */
@@ -190,6 +195,11 @@ class DocumentitemDTO extends AbstractStructBase
      */
     protected ?string $originType = null;
     /**
+     * The originalAirlineFees
+     * @var float|null
+     */
+    protected ?float $originalAirlineFees = null;
+    /**
      * The originalAmount
      * @var float|null
      */
@@ -199,6 +209,21 @@ class DocumentitemDTO extends AbstractStructBase
      * @var string|null
      */
     protected ?string $originalCurrency = null;
+    /**
+     * The originalFare
+     * @var float|null
+     */
+    protected ?float $originalFare = null;
+    /**
+     * The originalTax
+     * @var float|null
+     */
+    protected ?float $originalTax = null;
+    /**
+     * The originalTotalSellPrice
+     * @var float|null
+     */
+    protected ?float $originalTotalSellPrice = null;
     /**
      * The passengerAsignment
      * @var string|null
@@ -331,6 +356,7 @@ class DocumentitemDTO extends AbstractStructBase
      * @uses DocumentitemDTO::setCurrency()
      * @uses DocumentitemDTO::setDateOfIssue()
      * @uses DocumentitemDTO::setDeletable()
+     * @uses DocumentitemDTO::setDestinationCode()
      * @uses DocumentitemDTO::setDocSubtypeDescription()
      * @uses DocumentitemDTO::setDocumentNo()
      * @uses DocumentitemDTO::setDocumentSubgroupEmd()
@@ -351,8 +377,12 @@ class DocumentitemDTO extends AbstractStructBase
      * @uses DocumentitemDTO::setItemId()
      * @uses DocumentitemDTO::setNonCcPaidAmount()
      * @uses DocumentitemDTO::setOriginType()
+     * @uses DocumentitemDTO::setOriginalAirlineFees()
      * @uses DocumentitemDTO::setOriginalAmount()
      * @uses DocumentitemDTO::setOriginalCurrency()
+     * @uses DocumentitemDTO::setOriginalFare()
+     * @uses DocumentitemDTO::setOriginalTax()
+     * @uses DocumentitemDTO::setOriginalTotalSellPrice()
      * @uses DocumentitemDTO::setPassengerAsignment()
      * @uses DocumentitemDTO::setPaymentType()
      * @uses DocumentitemDTO::setPositionNo()
@@ -391,6 +421,7 @@ class DocumentitemDTO extends AbstractStructBase
      * @param string $currency
      * @param string $dateOfIssue
      * @param bool $deletable
+     * @param string $destinationCode
      * @param string $docSubtypeDescription
      * @param string $documentNo
      * @param string $documentSubgroupEmd
@@ -411,8 +442,12 @@ class DocumentitemDTO extends AbstractStructBase
      * @param int $itemId
      * @param float $nonCcPaidAmount
      * @param string $originType
+     * @param float $originalAirlineFees
      * @param float $originalAmount
      * @param string $originalCurrency
+     * @param float $originalFare
+     * @param float $originalTax
+     * @param float $originalTotalSellPrice
      * @param string $passengerAsignment
      * @param string $paymentType
      * @param int $positionNo
@@ -437,7 +472,7 @@ class DocumentitemDTO extends AbstractStructBase
      * @param int $udCode
      * @param string $vatContent
      */
-    public function __construct(?float $airlineFees = null, ?string $bspAgency = null, ?string $bspValidator = null, ?float $cancellationFee = null, ?string $ccApprovalCode = null, ?string $ccNumber = null, ?string $ccType = null, ?string $ccValid = null, ?string $checkDigit = null, ?float $commission = null, ?float $commissionPercent = null, ?float $commissionVatAmount = null, ?string $currency = null, ?string $dateOfIssue = null, ?bool $deletable = null, ?string $docSubtypeDescription = null, ?string $documentNo = null, ?string $documentSubgroupEmd = null, ?string $documentSubtype = null, ?string $documentType = null, ?string $endorsement = null, ?string $exchangeInformation = null, ?float $exchangeRate = null, ?float $farePrice = null, ?string $fareType = null, ?string $feeCurrency = null, ?string $filekey = null, ?string $firstImportTimestamp = null, ?bool $isDomestic = null, ?bool $isFeeReverseCharge = null, ?bool $isInkasso = null, ?string $itCode = null, ?int $itemId = null, ?float $nonCcPaidAmount = null, ?string $originType = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?string $passengerAsignment = null, ?string $paymentType = null, ?int $positionNo = null, ?string $printType = null, ?string $referencedDocumentNo = null, ?string $reportIndicator = null, ?string $segmentAssignment = null, ?int $segmentCountForFee = null, ?int $sellPrice = null, ?string $taxInformation = null, ?string $ticketDesignator = null, ?string $ticketNoConj = null, ?string $ticketTariffType = null, ?string $ticketingAgent = null, ?string $ticketingCity = null, ?string $ticketingPcc = null, ?bool $tokenChecked = null, ?float $totalPrice = null, ?float $totalSellPrice = null, ?float $totalTax = null, ?string $travelDate = null, ?int $udCode = null, ?string $vatContent = null)
+    public function __construct(?float $airlineFees = null, ?string $bspAgency = null, ?string $bspValidator = null, ?float $cancellationFee = null, ?string $ccApprovalCode = null, ?string $ccNumber = null, ?string $ccType = null, ?string $ccValid = null, ?string $checkDigit = null, ?float $commission = null, ?float $commissionPercent = null, ?float $commissionVatAmount = null, ?string $currency = null, ?string $dateOfIssue = null, ?bool $deletable = null, ?string $destinationCode = null, ?string $docSubtypeDescription = null, ?string $documentNo = null, ?string $documentSubgroupEmd = null, ?string $documentSubtype = null, ?string $documentType = null, ?string $endorsement = null, ?string $exchangeInformation = null, ?float $exchangeRate = null, ?float $farePrice = null, ?string $fareType = null, ?string $feeCurrency = null, ?string $filekey = null, ?string $firstImportTimestamp = null, ?bool $isDomestic = null, ?bool $isFeeReverseCharge = null, ?bool $isInkasso = null, ?string $itCode = null, ?int $itemId = null, ?float $nonCcPaidAmount = null, ?string $originType = null, ?float $originalAirlineFees = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?float $originalFare = null, ?float $originalTax = null, ?float $originalTotalSellPrice = null, ?string $passengerAsignment = null, ?string $paymentType = null, ?int $positionNo = null, ?string $printType = null, ?string $referencedDocumentNo = null, ?string $reportIndicator = null, ?string $segmentAssignment = null, ?int $segmentCountForFee = null, ?int $sellPrice = null, ?string $taxInformation = null, ?string $ticketDesignator = null, ?string $ticketNoConj = null, ?string $ticketTariffType = null, ?string $ticketingAgent = null, ?string $ticketingCity = null, ?string $ticketingPcc = null, ?bool $tokenChecked = null, ?float $totalPrice = null, ?float $totalSellPrice = null, ?float $totalTax = null, ?string $travelDate = null, ?int $udCode = null, ?string $vatContent = null)
     {
         $this
             ->setAirlineFees($airlineFees)
@@ -455,6 +490,7 @@ class DocumentitemDTO extends AbstractStructBase
             ->setCurrency($currency)
             ->setDateOfIssue($dateOfIssue)
             ->setDeletable($deletable)
+            ->setDestinationCode($destinationCode)
             ->setDocSubtypeDescription($docSubtypeDescription)
             ->setDocumentNo($documentNo)
             ->setDocumentSubgroupEmd($documentSubgroupEmd)
@@ -475,8 +511,12 @@ class DocumentitemDTO extends AbstractStructBase
             ->setItemId($itemId)
             ->setNonCcPaidAmount($nonCcPaidAmount)
             ->setOriginType($originType)
+            ->setOriginalAirlineFees($originalAirlineFees)
             ->setOriginalAmount($originalAmount)
             ->setOriginalCurrency($originalCurrency)
+            ->setOriginalFare($originalFare)
+            ->setOriginalTax($originalTax)
+            ->setOriginalTotalSellPrice($originalTotalSellPrice)
             ->setPassengerAsignment($passengerAsignment)
             ->setPaymentType($paymentType)
             ->setPositionNo($positionNo)
@@ -843,6 +883,29 @@ class DocumentitemDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($deletable, true), gettype($deletable)), __LINE__);
         }
         $this->deletable = $deletable;
+        
+        return $this;
+    }
+    /**
+     * Get destinationCode value
+     * @return string|null
+     */
+    public function getDestinationCode(): ?string
+    {
+        return $this->destinationCode;
+    }
+    /**
+     * Set destinationCode value
+     * @param string $destinationCode
+     * @return \Pggns\MidocoApi\Bank\StructType\DocumentitemDTO
+     */
+    public function setDestinationCode(?string $destinationCode = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($destinationCode) && !is_string($destinationCode)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($destinationCode, true), gettype($destinationCode)), __LINE__);
+        }
+        $this->destinationCode = $destinationCode;
         
         return $this;
     }
@@ -1307,6 +1370,29 @@ class DocumentitemDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get originalAirlineFees value
+     * @return float|null
+     */
+    public function getOriginalAirlineFees(): ?float
+    {
+        return $this->originalAirlineFees;
+    }
+    /**
+     * Set originalAirlineFees value
+     * @param float $originalAirlineFees
+     * @return \Pggns\MidocoApi\Bank\StructType\DocumentitemDTO
+     */
+    public function setOriginalAirlineFees(?float $originalAirlineFees = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($originalAirlineFees) && !(is_float($originalAirlineFees) || is_numeric($originalAirlineFees))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($originalAirlineFees, true), gettype($originalAirlineFees)), __LINE__);
+        }
+        $this->originalAirlineFees = $originalAirlineFees;
+        
+        return $this;
+    }
+    /**
      * Get originalAmount value
      * @return float|null
      */
@@ -1349,6 +1435,75 @@ class DocumentitemDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($originalCurrency, true), gettype($originalCurrency)), __LINE__);
         }
         $this->originalCurrency = $originalCurrency;
+        
+        return $this;
+    }
+    /**
+     * Get originalFare value
+     * @return float|null
+     */
+    public function getOriginalFare(): ?float
+    {
+        return $this->originalFare;
+    }
+    /**
+     * Set originalFare value
+     * @param float $originalFare
+     * @return \Pggns\MidocoApi\Bank\StructType\DocumentitemDTO
+     */
+    public function setOriginalFare(?float $originalFare = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($originalFare) && !(is_float($originalFare) || is_numeric($originalFare))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($originalFare, true), gettype($originalFare)), __LINE__);
+        }
+        $this->originalFare = $originalFare;
+        
+        return $this;
+    }
+    /**
+     * Get originalTax value
+     * @return float|null
+     */
+    public function getOriginalTax(): ?float
+    {
+        return $this->originalTax;
+    }
+    /**
+     * Set originalTax value
+     * @param float $originalTax
+     * @return \Pggns\MidocoApi\Bank\StructType\DocumentitemDTO
+     */
+    public function setOriginalTax(?float $originalTax = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($originalTax) && !(is_float($originalTax) || is_numeric($originalTax))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($originalTax, true), gettype($originalTax)), __LINE__);
+        }
+        $this->originalTax = $originalTax;
+        
+        return $this;
+    }
+    /**
+     * Get originalTotalSellPrice value
+     * @return float|null
+     */
+    public function getOriginalTotalSellPrice(): ?float
+    {
+        return $this->originalTotalSellPrice;
+    }
+    /**
+     * Set originalTotalSellPrice value
+     * @param float $originalTotalSellPrice
+     * @return \Pggns\MidocoApi\Bank\StructType\DocumentitemDTO
+     */
+    public function setOriginalTotalSellPrice(?float $originalTotalSellPrice = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($originalTotalSellPrice) && !(is_float($originalTotalSellPrice) || is_numeric($originalTotalSellPrice))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($originalTotalSellPrice, true), gettype($originalTotalSellPrice)), __LINE__);
+        }
+        $this->originalTotalSellPrice = $originalTotalSellPrice;
         
         return $this;
     }

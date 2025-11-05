@@ -45,6 +45,11 @@ class EntryDTO extends AbstractStructBase
      */
     protected ?string $currency = null;
     /**
+     * The currencyRate
+     * @var float|null
+     */
+    protected ?float $currencyRate = null;
+    /**
      * The customerId
      * @var int|null
      */
@@ -79,6 +84,11 @@ class EntryDTO extends AbstractStructBase
      * @var bool|null
      */
     protected ?bool $isDepositBookingLogic = null;
+    /**
+     * The isDirty
+     * @var bool|null
+     */
+    protected ?bool $isDirty = null;
     /**
      * The isDunningBlock
      * @var bool|null
@@ -122,6 +132,7 @@ class EntryDTO extends AbstractStructBase
      * @uses EntryDTO::setCommentDatetime()
      * @uses EntryDTO::setCommentUser()
      * @uses EntryDTO::setCurrency()
+     * @uses EntryDTO::setCurrencyRate()
      * @uses EntryDTO::setCustomerId()
      * @uses EntryDTO::setDueDate()
      * @uses EntryDTO::setDunningLevel()
@@ -129,6 +140,7 @@ class EntryDTO extends AbstractStructBase
      * @uses EntryDTO::setHasTask()
      * @uses EntryDTO::setInvoicedAmount()
      * @uses EntryDTO::setIsDepositBookingLogic()
+     * @uses EntryDTO::setIsDirty()
      * @uses EntryDTO::setIsDunningBlock()
      * @uses EntryDTO::setOriginalCurrency()
      * @uses EntryDTO::setOriginalInvoicedAmount()
@@ -142,6 +154,7 @@ class EntryDTO extends AbstractStructBase
      * @param string $commentDatetime
      * @param int $commentUser
      * @param string $currency
+     * @param float $currencyRate
      * @param int $customerId
      * @param string $dueDate
      * @param int $dunningLevel
@@ -149,6 +162,7 @@ class EntryDTO extends AbstractStructBase
      * @param bool $hasTask
      * @param float $invoicedAmount
      * @param bool $isDepositBookingLogic
+     * @param bool $isDirty
      * @param bool $isDunningBlock
      * @param string $originalCurrency
      * @param float $originalInvoicedAmount
@@ -157,7 +171,7 @@ class EntryDTO extends AbstractStructBase
      * @param string $planId
      * @param bool $processingLock
      */
-    public function __construct(?string $accountId = null, ?int $balanceMode = null, ?string $comment = null, ?string $commentDatetime = null, ?int $commentUser = null, ?string $currency = null, ?int $customerId = null, ?string $dueDate = null, ?int $dunningLevel = null, ?string $entryId = null, ?bool $hasTask = null, ?float $invoicedAmount = null, ?bool $isDepositBookingLogic = null, ?bool $isDunningBlock = null, ?string $originalCurrency = null, ?float $originalInvoicedAmount = null, ?float $originalPaidAmount = null, ?float $paidAmount = null, ?string $planId = null, ?bool $processingLock = null)
+    public function __construct(?string $accountId = null, ?int $balanceMode = null, ?string $comment = null, ?string $commentDatetime = null, ?int $commentUser = null, ?string $currency = null, ?float $currencyRate = null, ?int $customerId = null, ?string $dueDate = null, ?int $dunningLevel = null, ?string $entryId = null, ?bool $hasTask = null, ?float $invoicedAmount = null, ?bool $isDepositBookingLogic = null, ?bool $isDirty = null, ?bool $isDunningBlock = null, ?string $originalCurrency = null, ?float $originalInvoicedAmount = null, ?float $originalPaidAmount = null, ?float $paidAmount = null, ?string $planId = null, ?bool $processingLock = null)
     {
         $this
             ->setAccountId($accountId)
@@ -166,6 +180,7 @@ class EntryDTO extends AbstractStructBase
             ->setCommentDatetime($commentDatetime)
             ->setCommentUser($commentUser)
             ->setCurrency($currency)
+            ->setCurrencyRate($currencyRate)
             ->setCustomerId($customerId)
             ->setDueDate($dueDate)
             ->setDunningLevel($dunningLevel)
@@ -173,6 +188,7 @@ class EntryDTO extends AbstractStructBase
             ->setHasTask($hasTask)
             ->setInvoicedAmount($invoicedAmount)
             ->setIsDepositBookingLogic($isDepositBookingLogic)
+            ->setIsDirty($isDirty)
             ->setIsDunningBlock($isDunningBlock)
             ->setOriginalCurrency($originalCurrency)
             ->setOriginalInvoicedAmount($originalInvoicedAmount)
@@ -316,6 +332,29 @@ class EntryDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($currency, true), gettype($currency)), __LINE__);
         }
         $this->currency = $currency;
+        
+        return $this;
+    }
+    /**
+     * Get currencyRate value
+     * @return float|null
+     */
+    public function getCurrencyRate(): ?float
+    {
+        return $this->currencyRate;
+    }
+    /**
+     * Set currencyRate value
+     * @param float $currencyRate
+     * @return \Pggns\MidocoApi\Bank\StructType\EntryDTO
+     */
+    public function setCurrencyRate(?float $currencyRate = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($currencyRate) && !(is_float($currencyRate) || is_numeric($currencyRate))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($currencyRate, true), gettype($currencyRate)), __LINE__);
+        }
+        $this->currencyRate = $currencyRate;
         
         return $this;
     }
@@ -477,6 +516,29 @@ class EntryDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isDepositBookingLogic, true), gettype($isDepositBookingLogic)), __LINE__);
         }
         $this->isDepositBookingLogic = $isDepositBookingLogic;
+        
+        return $this;
+    }
+    /**
+     * Get isDirty value
+     * @return bool|null
+     */
+    public function getIsDirty(): ?bool
+    {
+        return $this->isDirty;
+    }
+    /**
+     * Set isDirty value
+     * @param bool $isDirty
+     * @return \Pggns\MidocoApi\Bank\StructType\EntryDTO
+     */
+    public function setIsDirty(?bool $isDirty = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isDirty) && !is_bool($isDirty)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isDirty, true), gettype($isDirty)), __LINE__);
+        }
+        $this->isDirty = $isDirty;
         
         return $this;
     }

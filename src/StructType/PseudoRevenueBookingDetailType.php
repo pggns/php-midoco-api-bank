@@ -102,6 +102,11 @@ class PseudoRevenueBookingDetailType extends AbstractStructBase
      */
     protected ?string $creditAccount = null;
     /**
+     * The settlementType
+     * @var string|null
+     */
+    protected ?string $settlementType = null;
+    /**
      * Constructor method for PseudoRevenueBookingDetailType
      * @uses PseudoRevenueBookingDetailType::setPseudoRevenueBookingInfo()
      * @uses PseudoRevenueBookingDetailType::setOrgUnit()
@@ -120,6 +125,7 @@ class PseudoRevenueBookingDetailType extends AbstractStructBase
      * @uses PseudoRevenueBookingDetailType::setOrderId()
      * @uses PseudoRevenueBookingDetailType::setInkassoMode()
      * @uses PseudoRevenueBookingDetailType::setCreditAccount()
+     * @uses PseudoRevenueBookingDetailType::setSettlementType()
      * @param \Pggns\MidocoApi\Bank\StructType\PseudoRevenueBookingInfo $pseudoRevenueBookingInfo
      * @param string $orgUnit
      * @param int $orderNo
@@ -137,8 +143,9 @@ class PseudoRevenueBookingDetailType extends AbstractStructBase
      * @param int $orderId
      * @param string $inkassoMode
      * @param string $creditAccount
+     * @param string $settlementType
      */
-    public function __construct(?\Pggns\MidocoApi\Bank\StructType\PseudoRevenueBookingInfo $pseudoRevenueBookingInfo = null, ?string $orgUnit = null, ?int $orderNo = null, ?string $year = null, ?string $supplierId = null, ?string $bookingId = null, ?string $startTravel = null, ?string $endTravel = null, ?float $itemPrice = null, ?float $amount = null, ?float $bruttoAmount = null, ?string $account = null, ?bool $hasRevenueBookings = null, ?int $itemId = null, ?int $orderId = null, ?string $inkassoMode = null, ?string $creditAccount = null)
+    public function __construct(?\Pggns\MidocoApi\Bank\StructType\PseudoRevenueBookingInfo $pseudoRevenueBookingInfo = null, ?string $orgUnit = null, ?int $orderNo = null, ?string $year = null, ?string $supplierId = null, ?string $bookingId = null, ?string $startTravel = null, ?string $endTravel = null, ?float $itemPrice = null, ?float $amount = null, ?float $bruttoAmount = null, ?string $account = null, ?bool $hasRevenueBookings = null, ?int $itemId = null, ?int $orderId = null, ?string $inkassoMode = null, ?string $creditAccount = null, ?string $settlementType = null)
     {
         $this
             ->setPseudoRevenueBookingInfo($pseudoRevenueBookingInfo)
@@ -157,7 +164,8 @@ class PseudoRevenueBookingDetailType extends AbstractStructBase
             ->setItemId($itemId)
             ->setOrderId($orderId)
             ->setInkassoMode($inkassoMode)
-            ->setCreditAccount($creditAccount);
+            ->setCreditAccount($creditAccount)
+            ->setSettlementType($settlementType);
     }
     /**
      * Get PseudoRevenueBookingInfo value
@@ -543,6 +551,29 @@ class PseudoRevenueBookingDetailType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($creditAccount, true), gettype($creditAccount)), __LINE__);
         }
         $this->creditAccount = $creditAccount;
+        
+        return $this;
+    }
+    /**
+     * Get settlementType value
+     * @return string|null
+     */
+    public function getSettlementType(): ?string
+    {
+        return $this->settlementType;
+    }
+    /**
+     * Set settlementType value
+     * @param string $settlementType
+     * @return \Pggns\MidocoApi\Bank\StructType\PseudoRevenueBookingDetailType
+     */
+    public function setSettlementType(?string $settlementType = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($settlementType) && !is_string($settlementType)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($settlementType, true), gettype($settlementType)), __LINE__);
+        }
+        $this->settlementType = $settlementType;
         
         return $this;
     }

@@ -80,6 +80,11 @@ class TravelPlanHistoryDTO extends AbstractStructBase
      */
     protected ?int $repositoryId = null;
     /**
+     * The transactionRecordId
+     * @var int|null
+     */
+    protected ?int $transactionRecordId = null;
+    /**
      * Constructor method for TravelPlanHistoryDTO
      * @uses TravelPlanHistoryDTO::setAutomatic()
      * @uses TravelPlanHistoryDTO::setCallDate()
@@ -94,6 +99,7 @@ class TravelPlanHistoryDTO extends AbstractStructBase
      * @uses TravelPlanHistoryDTO::setPrintingDate()
      * @uses TravelPlanHistoryDTO::setPrintingUser()
      * @uses TravelPlanHistoryDTO::setRepositoryId()
+     * @uses TravelPlanHistoryDTO::setTransactionRecordId()
      * @param bool $automatic
      * @param string $callDate
      * @param string $documentExportDate
@@ -107,8 +113,9 @@ class TravelPlanHistoryDTO extends AbstractStructBase
      * @param string $printingDate
      * @param int $printingUser
      * @param int $repositoryId
+     * @param int $transactionRecordId
      */
-    public function __construct(?bool $automatic = null, ?string $callDate = null, ?string $documentExportDate = null, ?string $fileName = null, ?int $historyId = null, ?bool $isDocumentExported = null, ?string $media = null, ?int $orderDocumentId = null, ?int $orderId = null, ?string $printType = null, ?string $printingDate = null, ?int $printingUser = null, ?int $repositoryId = null)
+    public function __construct(?bool $automatic = null, ?string $callDate = null, ?string $documentExportDate = null, ?string $fileName = null, ?int $historyId = null, ?bool $isDocumentExported = null, ?string $media = null, ?int $orderDocumentId = null, ?int $orderId = null, ?string $printType = null, ?string $printingDate = null, ?int $printingUser = null, ?int $repositoryId = null, ?int $transactionRecordId = null)
     {
         $this
             ->setAutomatic($automatic)
@@ -123,7 +130,8 @@ class TravelPlanHistoryDTO extends AbstractStructBase
             ->setPrintType($printType)
             ->setPrintingDate($printingDate)
             ->setPrintingUser($printingUser)
-            ->setRepositoryId($repositoryId);
+            ->setRepositoryId($repositoryId)
+            ->setTransactionRecordId($transactionRecordId);
     }
     /**
      * Get automatic value
@@ -421,6 +429,29 @@ class TravelPlanHistoryDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($repositoryId, true), gettype($repositoryId)), __LINE__);
         }
         $this->repositoryId = $repositoryId;
+        
+        return $this;
+    }
+    /**
+     * Get transactionRecordId value
+     * @return int|null
+     */
+    public function getTransactionRecordId(): ?int
+    {
+        return $this->transactionRecordId;
+    }
+    /**
+     * Set transactionRecordId value
+     * @param int $transactionRecordId
+     * @return \Pggns\MidocoApi\Bank\StructType\TravelPlanHistoryDTO
+     */
+    public function setTransactionRecordId(?int $transactionRecordId = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($transactionRecordId) && !(is_int($transactionRecordId) || ctype_digit($transactionRecordId))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($transactionRecordId, true), gettype($transactionRecordId)), __LINE__);
+        }
+        $this->transactionRecordId = $transactionRecordId;
         
         return $this;
     }

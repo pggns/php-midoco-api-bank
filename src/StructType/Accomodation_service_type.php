@@ -109,6 +109,13 @@ class Accomodation_service_type extends AbstractStructBase
      */
     protected ?string $end_date = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The service_status
      * @var string|null
      */
@@ -264,6 +271,7 @@ class Accomodation_service_type extends AbstractStructBase
      * @uses Accomodation_service_type::setNo_of_nights()
      * @uses Accomodation_service_type::setStart_date()
      * @uses Accomodation_service_type::setEnd_date()
+     * @uses Accomodation_service_type::setCo2_emission()
      * @uses Accomodation_service_type::setService_status()
      * @uses Accomodation_service_type::setPerson_assignment()
      * @uses Accomodation_service_type::setTotal_price()
@@ -301,6 +309,7 @@ class Accomodation_service_type extends AbstractStructBase
      * @param int $no_of_nights
      * @param string $start_date
      * @param string $end_date
+     * @param float $co2_emission
      * @param string $service_status
      * @param string $person_assignment
      * @param float $total_price
@@ -325,7 +334,7 @@ class Accomodation_service_type extends AbstractStructBase
      * @param string $sourceExtId
      * @param string $airport_code
      */
-    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $service_description = null, ?string $accomodation = null, ?string $accomodation_description = null, ?string $catering = null, ?string $catering_description = null, ?string $location_description = null, ?string $allocation = null, ?string $no_of_services = null, ?int $no_of_nights = null, ?string $start_date = null, ?string $end_date = null, ?string $service_status = null, ?string $person_assignment = null, ?float $total_price = null, ?string $currency = 'EUR', ?bool $vat_included = false, ?string $country_description = null, ?string $transfer_description = null, ?string $address_line1 = null, ?string $address_line2 = null, ?string $address_line3 = null, ?string $address_line4 = null, ?string $emergency_Number = null, ?string $corporate_discount = null, ?array $traveler_ref_id = null, ?string $chain = null, ?string $category = null, ?string $bookingId = null, ?string $bookingDate = null, ?string $supplierId = null, ?string $extId = null, ?string $sourceSystem = null, ?string $sourceExtId = null, ?string $airport_code = null)
+    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $service_description = null, ?string $accomodation = null, ?string $accomodation_description = null, ?string $catering = null, ?string $catering_description = null, ?string $location_description = null, ?string $allocation = null, ?string $no_of_services = null, ?int $no_of_nights = null, ?string $start_date = null, ?string $end_date = null, ?float $co2_emission = null, ?string $service_status = null, ?string $person_assignment = null, ?float $total_price = null, ?string $currency = 'EUR', ?bool $vat_included = false, ?string $country_description = null, ?string $transfer_description = null, ?string $address_line1 = null, ?string $address_line2 = null, ?string $address_line3 = null, ?string $address_line4 = null, ?string $emergency_Number = null, ?string $corporate_discount = null, ?array $traveler_ref_id = null, ?string $chain = null, ?string $category = null, ?string $bookingId = null, ?string $bookingDate = null, ?string $supplierId = null, ?string $extId = null, ?string $sourceSystem = null, ?string $sourceExtId = null, ?string $airport_code = null)
     {
         $this
             ->setPosition($position)
@@ -342,6 +351,7 @@ class Accomodation_service_type extends AbstractStructBase
             ->setNo_of_nights($no_of_nights)
             ->setStart_date($start_date)
             ->setEnd_date($end_date)
+            ->setCo2_emission($co2_emission)
             ->setService_status($service_status)
             ->setPerson_assignment($person_assignment)
             ->setTotal_price($total_price)
@@ -693,6 +703,29 @@ class Accomodation_service_type extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a literal that is among the set of character sequences denoted by the regular expression /[0-9]{4}-[0-9]{2}-[0-9]{2}/', var_export($end_date, true)), __LINE__);
         }
         $this->end_date = $this->{'end-date'} = $end_date;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Accomodation_service_type
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

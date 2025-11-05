@@ -360,6 +360,11 @@ class BillingDocumentDTO extends AbstractStructBase
      */
     protected ?string $printingDate = null;
     /**
+     * The printingTime
+     * @var string|null
+     */
+    protected ?string $printingTime = null;
+    /**
      * The printingUser
      * @var int|null
      */
@@ -384,6 +389,16 @@ class BillingDocumentDTO extends AbstractStructBase
      * @var string|null
      */
     protected ?string $shadowDocumentUnitName = null;
+    /**
+     * The state
+     * @var string|null
+     */
+    protected ?string $state = null;
+    /**
+     * The stateId
+     * @var string|null
+     */
+    protected ?string $stateId = null;
     /**
      * The street
      * @var string|null
@@ -510,11 +525,14 @@ class BillingDocumentDTO extends AbstractStructBase
      * @uses BillingDocumentDTO::setPrintType()
      * @uses BillingDocumentDTO::setPrintingCount()
      * @uses BillingDocumentDTO::setPrintingDate()
+     * @uses BillingDocumentDTO::setPrintingTime()
      * @uses BillingDocumentDTO::setPrintingUser()
      * @uses BillingDocumentDTO::setReceiptDate()
      * @uses BillingDocumentDTO::setSalutationId()
      * @uses BillingDocumentDTO::setShadowDocumentId()
      * @uses BillingDocumentDTO::setShadowDocumentUnitName()
+     * @uses BillingDocumentDTO::setState()
+     * @uses BillingDocumentDTO::setStateId()
      * @uses BillingDocumentDTO::setStreet()
      * @uses BillingDocumentDTO::setStreetNo()
      * @uses BillingDocumentDTO::setSubmitDate()
@@ -595,11 +613,14 @@ class BillingDocumentDTO extends AbstractStructBase
      * @param string $printType
      * @param int $printingCount
      * @param string $printingDate
+     * @param string $printingTime
      * @param int $printingUser
      * @param string $receiptDate
      * @param string $salutationId
      * @param int $shadowDocumentId
      * @param string $shadowDocumentUnitName
+     * @param string $state
+     * @param string $stateId
      * @param string $street
      * @param string $streetNo
      * @param string $submitDate
@@ -612,7 +633,7 @@ class BillingDocumentDTO extends AbstractStructBase
      * @param string $vatId
      * @param int $voidedDocumentNo
      */
-    public function __construct(?string $accountOwner = null, ?string $bankAccountNo = null, ?string $bankCountry = null, ?string $bankName = null, ?string $bankNo = null, ?int $bankTransferOffsetDays = null, ?string $calculatedPrintDate = null, ?string $callDate = null, ?int $cashBookId = null, ?int $cashBookLine = null, ?int $cashBookPage = null, ?int $cashBookPrintId = null, ?bool $ccPrintSignature = null, ?string $city = null, ?string $clearingDate = null, ?int $collectInvReferenceNo = null, ?int $collectInvSettingId = null, ?string $consolidation = null, ?int $contraAccount = null, ?string $country = null, ?string $countryCategory = null, ?bool $createItInvoice = null, ?bool $createNormalInvoice = null, ?string $creationDate = null, ?int $creationUser = null, ?string $currency = null, ?int $customerId = null, ?string $debitCardCity = null, ?string $debitCardStreet = null, ?string $debitorNo = null, ?string $displayedCurrency = null, ?float $displayedCurrencyRate = null, ?float $displayedTotalPrice = null, ?int $documentId = null, ?int $documentNo = null, ?string $documentType = null, ?string $dunningDate = null, ?int $dunningLevel = null, ?bool $dunningLock = null, ?string $endorsement = null, ?string $errorBundle = null, ?string $errorCode = null, ?string $forename = null, ?string $iban = null, ?int $internalVersion = null, ?float $invoicedAmount = null, ?bool $isDeliveryReceipt = null, ?bool $isExported = null, ?bool $isManuallyCreated = null, ?bool $isRecurring = null, ?bool $isShadowDocument = null, ?bool $isSpecialCustomer = null, ?string $issueDate = null, ?int $mandateId = null, ?string $media = null, ?int $mediatorId = null, ?string $name = null, ?bool $overrideAddress = null, ?bool $paid = null, ?string $paidDate = null, ?string $paymentConditionId = null, ?string $paymentDueDate = null, ?string $paymentType = null, ?string $postalCode = null, ?bool $printAllTravellers = null, ?bool $printGroupName = null, ?string $printType = null, ?int $printingCount = null, ?string $printingDate = null, ?int $printingUser = null, ?string $receiptDate = null, ?string $salutationId = null, ?int $shadowDocumentId = null, ?string $shadowDocumentUnitName = null, ?string $street = null, ?string $streetNo = null, ?string $submitDate = null, ?string $swiftBicCode = null, ?string $title = null, ?float $totalPrice = null, ?string $type = null, ?string $unitName = null, ?int $usedDocumentNo = null, ?string $vatId = null, ?int $voidedDocumentNo = null)
+    public function __construct(?string $accountOwner = null, ?string $bankAccountNo = null, ?string $bankCountry = null, ?string $bankName = null, ?string $bankNo = null, ?int $bankTransferOffsetDays = null, ?string $calculatedPrintDate = null, ?string $callDate = null, ?int $cashBookId = null, ?int $cashBookLine = null, ?int $cashBookPage = null, ?int $cashBookPrintId = null, ?bool $ccPrintSignature = null, ?string $city = null, ?string $clearingDate = null, ?int $collectInvReferenceNo = null, ?int $collectInvSettingId = null, ?string $consolidation = null, ?int $contraAccount = null, ?string $country = null, ?string $countryCategory = null, ?bool $createItInvoice = null, ?bool $createNormalInvoice = null, ?string $creationDate = null, ?int $creationUser = null, ?string $currency = null, ?int $customerId = null, ?string $debitCardCity = null, ?string $debitCardStreet = null, ?string $debitorNo = null, ?string $displayedCurrency = null, ?float $displayedCurrencyRate = null, ?float $displayedTotalPrice = null, ?int $documentId = null, ?int $documentNo = null, ?string $documentType = null, ?string $dunningDate = null, ?int $dunningLevel = null, ?bool $dunningLock = null, ?string $endorsement = null, ?string $errorBundle = null, ?string $errorCode = null, ?string $forename = null, ?string $iban = null, ?int $internalVersion = null, ?float $invoicedAmount = null, ?bool $isDeliveryReceipt = null, ?bool $isExported = null, ?bool $isManuallyCreated = null, ?bool $isRecurring = null, ?bool $isShadowDocument = null, ?bool $isSpecialCustomer = null, ?string $issueDate = null, ?int $mandateId = null, ?string $media = null, ?int $mediatorId = null, ?string $name = null, ?bool $overrideAddress = null, ?bool $paid = null, ?string $paidDate = null, ?string $paymentConditionId = null, ?string $paymentDueDate = null, ?string $paymentType = null, ?string $postalCode = null, ?bool $printAllTravellers = null, ?bool $printGroupName = null, ?string $printType = null, ?int $printingCount = null, ?string $printingDate = null, ?string $printingTime = null, ?int $printingUser = null, ?string $receiptDate = null, ?string $salutationId = null, ?int $shadowDocumentId = null, ?string $shadowDocumentUnitName = null, ?string $state = null, ?string $stateId = null, ?string $street = null, ?string $streetNo = null, ?string $submitDate = null, ?string $swiftBicCode = null, ?string $title = null, ?float $totalPrice = null, ?string $type = null, ?string $unitName = null, ?int $usedDocumentNo = null, ?string $vatId = null, ?int $voidedDocumentNo = null)
     {
         $this
             ->setAccountOwner($accountOwner)
@@ -684,11 +705,14 @@ class BillingDocumentDTO extends AbstractStructBase
             ->setPrintType($printType)
             ->setPrintingCount($printingCount)
             ->setPrintingDate($printingDate)
+            ->setPrintingTime($printingTime)
             ->setPrintingUser($printingUser)
             ->setReceiptDate($receiptDate)
             ->setSalutationId($salutationId)
             ->setShadowDocumentId($shadowDocumentId)
             ->setShadowDocumentUnitName($shadowDocumentUnitName)
+            ->setState($state)
+            ->setStateId($stateId)
             ->setStreet($street)
             ->setStreetNo($streetNo)
             ->setSubmitDate($submitDate)
@@ -2289,6 +2313,29 @@ class BillingDocumentDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get printingTime value
+     * @return string|null
+     */
+    public function getPrintingTime(): ?string
+    {
+        return $this->printingTime;
+    }
+    /**
+     * Set printingTime value
+     * @param string $printingTime
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingDocumentDTO
+     */
+    public function setPrintingTime(?string $printingTime = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($printingTime) && !is_string($printingTime)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($printingTime, true), gettype($printingTime)), __LINE__);
+        }
+        $this->printingTime = $printingTime;
+        
+        return $this;
+    }
+    /**
      * Get printingUser value
      * @return int|null
      */
@@ -2400,6 +2447,52 @@ class BillingDocumentDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($shadowDocumentUnitName, true), gettype($shadowDocumentUnitName)), __LINE__);
         }
         $this->shadowDocumentUnitName = $shadowDocumentUnitName;
+        
+        return $this;
+    }
+    /**
+     * Get state value
+     * @return string|null
+     */
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+    /**
+     * Set state value
+     * @param string $state
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingDocumentDTO
+     */
+    public function setState(?string $state = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($state) && !is_string($state)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($state, true), gettype($state)), __LINE__);
+        }
+        $this->state = $state;
+        
+        return $this;
+    }
+    /**
+     * Get stateId value
+     * @return string|null
+     */
+    public function getStateId(): ?string
+    {
+        return $this->stateId;
+    }
+    /**
+     * Set stateId value
+     * @param string $stateId
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingDocumentDTO
+     */
+    public function setStateId(?string $stateId = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($stateId) && !is_string($stateId)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($stateId, true), gettype($stateId)), __LINE__);
+        }
+        $this->stateId = $stateId;
         
         return $this;
     }

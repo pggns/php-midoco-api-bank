@@ -94,6 +94,16 @@ class MidocoAdviceSettlementDetailInfo extends AdviceSettlemDetailDTO
      */
     protected ?float $foreignFeeAmount = null;
     /**
+     * The orderNo
+     * @var int|null
+     */
+    protected ?int $orderNo = null;
+    /**
+     * The itemType
+     * @var string|null
+     */
+    protected ?string $itemType = null;
+    /**
      * Constructor method for MidocoAdviceSettlementDetailInfo
      * @uses MidocoAdviceSettlementDetailInfo::setMidocoAdviceDetailVatDiv()
      * @uses MidocoAdviceSettlementDetailInfo::setForeignCurrency()
@@ -110,6 +120,8 @@ class MidocoAdviceSettlementDetailInfo extends AdviceSettlemDetailDTO
      * @uses MidocoAdviceSettlementDetailInfo::setForeignGrantedRevenue()
      * @uses MidocoAdviceSettlementDetailInfo::setForeignInkassoPrice()
      * @uses MidocoAdviceSettlementDetailInfo::setForeignFeeAmount()
+     * @uses MidocoAdviceSettlementDetailInfo::setOrderNo()
+     * @uses MidocoAdviceSettlementDetailInfo::setItemType()
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoAdviceDetailVatDiv[] $midocoAdviceDetailVatDiv
      * @param string $foreignCurrency
      * @param float $foreignRevenueInclVat
@@ -125,8 +137,10 @@ class MidocoAdviceSettlementDetailInfo extends AdviceSettlemDetailDTO
      * @param float $foreignGrantedRevenue
      * @param float $foreignInkassoPrice
      * @param float $foreignFeeAmount
+     * @param int $orderNo
+     * @param string $itemType
      */
-    public function __construct(?array $midocoAdviceDetailVatDiv = null, ?string $foreignCurrency = null, ?float $foreignRevenueInclVat = null, ?float $foreignRevenueVatFree = null, ?float $foreignRevenueInsurance = null, ?float $foreignSupplierInvoice = null, ?float $foreignVatAmount = null, ?float $foreignNettoAmount = null, ?float $foreignTotalPrice = null, ?float $foreignTravelPrice = null, ?float $foreignSupplierDiAmount = null, ?float $foreignCalculatedRevenue = null, ?float $foreignGrantedRevenue = null, ?float $foreignInkassoPrice = null, ?float $foreignFeeAmount = null)
+    public function __construct(?array $midocoAdviceDetailVatDiv = null, ?string $foreignCurrency = null, ?float $foreignRevenueInclVat = null, ?float $foreignRevenueVatFree = null, ?float $foreignRevenueInsurance = null, ?float $foreignSupplierInvoice = null, ?float $foreignVatAmount = null, ?float $foreignNettoAmount = null, ?float $foreignTotalPrice = null, ?float $foreignTravelPrice = null, ?float $foreignSupplierDiAmount = null, ?float $foreignCalculatedRevenue = null, ?float $foreignGrantedRevenue = null, ?float $foreignInkassoPrice = null, ?float $foreignFeeAmount = null, ?int $orderNo = null, ?string $itemType = null)
     {
         $this
             ->setMidocoAdviceDetailVatDiv($midocoAdviceDetailVatDiv)
@@ -143,7 +157,9 @@ class MidocoAdviceSettlementDetailInfo extends AdviceSettlemDetailDTO
             ->setForeignCalculatedRevenue($foreignCalculatedRevenue)
             ->setForeignGrantedRevenue($foreignGrantedRevenue)
             ->setForeignInkassoPrice($foreignInkassoPrice)
-            ->setForeignFeeAmount($foreignFeeAmount);
+            ->setForeignFeeAmount($foreignFeeAmount)
+            ->setOrderNo($orderNo)
+            ->setItemType($itemType);
     }
     /**
      * Get MidocoAdviceDetailVatDiv value
@@ -531,6 +547,52 @@ class MidocoAdviceSettlementDetailInfo extends AdviceSettlemDetailDTO
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($foreignFeeAmount, true), gettype($foreignFeeAmount)), __LINE__);
         }
         $this->foreignFeeAmount = $foreignFeeAmount;
+        
+        return $this;
+    }
+    /**
+     * Get orderNo value
+     * @return int|null
+     */
+    public function getOrderNo(): ?int
+    {
+        return $this->orderNo;
+    }
+    /**
+     * Set orderNo value
+     * @param int $orderNo
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoAdviceSettlementDetailInfo
+     */
+    public function setOrderNo(?int $orderNo = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($orderNo) && !(is_int($orderNo) || ctype_digit($orderNo))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($orderNo, true), gettype($orderNo)), __LINE__);
+        }
+        $this->orderNo = $orderNo;
+        
+        return $this;
+    }
+    /**
+     * Get itemType value
+     * @return string|null
+     */
+    public function getItemType(): ?string
+    {
+        return $this->itemType;
+    }
+    /**
+     * Set itemType value
+     * @param string $itemType
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoAdviceSettlementDetailInfo
+     */
+    public function setItemType(?string $itemType = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($itemType) && !is_string($itemType)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($itemType, true), gettype($itemType)), __LINE__);
+        }
+        $this->itemType = $itemType;
         
         return $this;
     }

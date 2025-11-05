@@ -95,10 +95,20 @@ class PreparedRevenueBookingDTO extends AbstractStructBase
      */
     protected ?float $revenueInsurance = null;
     /**
+     * The revenueVatAmount
+     * @var float|null
+     */
+    protected ?float $revenueVatAmount = null;
+    /**
      * The revenueVatFree
      * @var float|null
      */
     protected ?float $revenueVatFree = null;
+    /**
+     * The revenueVatPercent
+     * @var float|null
+     */
+    protected ?float $revenueVatPercent = null;
     /**
      * The stornoAccounts
      * @var bool|null
@@ -152,7 +162,9 @@ class PreparedRevenueBookingDTO extends AbstractStructBase
      * @uses PreparedRevenueBookingDTO::setReceiptNo()
      * @uses PreparedRevenueBookingDTO::setRevenueInclVat()
      * @uses PreparedRevenueBookingDTO::setRevenueInsurance()
+     * @uses PreparedRevenueBookingDTO::setRevenueVatAmount()
      * @uses PreparedRevenueBookingDTO::setRevenueVatFree()
+     * @uses PreparedRevenueBookingDTO::setRevenueVatPercent()
      * @uses PreparedRevenueBookingDTO::setStornoAccounts()
      * @uses PreparedRevenueBookingDTO::setSuppSettlemId()
      * @uses PreparedRevenueBookingDTO::setSuppSettlemPos()
@@ -176,7 +188,9 @@ class PreparedRevenueBookingDTO extends AbstractStructBase
      * @param string $receiptNo
      * @param float $revenueInclVat
      * @param float $revenueInsurance
+     * @param float $revenueVatAmount
      * @param float $revenueVatFree
+     * @param float $revenueVatPercent
      * @param bool $stornoAccounts
      * @param int $suppSettlemId
      * @param int $suppSettlemPos
@@ -185,7 +199,7 @@ class PreparedRevenueBookingDTO extends AbstractStructBase
      * @param float $supplierInvoiceAmount
      * @param string $travelType
      */
-    public function __construct(?int $adviceDetailId = null, ?float $bookingAmount = null, ?float $bruttoPrice = null, ?string $creationType = null, ?string $destination = null, ?bool $isDeposit = null, ?int $itemId = null, ?string $originalCurrency = null, ?float $originalRevenueInclVat = null, ?float $originalRevenueInsurance = null, ?float $originalRevenueVatFree = null, ?int $preparedRevenueId = null, ?string $receiptDate = null, ?string $receiptNo = null, ?float $revenueInclVat = null, ?float $revenueInsurance = null, ?float $revenueVatFree = null, ?bool $stornoAccounts = null, ?int $suppSettlemId = null, ?int $suppSettlemPos = null, ?float $supplierDiAmount = null, ?string $supplierId = null, ?float $supplierInvoiceAmount = null, ?string $travelType = null)
+    public function __construct(?int $adviceDetailId = null, ?float $bookingAmount = null, ?float $bruttoPrice = null, ?string $creationType = null, ?string $destination = null, ?bool $isDeposit = null, ?int $itemId = null, ?string $originalCurrency = null, ?float $originalRevenueInclVat = null, ?float $originalRevenueInsurance = null, ?float $originalRevenueVatFree = null, ?int $preparedRevenueId = null, ?string $receiptDate = null, ?string $receiptNo = null, ?float $revenueInclVat = null, ?float $revenueInsurance = null, ?float $revenueVatAmount = null, ?float $revenueVatFree = null, ?float $revenueVatPercent = null, ?bool $stornoAccounts = null, ?int $suppSettlemId = null, ?int $suppSettlemPos = null, ?float $supplierDiAmount = null, ?string $supplierId = null, ?float $supplierInvoiceAmount = null, ?string $travelType = null)
     {
         $this
             ->setAdviceDetailId($adviceDetailId)
@@ -204,7 +218,9 @@ class PreparedRevenueBookingDTO extends AbstractStructBase
             ->setReceiptNo($receiptNo)
             ->setRevenueInclVat($revenueInclVat)
             ->setRevenueInsurance($revenueInsurance)
+            ->setRevenueVatAmount($revenueVatAmount)
             ->setRevenueVatFree($revenueVatFree)
+            ->setRevenueVatPercent($revenueVatPercent)
             ->setStornoAccounts($stornoAccounts)
             ->setSuppSettlemId($suppSettlemId)
             ->setSuppSettlemPos($suppSettlemPos)
@@ -582,6 +598,29 @@ class PreparedRevenueBookingDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get revenueVatAmount value
+     * @return float|null
+     */
+    public function getRevenueVatAmount(): ?float
+    {
+        return $this->revenueVatAmount;
+    }
+    /**
+     * Set revenueVatAmount value
+     * @param float $revenueVatAmount
+     * @return \Pggns\MidocoApi\Bank\StructType\PreparedRevenueBookingDTO
+     */
+    public function setRevenueVatAmount(?float $revenueVatAmount = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($revenueVatAmount) && !(is_float($revenueVatAmount) || is_numeric($revenueVatAmount))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($revenueVatAmount, true), gettype($revenueVatAmount)), __LINE__);
+        }
+        $this->revenueVatAmount = $revenueVatAmount;
+        
+        return $this;
+    }
+    /**
      * Get revenueVatFree value
      * @return float|null
      */
@@ -601,6 +640,29 @@ class PreparedRevenueBookingDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($revenueVatFree, true), gettype($revenueVatFree)), __LINE__);
         }
         $this->revenueVatFree = $revenueVatFree;
+        
+        return $this;
+    }
+    /**
+     * Get revenueVatPercent value
+     * @return float|null
+     */
+    public function getRevenueVatPercent(): ?float
+    {
+        return $this->revenueVatPercent;
+    }
+    /**
+     * Set revenueVatPercent value
+     * @param float $revenueVatPercent
+     * @return \Pggns\MidocoApi\Bank\StructType\PreparedRevenueBookingDTO
+     */
+    public function setRevenueVatPercent(?float $revenueVatPercent = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($revenueVatPercent) && !(is_float($revenueVatPercent) || is_numeric($revenueVatPercent))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($revenueVatPercent, true), gettype($revenueVatPercent)), __LINE__);
+        }
+        $this->revenueVatPercent = $revenueVatPercent;
         
         return $this;
     }

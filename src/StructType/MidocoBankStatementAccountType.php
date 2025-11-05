@@ -40,6 +40,11 @@ class MidocoBankStatementAccountType extends BankStatementAccountDTO
      */
     protected ?string $numberBooked = null;
     /**
+     * The numberIgnored
+     * @var string|null
+     */
+    protected ?string $numberIgnored = null;
+    /**
      * The unitName
      * @var string|null
      */
@@ -65,6 +70,7 @@ class MidocoBankStatementAccountType extends BankStatementAccountDTO
      * @uses MidocoBankStatementAccountType::setReadDate()
      * @uses MidocoBankStatementAccountType::setNumberAccounted()
      * @uses MidocoBankStatementAccountType::setNumberBooked()
+     * @uses MidocoBankStatementAccountType::setNumberIgnored()
      * @uses MidocoBankStatementAccountType::setUnitName()
      * @uses MidocoBankStatementAccountType::setFileFormat()
      * @uses MidocoBankStatementAccountType::setMidocoBankStatementEntry()
@@ -73,11 +79,12 @@ class MidocoBankStatementAccountType extends BankStatementAccountDTO
      * @param string $readDate
      * @param string $numberAccounted
      * @param string $numberBooked
+     * @param string $numberIgnored
      * @param string $unitName
      * @param string $fileFormat
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoBankStatementEntry[] $midocoBankStatementEntry
      */
-    public function __construct(?int $readUserId = null, ?string $readUserName = null, ?string $readDate = null, ?string $numberAccounted = null, ?string $numberBooked = null, ?string $unitName = null, ?string $fileFormat = null, ?array $midocoBankStatementEntry = null)
+    public function __construct(?int $readUserId = null, ?string $readUserName = null, ?string $readDate = null, ?string $numberAccounted = null, ?string $numberBooked = null, ?string $numberIgnored = null, ?string $unitName = null, ?string $fileFormat = null, ?array $midocoBankStatementEntry = null)
     {
         $this
             ->setReadUserId($readUserId)
@@ -85,6 +92,7 @@ class MidocoBankStatementAccountType extends BankStatementAccountDTO
             ->setReadDate($readDate)
             ->setNumberAccounted($numberAccounted)
             ->setNumberBooked($numberBooked)
+            ->setNumberIgnored($numberIgnored)
             ->setUnitName($unitName)
             ->setFileFormat($fileFormat)
             ->setMidocoBankStatementEntry($midocoBankStatementEntry);
@@ -201,6 +209,29 @@ class MidocoBankStatementAccountType extends BankStatementAccountDTO
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($numberBooked, true), gettype($numberBooked)), __LINE__);
         }
         $this->numberBooked = $numberBooked;
+        
+        return $this;
+    }
+    /**
+     * Get numberIgnored value
+     * @return string|null
+     */
+    public function getNumberIgnored(): ?string
+    {
+        return $this->numberIgnored;
+    }
+    /**
+     * Set numberIgnored value
+     * @param string $numberIgnored
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoBankStatementAccountType
+     */
+    public function setNumberIgnored(?string $numberIgnored = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($numberIgnored) && !is_string($numberIgnored)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($numberIgnored, true), gettype($numberIgnored)), __LINE__);
+        }
+        $this->numberIgnored = $numberIgnored;
         
         return $this;
     }

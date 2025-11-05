@@ -10,7 +10,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
 /**
  * This class stands for flight-price StructType
  * Meta information extracted from the WSDL
- * - documentation: prices for flights, split in tax and fare amount
+ * - documentation: flight-price remark | flight-price attribute | prices for flights, split in tax and fare amount
  * @subpackage Structs
  */
 #[\AllowDynamicProperties]
@@ -38,6 +38,24 @@ class Flight_price extends AbstractStructBase
      * @var string|null
      */
     protected ?string $ticket_designator = null;
+    /**
+     * The flight_attribute
+     * Meta information extracted from the WSDL
+     * - maxOccurs: unbounded
+     * - minOccurs: 0
+     * - ref: flight-attribute
+     * @var \Pggns\MidocoApi\Bank\StructType\Flight_attribute[]
+     */
+    protected ?array $flight_attribute = null;
+    /**
+     * The flight_remark
+     * Meta information extracted from the WSDL
+     * - maxOccurs: unbounded
+     * - minOccurs: 0
+     * - ref: flight-remark
+     * @var \Pggns\MidocoApi\Bank\StructType\Flight_remark[]
+     */
+    protected ?array $flight_remark = null;
     /**
      * The base_fare
      * @var float|null
@@ -228,10 +246,19 @@ class Flight_price extends AbstractStructBase
      */
     protected ?\Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information = null;
     /**
+     * The destination_code
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var string|null
+     */
+    protected ?string $destination_code = null;
+    /**
      * Constructor method for flight-price
      * @uses Flight_price::setPosition()
      * @uses Flight_price::setBooking_position()
      * @uses Flight_price::setTicket_designator()
+     * @uses Flight_price::setFlight_attribute()
+     * @uses Flight_price::setFlight_remark()
      * @uses Flight_price::setBase_fare()
      * @uses Flight_price::setFare_type()
      * @uses Flight_price::setTotal_tax()
@@ -259,9 +286,12 @@ class Flight_price extends AbstractStructBase
      * @uses Flight_price::setSaving()
      * @uses Flight_price::setCancellation_fee()
      * @uses Flight_price::setCc_information()
+     * @uses Flight_price::setDestination_code()
      * @param int $position
      * @param int $booking_position
      * @param string $ticket_designator
+     * @param \Pggns\MidocoApi\Bank\StructType\Flight_attribute[] $flight_attribute
+     * @param \Pggns\MidocoApi\Bank\StructType\Flight_remark[] $flight_remark
      * @param float $base_fare
      * @param string $fare_type
      * @param float $total_tax
@@ -289,13 +319,16 @@ class Flight_price extends AbstractStructBase
      * @param \Pggns\MidocoApi\Bank\StructType\Saving[] $saving
      * @param float $cancellation_fee
      * @param \Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information
+     * @param string $destination_code
      */
-    public function __construct(int $position, int $booking_position, ?string $ticket_designator = null, ?float $base_fare = null, ?string $fare_type = null, ?float $total_tax = null, ?float $total_price = null, ?string $currency = null, ?float $commission_percent = null, ?float $commission_amount = null, ?float $wholesale_price = null, ?string $person_assignment = null, ?string $service_assignment = null, ?string $payment_type = null, ?string $extPaymentType = null, ?string $payment_information = null, ?string $ticketing_date = null, ?bool $is_domestic = null, ?bool $vat_printed = false, ?float $vat_percent = null, ?bool $fee_calculated = null, ?float $fee_amount_included = null, ?float $fee_taxable_percent = null, ?string $fee_currency = null, ?float $original_price = null, ?string $original_currency = null, ?float $exchange_rate = null, ?array $saving = null, ?float $cancellation_fee = null, ?\Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information = null)
+    public function __construct(int $position, int $booking_position, ?string $ticket_designator = null, ?array $flight_attribute = null, ?array $flight_remark = null, ?float $base_fare = null, ?string $fare_type = null, ?float $total_tax = null, ?float $total_price = null, ?string $currency = null, ?float $commission_percent = null, ?float $commission_amount = null, ?float $wholesale_price = null, ?string $person_assignment = null, ?string $service_assignment = null, ?string $payment_type = null, ?string $extPaymentType = null, ?string $payment_information = null, ?string $ticketing_date = null, ?bool $is_domestic = null, ?bool $vat_printed = false, ?float $vat_percent = null, ?bool $fee_calculated = null, ?float $fee_amount_included = null, ?float $fee_taxable_percent = null, ?string $fee_currency = null, ?float $original_price = null, ?string $original_currency = null, ?float $exchange_rate = null, ?array $saving = null, ?float $cancellation_fee = null, ?\Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information = null, ?string $destination_code = null)
     {
         $this
             ->setPosition($position)
             ->setBooking_position($booking_position)
             ->setTicket_designator($ticket_designator)
+            ->setFlight_attribute($flight_attribute)
+            ->setFlight_remark($flight_remark)
             ->setBase_fare($base_fare)
             ->setFare_type($fare_type)
             ->setTotal_tax($total_tax)
@@ -322,7 +355,8 @@ class Flight_price extends AbstractStructBase
             ->setExchange_rate($exchange_rate)
             ->setSaving($saving)
             ->setCancellation_fee($cancellation_fee)
-            ->setCc_information($cc_information);
+            ->setCc_information($cc_information)
+            ->setDestination_code($destination_code);
     }
     /**
      * Get position value
@@ -390,6 +424,140 @@ class Flight_price extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($ticket_designator, true), gettype($ticket_designator)), __LINE__);
         }
         $this->ticket_designator = $this->{'ticket-designator'} = $ticket_designator;
+        
+        return $this;
+    }
+    /**
+     * Get flight_attribute value
+     * @return \Pggns\MidocoApi\Bank\StructType\Flight_attribute[]
+     */
+    public function getFlight_attribute(): ?array
+    {
+        return $this->{'flight-attribute'};
+    }
+    /**
+     * This method is responsible for validating the value(s) passed to the setFlight_attribute method
+     * This method is willingly generated in order to preserve the one-line inline validation within the setFlight_attribute method
+     * This has to validate that each item contained by the array match the itemType constraint
+     * @param array $values
+     * @return string A non-empty message if the values does not match the validation rules
+     */
+    public static function validateFlight_attributeForArrayConstraintFromSetFlight_attribute(?array $values = []): string
+    {
+        if (!is_array($values)) {
+            return '';
+        }
+        $message = '';
+        $invalidValues = [];
+        foreach ($values as $flight_priceFlight_attributeItem) {
+            // validation for constraint: itemType
+            if (!$flight_priceFlight_attributeItem instanceof \Pggns\MidocoApi\Bank\StructType\Flight_attribute) {
+                $invalidValues[] = is_object($flight_priceFlight_attributeItem) ? get_class($flight_priceFlight_attributeItem) : sprintf('%s(%s)', gettype($flight_priceFlight_attributeItem), var_export($flight_priceFlight_attributeItem, true));
+            }
+        }
+        if (!empty($invalidValues)) {
+            $message = sprintf('The flight_attribute property can only contain items of type \Pggns\MidocoApi\Bank\StructType\Flight_attribute, %s given', is_object($invalidValues) ? get_class($invalidValues) : (is_array($invalidValues) ? implode(', ', $invalidValues) : gettype($invalidValues)));
+        }
+        unset($invalidValues);
+        
+        return $message;
+    }
+    /**
+     * Set flight_attribute value
+     * @throws InvalidArgumentException
+     * @param \Pggns\MidocoApi\Bank\StructType\Flight_attribute[] $flight_attribute
+     * @return \Pggns\MidocoApi\Bank\StructType\Flight_price
+     */
+    public function setFlight_attribute(?array $flight_attribute = null): self
+    {
+        // validation for constraint: array
+        if ('' !== ($flight_attributeArrayErrorMessage = self::validateFlight_attributeForArrayConstraintFromSetFlight_attribute($flight_attribute))) {
+            throw new InvalidArgumentException($flight_attributeArrayErrorMessage, __LINE__);
+        }
+        $this->flight_attribute = $this->{'flight-attribute'} = $flight_attribute;
+        
+        return $this;
+    }
+    /**
+     * Add item to flight_attribute value
+     * @throws InvalidArgumentException
+     * @param \Pggns\MidocoApi\Bank\StructType\Flight_attribute $item
+     * @return \Pggns\MidocoApi\Bank\StructType\Flight_price
+     */
+    public function addToFlight_attribute(\Pggns\MidocoApi\Bank\StructType\Flight_attribute $item): self
+    {
+        // validation for constraint: itemType
+        if (!$item instanceof \Pggns\MidocoApi\Bank\StructType\Flight_attribute) {
+            throw new InvalidArgumentException(sprintf('The flight_attribute property can only contain items of type \Pggns\MidocoApi\Bank\StructType\Flight_attribute, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
+        }
+        $this->flight_attribute[] = $this->{'flight-attribute'}[] = $item;
+        
+        return $this;
+    }
+    /**
+     * Get flight_remark value
+     * @return \Pggns\MidocoApi\Bank\StructType\Flight_remark[]
+     */
+    public function getFlight_remark(): ?array
+    {
+        return $this->{'flight-remark'};
+    }
+    /**
+     * This method is responsible for validating the value(s) passed to the setFlight_remark method
+     * This method is willingly generated in order to preserve the one-line inline validation within the setFlight_remark method
+     * This has to validate that each item contained by the array match the itemType constraint
+     * @param array $values
+     * @return string A non-empty message if the values does not match the validation rules
+     */
+    public static function validateFlight_remarkForArrayConstraintFromSetFlight_remark(?array $values = []): string
+    {
+        if (!is_array($values)) {
+            return '';
+        }
+        $message = '';
+        $invalidValues = [];
+        foreach ($values as $flight_priceFlight_remarkItem) {
+            // validation for constraint: itemType
+            if (!$flight_priceFlight_remarkItem instanceof \Pggns\MidocoApi\Bank\StructType\Flight_remark) {
+                $invalidValues[] = is_object($flight_priceFlight_remarkItem) ? get_class($flight_priceFlight_remarkItem) : sprintf('%s(%s)', gettype($flight_priceFlight_remarkItem), var_export($flight_priceFlight_remarkItem, true));
+            }
+        }
+        if (!empty($invalidValues)) {
+            $message = sprintf('The flight_remark property can only contain items of type \Pggns\MidocoApi\Bank\StructType\Flight_remark, %s given', is_object($invalidValues) ? get_class($invalidValues) : (is_array($invalidValues) ? implode(', ', $invalidValues) : gettype($invalidValues)));
+        }
+        unset($invalidValues);
+        
+        return $message;
+    }
+    /**
+     * Set flight_remark value
+     * @throws InvalidArgumentException
+     * @param \Pggns\MidocoApi\Bank\StructType\Flight_remark[] $flight_remark
+     * @return \Pggns\MidocoApi\Bank\StructType\Flight_price
+     */
+    public function setFlight_remark(?array $flight_remark = null): self
+    {
+        // validation for constraint: array
+        if ('' !== ($flight_remarkArrayErrorMessage = self::validateFlight_remarkForArrayConstraintFromSetFlight_remark($flight_remark))) {
+            throw new InvalidArgumentException($flight_remarkArrayErrorMessage, __LINE__);
+        }
+        $this->flight_remark = $this->{'flight-remark'} = $flight_remark;
+        
+        return $this;
+    }
+    /**
+     * Add item to flight_remark value
+     * @throws InvalidArgumentException
+     * @param \Pggns\MidocoApi\Bank\StructType\Flight_remark $item
+     * @return \Pggns\MidocoApi\Bank\StructType\Flight_price
+     */
+    public function addToFlight_remark(\Pggns\MidocoApi\Bank\StructType\Flight_remark $item): self
+    {
+        // validation for constraint: itemType
+        if (!$item instanceof \Pggns\MidocoApi\Bank\StructType\Flight_remark) {
+            throw new InvalidArgumentException(sprintf('The flight_remark property can only contain items of type \Pggns\MidocoApi\Bank\StructType\Flight_remark, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
+        }
+        $this->flight_remark[] = $this->{'flight-remark'}[] = $item;
         
         return $this;
     }
@@ -1061,6 +1229,29 @@ class Flight_price extends AbstractStructBase
     public function setCc_information(?\Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information = null): self
     {
         $this->cc_information = $this->{'cc-information'} = $cc_information;
+        
+        return $this;
+    }
+    /**
+     * Get destination_code value
+     * @return string|null
+     */
+    public function getDestination_code(): ?string
+    {
+        return $this->{'destination-code'};
+    }
+    /**
+     * Set destination_code value
+     * @param string $destination_code
+     * @return \Pggns\MidocoApi\Bank\StructType\Flight_price
+     */
+    public function setDestination_code(?string $destination_code = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($destination_code) && !is_string($destination_code)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($destination_code, true), gettype($destination_code)), __LINE__);
+        }
+        $this->destination_code = $this->{'destination-code'} = $destination_code;
         
         return $this;
     }

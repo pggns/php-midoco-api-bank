@@ -181,6 +181,13 @@ class Event_service_type extends AbstractStructBase
      */
     protected ?string $service_status = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The person_assignment
      * @var string|null
      */
@@ -243,6 +250,7 @@ class Event_service_type extends AbstractStructBase
      * @uses Event_service_type::setTotal_price()
      * @uses Event_service_type::setAdvance_sale_price()
      * @uses Event_service_type::setService_status()
+     * @uses Event_service_type::setCo2_emission()
      * @uses Event_service_type::setPerson_assignment()
      * @uses Event_service_type::setPrice()
      * @uses Event_service_type::setCurrency()
@@ -271,6 +279,7 @@ class Event_service_type extends AbstractStructBase
      * @param float $total_price
      * @param float $advance_sale_price
      * @param string $service_status
+     * @param float $co2_emission
      * @param string $person_assignment
      * @param float $price
      * @param string $currency
@@ -278,7 +287,7 @@ class Event_service_type extends AbstractStructBase
      * @param string $booking_reference
      * @param string $ticket_category
      */
-    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?int $no_of_tickets = null, ?string $start_date = null, ?string $end_date = null, ?string $start_time = null, ?string $end_time = null, ?string $description = null, ?string $name = null, ?string $organizer = null, ?string $location_address1 = null, ?string $location_address2 = null, ?string $location_address3 = null, ?string $location_address4 = null, ?string $location_name = null, ?string $seat_area = null, ?string $row = null, ?string $seat_no = null, ?float $total_price = null, ?float $advance_sale_price = null, ?string $service_status = null, ?string $person_assignment = null, ?float $price = null, ?string $currency = 'EUR', ?string $discount_type = null, ?string $booking_reference = null, ?string $ticket_category = null)
+    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?int $no_of_tickets = null, ?string $start_date = null, ?string $end_date = null, ?string $start_time = null, ?string $end_time = null, ?string $description = null, ?string $name = null, ?string $organizer = null, ?string $location_address1 = null, ?string $location_address2 = null, ?string $location_address3 = null, ?string $location_address4 = null, ?string $location_name = null, ?string $seat_area = null, ?string $row = null, ?string $seat_no = null, ?float $total_price = null, ?float $advance_sale_price = null, ?string $service_status = null, ?float $co2_emission = null, ?string $person_assignment = null, ?float $price = null, ?string $currency = 'EUR', ?string $discount_type = null, ?string $booking_reference = null, ?string $ticket_category = null)
     {
         $this
             ->setPosition($position)
@@ -303,6 +312,7 @@ class Event_service_type extends AbstractStructBase
             ->setTotal_price($total_price)
             ->setAdvance_sale_price($advance_sale_price)
             ->setService_status($service_status)
+            ->setCo2_emission($co2_emission)
             ->setPerson_assignment($person_assignment)
             ->setPrice($price)
             ->setCurrency($currency)
@@ -829,6 +839,29 @@ class Event_service_type extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($service_status, true), gettype($service_status)), __LINE__);
         }
         $this->service_status = $this->{'service-status'} = $service_status;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Event_service_type
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

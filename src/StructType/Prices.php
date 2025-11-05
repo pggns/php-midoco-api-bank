@@ -51,7 +51,7 @@ class Prices extends AbstractStructBase
     /**
      * The displayed_currency
      * Meta information extracted from the WSDL
-     * - documentation: A debitor currency which is used to display a foreign price in the invoice.
+     * - documentation: A debitor-order-currency which is used to display a foreign price in the invoice.
      * @var string|null
      */
     protected ?string $displayed_currency = null;

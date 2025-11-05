@@ -140,6 +140,11 @@ class SellItemProvisionDTO extends AbstractStructBase
      */
     protected ?float $vatPercent = null;
     /**
+     * The vatCode
+     * @var string|null
+     */
+    protected ?string $vatCode = null;
+    /**
      * The unitName
      * @var string|null
      */
@@ -332,6 +337,16 @@ class SellItemProvisionDTO extends AbstractStructBase
      */
     protected ?float $bookedSupplierInvoice = null;
     /**
+     * The bookedSupplierInvoiceDueDate
+     * @var string|null
+     */
+    protected ?string $bookedSupplierInvoiceDueDate = null;
+    /**
+     * The bookedSupplierCommissionDueDate
+     * @var string|null
+     */
+    protected ?string $bookedSupplierCommissionDueDate = null;
+    /**
      * Constructor method for SellItemProvisionDTO
      * @uses SellItemProvisionDTO::setItemId()
      * @uses SellItemProvisionDTO::setBookingId()
@@ -358,6 +373,7 @@ class SellItemProvisionDTO extends AbstractStructBase
      * @uses SellItemProvisionDTO::setNettoAmount()
      * @uses SellItemProvisionDTO::setVatAmount()
      * @uses SellItemProvisionDTO::setVatPercent()
+     * @uses SellItemProvisionDTO::setVatCode()
      * @uses SellItemProvisionDTO::setUnitName()
      * @uses SellItemProvisionDTO::setCommissionMode()
      * @uses SellItemProvisionDTO::setEntryRestAsProv()
@@ -396,6 +412,8 @@ class SellItemProvisionDTO extends AbstractStructBase
      * @uses SellItemProvisionDTO::setBookedCommissionInsurance()
      * @uses SellItemProvisionDTO::setBookedCommissionVatFree()
      * @uses SellItemProvisionDTO::setBookedSupplierInvoice()
+     * @uses SellItemProvisionDTO::setBookedSupplierInvoiceDueDate()
+     * @uses SellItemProvisionDTO::setBookedSupplierCommissionDueDate()
      * @param int $itemId
      * @param string $bookingId
      * @param string $traveltype
@@ -421,6 +439,7 @@ class SellItemProvisionDTO extends AbstractStructBase
      * @param float $nettoAmount
      * @param float $vatAmount
      * @param float $vatPercent
+     * @param string $vatCode
      * @param string $unitName
      * @param int $commissionMode
      * @param bool $entryRestAsProv
@@ -459,8 +478,10 @@ class SellItemProvisionDTO extends AbstractStructBase
      * @param float $bookedCommissionInsurance
      * @param float $bookedCommissionVatFree
      * @param float $bookedSupplierInvoice
+     * @param string $bookedSupplierInvoiceDueDate
+     * @param string $bookedSupplierCommissionDueDate
      */
-    public function __construct(?int $itemId = null, ?string $bookingId = null, ?string $traveltype = null, ?float $totalPrice = null, ?int $numberOfPersons = null, ?string $traveldate = null, ?string $status = null, ?float $calculatedRevenue = null, ?float $grantedRevenue = null, ?string $invoiceDate = null, ?float $vatInclAmount = null, ?float $vatFreeAmount = null, ?float $vatInsurance = null, ?float $supplierInvoice = null, ?string $receiptNo = null, ?string $supplierId = null, ?int $orderId = null, ?int $orderNo = null, ?string $customerSurName = null, ?string $customerForeName = null, ?bool $isCollective = null, ?int $revenueId = null, ?float $nettoAmount = null, ?float $vatAmount = null, ?float $vatPercent = null, ?string $unitName = null, ?int $commissionMode = null, ?bool $entryRestAsProv = null, ?string $paymentType = null, ?bool $inPackage = null, ?bool $isInsurance = null, ?float $inkassoPrice = null, ?string $extId = null, ?string $destination = null, ?float $feeAmount = null, ?bool $manualEntriesExist = null, ?string $currency = null, ?string $foreignCurrency = null, ?float $foreignCurrencyExchangeRate = null, ?float $foreignCurrencyRateMasterData = null, ?int $foreignCurrencyLookupMethod = null, ?bool $isForeignCreditor = false, ?int $inkassoMode = null, ?float $supplierDIAmount = null, ?float $travelPrice = null, ?string $settlementType = null, ?string $settlementTypeDebit = null, ?bool $isDeposit = null, ?string $travelitemDestination = null, ?string $itemType = null, ?string $endTravel = null, ?string $dueDate = null, ?string $bookingDate = null, ?string $bookingText = null, ?bool $isQrInvoiceTransfer = null, ?string $qrInvoiceRefNo = null, ?string $creationDate = null, ?float $bookedDIAmount = null, ?float $bookedTravelPrice = null, ?float $bookedCommissionVatIncl = null, ?float $bookedCommissionInsurance = null, ?float $bookedCommissionVatFree = null, ?float $bookedSupplierInvoice = null)
+    public function __construct(?int $itemId = null, ?string $bookingId = null, ?string $traveltype = null, ?float $totalPrice = null, ?int $numberOfPersons = null, ?string $traveldate = null, ?string $status = null, ?float $calculatedRevenue = null, ?float $grantedRevenue = null, ?string $invoiceDate = null, ?float $vatInclAmount = null, ?float $vatFreeAmount = null, ?float $vatInsurance = null, ?float $supplierInvoice = null, ?string $receiptNo = null, ?string $supplierId = null, ?int $orderId = null, ?int $orderNo = null, ?string $customerSurName = null, ?string $customerForeName = null, ?bool $isCollective = null, ?int $revenueId = null, ?float $nettoAmount = null, ?float $vatAmount = null, ?float $vatPercent = null, ?string $vatCode = null, ?string $unitName = null, ?int $commissionMode = null, ?bool $entryRestAsProv = null, ?string $paymentType = null, ?bool $inPackage = null, ?bool $isInsurance = null, ?float $inkassoPrice = null, ?string $extId = null, ?string $destination = null, ?float $feeAmount = null, ?bool $manualEntriesExist = null, ?string $currency = null, ?string $foreignCurrency = null, ?float $foreignCurrencyExchangeRate = null, ?float $foreignCurrencyRateMasterData = null, ?int $foreignCurrencyLookupMethod = null, ?bool $isForeignCreditor = false, ?int $inkassoMode = null, ?float $supplierDIAmount = null, ?float $travelPrice = null, ?string $settlementType = null, ?string $settlementTypeDebit = null, ?bool $isDeposit = null, ?string $travelitemDestination = null, ?string $itemType = null, ?string $endTravel = null, ?string $dueDate = null, ?string $bookingDate = null, ?string $bookingText = null, ?bool $isQrInvoiceTransfer = null, ?string $qrInvoiceRefNo = null, ?string $creationDate = null, ?float $bookedDIAmount = null, ?float $bookedTravelPrice = null, ?float $bookedCommissionVatIncl = null, ?float $bookedCommissionInsurance = null, ?float $bookedCommissionVatFree = null, ?float $bookedSupplierInvoice = null, ?string $bookedSupplierInvoiceDueDate = null, ?string $bookedSupplierCommissionDueDate = null)
     {
         $this
             ->setItemId($itemId)
@@ -488,6 +509,7 @@ class SellItemProvisionDTO extends AbstractStructBase
             ->setNettoAmount($nettoAmount)
             ->setVatAmount($vatAmount)
             ->setVatPercent($vatPercent)
+            ->setVatCode($vatCode)
             ->setUnitName($unitName)
             ->setCommissionMode($commissionMode)
             ->setEntryRestAsProv($entryRestAsProv)
@@ -525,7 +547,9 @@ class SellItemProvisionDTO extends AbstractStructBase
             ->setBookedCommissionVatIncl($bookedCommissionVatIncl)
             ->setBookedCommissionInsurance($bookedCommissionInsurance)
             ->setBookedCommissionVatFree($bookedCommissionVatFree)
-            ->setBookedSupplierInvoice($bookedSupplierInvoice);
+            ->setBookedSupplierInvoice($bookedSupplierInvoice)
+            ->setBookedSupplierInvoiceDueDate($bookedSupplierInvoiceDueDate)
+            ->setBookedSupplierCommissionDueDate($bookedSupplierCommissionDueDate);
     }
     /**
      * Get itemId value
@@ -1099,6 +1123,29 @@ class SellItemProvisionDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($vatPercent, true), gettype($vatPercent)), __LINE__);
         }
         $this->vatPercent = $vatPercent;
+        
+        return $this;
+    }
+    /**
+     * Get vatCode value
+     * @return string|null
+     */
+    public function getVatCode(): ?string
+    {
+        return $this->vatCode;
+    }
+    /**
+     * Set vatCode value
+     * @param string $vatCode
+     * @return \Pggns\MidocoApi\Bank\StructType\SellItemProvisionDTO
+     */
+    public function setVatCode(?string $vatCode = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($vatCode) && !is_string($vatCode)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($vatCode, true), gettype($vatCode)), __LINE__);
+        }
+        $this->vatCode = $vatCode;
         
         return $this;
     }
@@ -1973,6 +2020,52 @@ class SellItemProvisionDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($bookedSupplierInvoice, true), gettype($bookedSupplierInvoice)), __LINE__);
         }
         $this->bookedSupplierInvoice = $bookedSupplierInvoice;
+        
+        return $this;
+    }
+    /**
+     * Get bookedSupplierInvoiceDueDate value
+     * @return string|null
+     */
+    public function getBookedSupplierInvoiceDueDate(): ?string
+    {
+        return $this->bookedSupplierInvoiceDueDate;
+    }
+    /**
+     * Set bookedSupplierInvoiceDueDate value
+     * @param string $bookedSupplierInvoiceDueDate
+     * @return \Pggns\MidocoApi\Bank\StructType\SellItemProvisionDTO
+     */
+    public function setBookedSupplierInvoiceDueDate(?string $bookedSupplierInvoiceDueDate = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($bookedSupplierInvoiceDueDate) && !is_string($bookedSupplierInvoiceDueDate)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($bookedSupplierInvoiceDueDate, true), gettype($bookedSupplierInvoiceDueDate)), __LINE__);
+        }
+        $this->bookedSupplierInvoiceDueDate = $bookedSupplierInvoiceDueDate;
+        
+        return $this;
+    }
+    /**
+     * Get bookedSupplierCommissionDueDate value
+     * @return string|null
+     */
+    public function getBookedSupplierCommissionDueDate(): ?string
+    {
+        return $this->bookedSupplierCommissionDueDate;
+    }
+    /**
+     * Set bookedSupplierCommissionDueDate value
+     * @param string $bookedSupplierCommissionDueDate
+     * @return \Pggns\MidocoApi\Bank\StructType\SellItemProvisionDTO
+     */
+    public function setBookedSupplierCommissionDueDate(?string $bookedSupplierCommissionDueDate = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($bookedSupplierCommissionDueDate) && !is_string($bookedSupplierCommissionDueDate)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($bookedSupplierCommissionDueDate, true), gettype($bookedSupplierCommissionDueDate)), __LINE__);
+        }
+        $this->bookedSupplierCommissionDueDate = $bookedSupplierCommissionDueDate;
         
         return $this;
     }

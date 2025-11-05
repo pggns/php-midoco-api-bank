@@ -90,6 +90,11 @@ class OnlinePaymentDTO extends AbstractStructBase
      */
     protected ?string $electronicCommerceIndicator = null;
     /**
+     * The externalId
+     * @var string|null
+     */
+    protected ?string $externalId = null;
+    /**
      * The initialEcomTransactionId
      * @var string|null
      */
@@ -151,6 +156,7 @@ class OnlinePaymentDTO extends AbstractStructBase
      * @uses OnlinePaymentDTO::setCvvToken()
      * @uses OnlinePaymentDTO::setDstid()
      * @uses OnlinePaymentDTO::setElectronicCommerceIndicator()
+     * @uses OnlinePaymentDTO::setExternalId()
      * @uses OnlinePaymentDTO::setInitialEcomTransactionId()
      * @uses OnlinePaymentDTO::setIsRecurring()
      * @uses OnlinePaymentDTO::setOrderId()
@@ -175,6 +181,7 @@ class OnlinePaymentDTO extends AbstractStructBase
      * @param string $cvvToken
      * @param string $dstid
      * @param string $electronicCommerceIndicator
+     * @param string $externalId
      * @param string $initialEcomTransactionId
      * @param bool $isRecurring
      * @param int $orderId
@@ -185,7 +192,7 @@ class OnlinePaymentDTO extends AbstractStructBase
      * @param string $v3ds
      * @param string $xid
      */
-    public function __construct(?float $authAmount = null, ?string $authenticatedId = null, ?int $cardholderAuthApproval = null, ?string $cardholderAuthVerification = null, ?string $ccNo = null, ?string $ccOwner = null, ?string $ccToken = null, ?int $ccTokenReference = null, ?string $ccTokenType = null, ?string $ccType = null, ?int $ccValidMonth = null, ?int $ccValidYear = null, ?string $cvvToken = null, ?string $dstid = null, ?string $electronicCommerceIndicator = null, ?string $initialEcomTransactionId = null, ?bool $isRecurring = null, ?int $orderId = null, ?string $paymentChannelIndicator = null, ?float $remainingAuthAmount = null, ?string $settlementDate = null, ?bool $tokenChecked = null, ?string $v3ds = null, ?string $xid = null)
+    public function __construct(?float $authAmount = null, ?string $authenticatedId = null, ?int $cardholderAuthApproval = null, ?string $cardholderAuthVerification = null, ?string $ccNo = null, ?string $ccOwner = null, ?string $ccToken = null, ?int $ccTokenReference = null, ?string $ccTokenType = null, ?string $ccType = null, ?int $ccValidMonth = null, ?int $ccValidYear = null, ?string $cvvToken = null, ?string $dstid = null, ?string $electronicCommerceIndicator = null, ?string $externalId = null, ?string $initialEcomTransactionId = null, ?bool $isRecurring = null, ?int $orderId = null, ?string $paymentChannelIndicator = null, ?float $remainingAuthAmount = null, ?string $settlementDate = null, ?bool $tokenChecked = null, ?string $v3ds = null, ?string $xid = null)
     {
         $this
             ->setAuthAmount($authAmount)
@@ -203,6 +210,7 @@ class OnlinePaymentDTO extends AbstractStructBase
             ->setCvvToken($cvvToken)
             ->setDstid($dstid)
             ->setElectronicCommerceIndicator($electronicCommerceIndicator)
+            ->setExternalId($externalId)
             ->setInitialEcomTransactionId($initialEcomTransactionId)
             ->setIsRecurring($isRecurring)
             ->setOrderId($orderId)
@@ -555,6 +563,29 @@ class OnlinePaymentDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($electronicCommerceIndicator, true), gettype($electronicCommerceIndicator)), __LINE__);
         }
         $this->electronicCommerceIndicator = $electronicCommerceIndicator;
+        
+        return $this;
+    }
+    /**
+     * Get externalId value
+     * @return string|null
+     */
+    public function getExternalId(): ?string
+    {
+        return $this->externalId;
+    }
+    /**
+     * Set externalId value
+     * @param string $externalId
+     * @return \Pggns\MidocoApi\Bank\StructType\OnlinePaymentDTO
+     */
+    public function setExternalId(?string $externalId = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($externalId) && !is_string($externalId)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($externalId, true), gettype($externalId)), __LINE__);
+        }
+        $this->externalId = $externalId;
         
         return $this;
     }

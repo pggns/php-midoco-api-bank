@@ -98,6 +98,11 @@ class CollectBankPaymentPositionsRequest extends AbstractStructBase
      */
     protected ?string $mediatorId = null;
     /**
+     * The paymentScheme
+     * @var string|null
+     */
+    protected ?string $paymentScheme = null;
+    /**
      * Constructor method for CollectBankPaymentPositionsRequest
      * @uses CollectBankPaymentPositionsRequest::setAccountNo()
      * @uses CollectBankPaymentPositionsRequest::setAccountBlz()
@@ -115,6 +120,7 @@ class CollectBankPaymentPositionsRequest extends AbstractStructBase
      * @uses CollectBankPaymentPositionsRequest::setDebitorFrom()
      * @uses CollectBankPaymentPositionsRequest::setDebitorTo()
      * @uses CollectBankPaymentPositionsRequest::setMediatorId()
+     * @uses CollectBankPaymentPositionsRequest::setPaymentScheme()
      * @param string $accountNo
      * @param string $accountBlz
      * @param string $accountCountry
@@ -131,8 +137,9 @@ class CollectBankPaymentPositionsRequest extends AbstractStructBase
      * @param string $debitorFrom
      * @param string $debitorTo
      * @param string $mediatorId
+     * @param string $paymentScheme
      */
-    public function __construct(?string $accountNo = null, ?string $accountBlz = null, ?string $accountCountry = null, ?string $iban = null, ?string $swiftBicCode = null, ?string $perDate = null, ?int $paymentType = null, ?int $debitType = null, ?array $sepaTransactionType = null, ?bool $creditorSelected = null, ?string $creditorFrom = null, ?string $creditorTo = null, ?bool $debitorSelected = null, ?string $debitorFrom = null, ?string $debitorTo = null, ?string $mediatorId = null)
+    public function __construct(?string $accountNo = null, ?string $accountBlz = null, ?string $accountCountry = null, ?string $iban = null, ?string $swiftBicCode = null, ?string $perDate = null, ?int $paymentType = null, ?int $debitType = null, ?array $sepaTransactionType = null, ?bool $creditorSelected = null, ?string $creditorFrom = null, ?string $creditorTo = null, ?bool $debitorSelected = null, ?string $debitorFrom = null, ?string $debitorTo = null, ?string $mediatorId = null, ?string $paymentScheme = null)
     {
         $this
             ->setAccountNo($accountNo)
@@ -150,7 +157,8 @@ class CollectBankPaymentPositionsRequest extends AbstractStructBase
             ->setDebitorSelected($debitorSelected)
             ->setDebitorFrom($debitorFrom)
             ->setDebitorTo($debitorTo)
-            ->setMediatorId($mediatorId);
+            ->setMediatorId($mediatorId)
+            ->setPaymentScheme($paymentScheme);
     }
     /**
      * Get accountNo value
@@ -565,6 +573,29 @@ class CollectBankPaymentPositionsRequest extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($mediatorId, true), gettype($mediatorId)), __LINE__);
         }
         $this->mediatorId = $mediatorId;
+        
+        return $this;
+    }
+    /**
+     * Get paymentScheme value
+     * @return string|null
+     */
+    public function getPaymentScheme(): ?string
+    {
+        return $this->paymentScheme;
+    }
+    /**
+     * Set paymentScheme value
+     * @param string $paymentScheme
+     * @return \Pggns\MidocoApi\Bank\StructType\CollectBankPaymentPositionsRequest
+     */
+    public function setPaymentScheme(?string $paymentScheme = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($paymentScheme) && !is_string($paymentScheme)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($paymentScheme, true), gettype($paymentScheme)), __LINE__);
+        }
+        $this->paymentScheme = $paymentScheme;
         
         return $this;
     }

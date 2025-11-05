@@ -80,6 +80,11 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
      */
     protected ?float $exchangeRate = null;
     /**
+     * The initialSplitFromBookingPos
+     * @var int|null
+     */
+    protected ?int $initialSplitFromBookingPos = null;
+    /**
      * The invoiceDate
      * @var string|null
      */
@@ -104,6 +109,11 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
      * @var float|null
      */
     protected ?float $price = null;
+    /**
+     * The qrInvoiceRefNo
+     * @var string|null
+     */
+    protected ?string $qrInvoiceRefNo = null;
     /**
      * The settlementId
      * @var int|null
@@ -199,11 +209,13 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
      * @uses SupplAgencySettlemBookDTO::setDocumentType()
      * @uses SupplAgencySettlemBookDTO::setErrors()
      * @uses SupplAgencySettlemBookDTO::setExchangeRate()
+     * @uses SupplAgencySettlemBookDTO::setInitialSplitFromBookingPos()
      * @uses SupplAgencySettlemBookDTO::setInvoiceDate()
      * @uses SupplAgencySettlemBookDTO::setItemId()
      * @uses SupplAgencySettlemBookDTO::setManualJournalBooking()
      * @uses SupplAgencySettlemBookDTO::setNoOfPersons()
      * @uses SupplAgencySettlemBookDTO::setPrice()
+     * @uses SupplAgencySettlemBookDTO::setQrInvoiceRefNo()
      * @uses SupplAgencySettlemBookDTO::setSettlementId()
      * @uses SupplAgencySettlemBookDTO::setSettlementParty()
      * @uses SupplAgencySettlemBookDTO::setSiCalculatedRevenue()
@@ -233,11 +245,13 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
      * @param string $documentType
      * @param int $errors
      * @param float $exchangeRate
+     * @param int $initialSplitFromBookingPos
      * @param string $invoiceDate
      * @param int $itemId
      * @param bool $manualJournalBooking
      * @param int $noOfPersons
      * @param float $price
+     * @param string $qrInvoiceRefNo
      * @param int $settlementId
      * @param string $settlementParty
      * @param float $siCalculatedRevenue
@@ -255,7 +269,7 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
      * @param string $traveltype
      * @param string $unitName
      */
-    public function __construct(?string $backupData = null, ?bool $booked = null, ?string $bookingId = null, ?int $bookingPosition = null, ?string $bookingType = null, ?float $calculatedRevenue = null, ?bool $checked = null, ?string $currency = null, ?bool $diffManualChecked = null, ?string $documentNo = null, ?string $documentType = null, ?int $errors = null, ?float $exchangeRate = null, ?string $invoiceDate = null, ?int $itemId = null, ?bool $manualJournalBooking = null, ?int $noOfPersons = null, ?float $price = null, ?int $settlementId = null, ?string $settlementParty = null, ?float $siCalculatedRevenue = null, ?int $siNoOfPersons = null, ?float $siPrice = null, ?string $siStatus = null, ?string $siTravelDate = null, ?string $siTravelType = null, ?string $siUnitName = null, ?bool $skipBooking = null, ?string $supplierAgencyNo = null, ?string $supplierId = null, ?string $travelDate = null, ?string $traveller = null, ?string $traveltype = null, ?string $unitName = null)
+    public function __construct(?string $backupData = null, ?bool $booked = null, ?string $bookingId = null, ?int $bookingPosition = null, ?string $bookingType = null, ?float $calculatedRevenue = null, ?bool $checked = null, ?string $currency = null, ?bool $diffManualChecked = null, ?string $documentNo = null, ?string $documentType = null, ?int $errors = null, ?float $exchangeRate = null, ?int $initialSplitFromBookingPos = null, ?string $invoiceDate = null, ?int $itemId = null, ?bool $manualJournalBooking = null, ?int $noOfPersons = null, ?float $price = null, ?string $qrInvoiceRefNo = null, ?int $settlementId = null, ?string $settlementParty = null, ?float $siCalculatedRevenue = null, ?int $siNoOfPersons = null, ?float $siPrice = null, ?string $siStatus = null, ?string $siTravelDate = null, ?string $siTravelType = null, ?string $siUnitName = null, ?bool $skipBooking = null, ?string $supplierAgencyNo = null, ?string $supplierId = null, ?string $travelDate = null, ?string $traveller = null, ?string $traveltype = null, ?string $unitName = null)
     {
         $this
             ->setBackupData($backupData)
@@ -271,11 +285,13 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
             ->setDocumentType($documentType)
             ->setErrors($errors)
             ->setExchangeRate($exchangeRate)
+            ->setInitialSplitFromBookingPos($initialSplitFromBookingPos)
             ->setInvoiceDate($invoiceDate)
             ->setItemId($itemId)
             ->setManualJournalBooking($manualJournalBooking)
             ->setNoOfPersons($noOfPersons)
             ->setPrice($price)
+            ->setQrInvoiceRefNo($qrInvoiceRefNo)
             ->setSettlementId($settlementId)
             ->setSettlementParty($settlementParty)
             ->setSiCalculatedRevenue($siCalculatedRevenue)
@@ -593,6 +609,29 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get initialSplitFromBookingPos value
+     * @return int|null
+     */
+    public function getInitialSplitFromBookingPos(): ?int
+    {
+        return $this->initialSplitFromBookingPos;
+    }
+    /**
+     * Set initialSplitFromBookingPos value
+     * @param int $initialSplitFromBookingPos
+     * @return \Pggns\MidocoApi\Bank\StructType\SupplAgencySettlemBookDTO
+     */
+    public function setInitialSplitFromBookingPos(?int $initialSplitFromBookingPos = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($initialSplitFromBookingPos) && !(is_int($initialSplitFromBookingPos) || ctype_digit($initialSplitFromBookingPos))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($initialSplitFromBookingPos, true), gettype($initialSplitFromBookingPos)), __LINE__);
+        }
+        $this->initialSplitFromBookingPos = $initialSplitFromBookingPos;
+        
+        return $this;
+    }
+    /**
      * Get invoiceDate value
      * @return string|null
      */
@@ -704,6 +743,29 @@ class SupplAgencySettlemBookDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($price, true), gettype($price)), __LINE__);
         }
         $this->price = $price;
+        
+        return $this;
+    }
+    /**
+     * Get qrInvoiceRefNo value
+     * @return string|null
+     */
+    public function getQrInvoiceRefNo(): ?string
+    {
+        return $this->qrInvoiceRefNo;
+    }
+    /**
+     * Set qrInvoiceRefNo value
+     * @param string $qrInvoiceRefNo
+     * @return \Pggns\MidocoApi\Bank\StructType\SupplAgencySettlemBookDTO
+     */
+    public function setQrInvoiceRefNo(?string $qrInvoiceRefNo = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($qrInvoiceRefNo) && !is_string($qrInvoiceRefNo)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($qrInvoiceRefNo, true), gettype($qrInvoiceRefNo)), __LINE__);
+        }
+        $this->qrInvoiceRefNo = $qrInvoiceRefNo;
         
         return $this;
     }

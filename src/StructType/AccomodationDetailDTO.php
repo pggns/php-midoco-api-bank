@@ -65,6 +65,11 @@ class AccomodationDetailDTO extends AbstractStructBase
      */
     protected ?string $cateringDescription = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The corporateDiscount
      * @var string|null
      */
@@ -186,6 +191,7 @@ class AccomodationDetailDTO extends AbstractStructBase
      * @uses AccomodationDetailDTO::setCategory()
      * @uses AccomodationDetailDTO::setCatering()
      * @uses AccomodationDetailDTO::setCateringDescription()
+     * @uses AccomodationDetailDTO::setCo2Emission()
      * @uses AccomodationDetailDTO::setCorporateDiscount()
      * @uses AccomodationDetailDTO::setCountry()
      * @uses AccomodationDetailDTO::setCurrency()
@@ -218,6 +224,7 @@ class AccomodationDetailDTO extends AbstractStructBase
      * @param string $category
      * @param string $catering
      * @param string $cateringDescription
+     * @param float $co2Emission
      * @param string $corporateDiscount
      * @param string $country
      * @param string $currency
@@ -241,7 +248,7 @@ class AccomodationDetailDTO extends AbstractStructBase
      * @param string $transfer
      * @param bool $vatIncluded
      */
-    public function __construct(?string $accomodation = null, ?string $accomodationDescription = null, ?string $addressLine1 = null, ?string $addressLine2 = null, ?string $addressLine3 = null, ?string $addressLine4 = null, ?string $airportCode = null, ?string $category = null, ?string $catering = null, ?string $cateringDescription = null, ?string $corporateDiscount = null, ?string $country = null, ?string $currency = null, ?string $emergencyNumber = null, ?string $endDate = null, ?string $hotelChain = null, ?int $itemId = null, ?string $locationDescription = null, ?string $noOfNights = null, ?string $noOfServices = null, ?string $personAssignment = null, ?int $personsPerService = null, ?int $position = null, ?int $referencePosition = null, ?string $serviceCode = null, ?string $serviceDescription = null, ?string $serviceName = null, ?string $serviceStatus = null, ?string $startDate = null, ?float $totalPrice = null, ?string $transfer = null, ?bool $vatIncluded = null)
+    public function __construct(?string $accomodation = null, ?string $accomodationDescription = null, ?string $addressLine1 = null, ?string $addressLine2 = null, ?string $addressLine3 = null, ?string $addressLine4 = null, ?string $airportCode = null, ?string $category = null, ?string $catering = null, ?string $cateringDescription = null, ?float $co2Emission = null, ?string $corporateDiscount = null, ?string $country = null, ?string $currency = null, ?string $emergencyNumber = null, ?string $endDate = null, ?string $hotelChain = null, ?int $itemId = null, ?string $locationDescription = null, ?string $noOfNights = null, ?string $noOfServices = null, ?string $personAssignment = null, ?int $personsPerService = null, ?int $position = null, ?int $referencePosition = null, ?string $serviceCode = null, ?string $serviceDescription = null, ?string $serviceName = null, ?string $serviceStatus = null, ?string $startDate = null, ?float $totalPrice = null, ?string $transfer = null, ?bool $vatIncluded = null)
     {
         $this
             ->setAccomodation($accomodation)
@@ -254,6 +261,7 @@ class AccomodationDetailDTO extends AbstractStructBase
             ->setCategory($category)
             ->setCatering($catering)
             ->setCateringDescription($cateringDescription)
+            ->setCo2Emission($co2Emission)
             ->setCorporateDiscount($corporateDiscount)
             ->setCountry($country)
             ->setCurrency($currency)
@@ -504,6 +512,29 @@ class AccomodationDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($cateringDescription, true), gettype($cateringDescription)), __LINE__);
         }
         $this->cateringDescription = $cateringDescription;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\AccomodationDetailDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

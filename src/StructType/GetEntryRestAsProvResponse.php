@@ -30,6 +30,16 @@ class GetEntryRestAsProvResponse extends AbstractStructBase
      */
     protected ?float $originalEntryRest = null;
     /**
+     * The entryCurrency
+     * @var string|null
+     */
+    protected ?string $entryCurrency = null;
+    /**
+     * The originalCurrencyEntryRest
+     * @var string|null
+     */
+    protected ?string $originalCurrencyEntryRest = null;
+    /**
      * The provWithVat
      * @var float|null
      */
@@ -91,6 +101,8 @@ class GetEntryRestAsProvResponse extends AbstractStructBase
      * @uses GetEntryRestAsProvResponse::setItemId()
      * @uses GetEntryRestAsProvResponse::setEntryRest()
      * @uses GetEntryRestAsProvResponse::setOriginalEntryRest()
+     * @uses GetEntryRestAsProvResponse::setEntryCurrency()
+     * @uses GetEntryRestAsProvResponse::setOriginalCurrencyEntryRest()
      * @uses GetEntryRestAsProvResponse::setProvWithVat()
      * @uses GetEntryRestAsProvResponse::setProvWithoutVat()
      * @uses GetEntryRestAsProvResponse::setCostCentre()
@@ -105,6 +117,8 @@ class GetEntryRestAsProvResponse extends AbstractStructBase
      * @param int $itemId
      * @param float $entryRest
      * @param float $originalEntryRest
+     * @param string $entryCurrency
+     * @param string $originalCurrencyEntryRest
      * @param float $provWithVat
      * @param float $provWithoutVat
      * @param string $costCentre
@@ -117,12 +131,14 @@ class GetEntryRestAsProvResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Bank\StructType\RevenueBookingInfoType $revenueBookingInfo
      * @param string $bookingText
      */
-    public function __construct(?int $itemId = null, ?float $entryRest = null, ?float $originalEntryRest = null, ?float $provWithVat = null, ?float $provWithoutVat = null, ?string $costCentre = null, ?string $costUnit = null, ?string $customerName = null, ?string $provWithVatAccount = null, ?string $provWithoutVatAccount = null, ?string $provInsuranceAccount = null, ?string $travelDate = null, ?\Pggns\MidocoApi\Bank\StructType\RevenueBookingInfoType $revenueBookingInfo = null, ?string $bookingText = null)
+    public function __construct(?int $itemId = null, ?float $entryRest = null, ?float $originalEntryRest = null, ?string $entryCurrency = null, ?string $originalCurrencyEntryRest = null, ?float $provWithVat = null, ?float $provWithoutVat = null, ?string $costCentre = null, ?string $costUnit = null, ?string $customerName = null, ?string $provWithVatAccount = null, ?string $provWithoutVatAccount = null, ?string $provInsuranceAccount = null, ?string $travelDate = null, ?\Pggns\MidocoApi\Bank\StructType\RevenueBookingInfoType $revenueBookingInfo = null, ?string $bookingText = null)
     {
         $this
             ->setItemId($itemId)
             ->setEntryRest($entryRest)
             ->setOriginalEntryRest($originalEntryRest)
+            ->setEntryCurrency($entryCurrency)
+            ->setOriginalCurrencyEntryRest($originalCurrencyEntryRest)
             ->setProvWithVat($provWithVat)
             ->setProvWithoutVat($provWithoutVat)
             ->setCostCentre($costCentre)
@@ -201,6 +217,52 @@ class GetEntryRestAsProvResponse extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($originalEntryRest, true), gettype($originalEntryRest)), __LINE__);
         }
         $this->originalEntryRest = $originalEntryRest;
+        
+        return $this;
+    }
+    /**
+     * Get entryCurrency value
+     * @return string|null
+     */
+    public function getEntryCurrency(): ?string
+    {
+        return $this->entryCurrency;
+    }
+    /**
+     * Set entryCurrency value
+     * @param string $entryCurrency
+     * @return \Pggns\MidocoApi\Bank\StructType\GetEntryRestAsProvResponse
+     */
+    public function setEntryCurrency(?string $entryCurrency = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($entryCurrency) && !is_string($entryCurrency)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($entryCurrency, true), gettype($entryCurrency)), __LINE__);
+        }
+        $this->entryCurrency = $entryCurrency;
+        
+        return $this;
+    }
+    /**
+     * Get originalCurrencyEntryRest value
+     * @return string|null
+     */
+    public function getOriginalCurrencyEntryRest(): ?string
+    {
+        return $this->originalCurrencyEntryRest;
+    }
+    /**
+     * Set originalCurrencyEntryRest value
+     * @param string $originalCurrencyEntryRest
+     * @return \Pggns\MidocoApi\Bank\StructType\GetEntryRestAsProvResponse
+     */
+    public function setOriginalCurrencyEntryRest(?string $originalCurrencyEntryRest = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($originalCurrencyEntryRest) && !is_string($originalCurrencyEntryRest)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($originalCurrencyEntryRest, true), gettype($originalCurrencyEntryRest)), __LINE__);
+        }
+        $this->originalCurrencyEntryRest = $originalCurrencyEntryRest;
         
         return $this;
     }

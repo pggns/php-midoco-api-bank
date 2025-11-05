@@ -30,6 +30,11 @@ class TravelExtraDataDTO extends AbstractStructBase
      */
     protected ?int $itemId = null;
     /**
+     * The position
+     * @var int|null
+     */
+    protected ?int $position = null;
+    /**
      * The value
      * @var string|null
      */
@@ -39,18 +44,21 @@ class TravelExtraDataDTO extends AbstractStructBase
      * @uses TravelExtraDataDTO::setAttribute()
      * @uses TravelExtraDataDTO::setHotelCode()
      * @uses TravelExtraDataDTO::setItemId()
+     * @uses TravelExtraDataDTO::setPosition()
      * @uses TravelExtraDataDTO::setValue()
      * @param string $attribute
      * @param string $hotelCode
      * @param int $itemId
+     * @param int $position
      * @param string $value
      */
-    public function __construct(?string $attribute = null, ?string $hotelCode = null, ?int $itemId = null, ?string $value = null)
+    public function __construct(?string $attribute = null, ?string $hotelCode = null, ?int $itemId = null, ?int $position = null, ?string $value = null)
     {
         $this
             ->setAttribute($attribute)
             ->setHotelCode($hotelCode)
             ->setItemId($itemId)
+            ->setPosition($position)
             ->setValue($value);
     }
     /**
@@ -119,6 +127,29 @@ class TravelExtraDataDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($itemId, true), gettype($itemId)), __LINE__);
         }
         $this->itemId = $itemId;
+        
+        return $this;
+    }
+    /**
+     * Get position value
+     * @return int|null
+     */
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+    /**
+     * Set position value
+     * @param int $position
+     * @return \Pggns\MidocoApi\Bank\StructType\TravelExtraDataDTO
+     */
+    public function setPosition(?int $position = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($position) && !(is_int($position) || ctype_digit($position))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($position, true), gettype($position)), __LINE__);
+        }
+        $this->position = $position;
         
         return $this;
     }

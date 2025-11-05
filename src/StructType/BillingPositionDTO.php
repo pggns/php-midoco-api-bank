@@ -30,6 +30,11 @@ class BillingPositionDTO extends AbstractStructBase
      */
     protected ?string $accountId = null;
     /**
+     * The accountingDate
+     * @var string|null
+     */
+    protected ?string $accountingDate = null;
+    /**
      * The calculatedPrintDate
      * @var string|null
      */
@@ -245,6 +250,11 @@ class BillingPositionDTO extends AbstractStructBase
      */
     protected ?string $printPackageCode = null;
     /**
+     * The printVat
+     * @var bool|null
+     */
+    protected ?bool $printVat = null;
+    /**
      * The referenceNo
      * @var string|null
      */
@@ -310,6 +320,11 @@ class BillingPositionDTO extends AbstractStructBase
      */
     protected ?float $vat2BaseExtern = null;
     /**
+     * The vat2Code
+     * @var string|null
+     */
+    protected ?string $vat2Code = null;
+    /**
      * The vat2Percent
      * @var float|null
      */
@@ -369,6 +384,7 @@ class BillingPositionDTO extends AbstractStructBase
      * @uses BillingPositionDTO::setAcceptCc()
      * @uses BillingPositionDTO::setAcceptDebit()
      * @uses BillingPositionDTO::setAccountId()
+     * @uses BillingPositionDTO::setAccountingDate()
      * @uses BillingPositionDTO::setCalculatedPrintDate()
      * @uses BillingPositionDTO::setCommissionPercent()
      * @uses BillingPositionDTO::setCostCentre()
@@ -412,6 +428,7 @@ class BillingPositionDTO extends AbstractStructBase
      * @uses BillingPositionDTO::setPrice()
      * @uses BillingPositionDTO::setPrintDescription()
      * @uses BillingPositionDTO::setPrintPackageCode()
+     * @uses BillingPositionDTO::setPrintVat()
      * @uses BillingPositionDTO::setReferenceNo()
      * @uses BillingPositionDTO::setRevenuePercent()
      * @uses BillingPositionDTO::setSettlementPositionId()
@@ -425,6 +442,7 @@ class BillingPositionDTO extends AbstractStructBase
      * @uses BillingPositionDTO::setVat2AmountExtern()
      * @uses BillingPositionDTO::setVat2Base()
      * @uses BillingPositionDTO::setVat2BaseExtern()
+     * @uses BillingPositionDTO::setVat2Code()
      * @uses BillingPositionDTO::setVat2Percent()
      * @uses BillingPositionDTO::setVat2PercentExtern()
      * @uses BillingPositionDTO::setVatAmount()
@@ -439,6 +457,7 @@ class BillingPositionDTO extends AbstractStructBase
      * @param bool $acceptCc
      * @param bool $acceptDebit
      * @param string $accountId
+     * @param string $accountingDate
      * @param string $calculatedPrintDate
      * @param float $commissionPercent
      * @param string $costCentre
@@ -482,6 +501,7 @@ class BillingPositionDTO extends AbstractStructBase
      * @param float $price
      * @param string $printDescription
      * @param string $printPackageCode
+     * @param bool $printVat
      * @param string $referenceNo
      * @param float $revenuePercent
      * @param int $settlementPositionId
@@ -495,6 +515,7 @@ class BillingPositionDTO extends AbstractStructBase
      * @param float $vat2AmountExtern
      * @param float $vat2Base
      * @param float $vat2BaseExtern
+     * @param string $vat2Code
      * @param float $vat2Percent
      * @param float $vat2PercentExtern
      * @param float $vatAmount
@@ -507,12 +528,13 @@ class BillingPositionDTO extends AbstractStructBase
      * @param int $voidPositionId
      * @param bool $voided
      */
-    public function __construct(?bool $acceptCc = null, ?bool $acceptDebit = null, ?string $accountId = null, ?string $calculatedPrintDate = null, ?float $commissionPercent = null, ?string $costCentre = null, ?string $costUnit = null, ?string $creationTimestamp = null, ?int $creationUser = null, ?string $currency = null, ?int $dbiInfosStatus = null, ?int $degussaPositionId = null, ?string $description = null, ?string $destinationCode = null, ?int $detailPosition = null, ?string $documentCode = null, ?int $documentId = null, ?string $dueDate = null, ?float $exchangeRate = null, ?bool $forAgency = null, ?bool $imported = null, ?bool $isBackgroundPosition = null, ?bool $isCommission = null, ?bool $isDeposit = null, ?bool $isNettoSinglePrice = null, ?bool $isPackage = null, ?bool $isPackageManual = null, ?bool $isPayment = null, ?bool $isRevenue = null, ?bool $isReverseCharge = null, ?int $itemId = null, ?int $noOfItems = null, ?int $orderId = null, ?string $originalCurrency = null, ?float $originalPrice = null, ?string $packageCode = null, ?string $paidDate = null, ?string $paymentPosition = null, ?int $paymentPositionId = null, ?string $paymentType = null, ?string $planId = null, ?int $position = null, ?int $positionId = null, ?float $price = null, ?string $printDescription = null, ?string $printPackageCode = null, ?string $referenceNo = null, ?float $revenuePercent = null, ?int $settlementPositionId = null, ?float $singlePrice = null, ?int $splitPositionId = null, ?bool $tokenChecked = null, ?float $totalTax = null, ?int $transactionId = null, ?string $travelNoHandling = null, ?float $vat2Amount = null, ?float $vat2AmountExtern = null, ?float $vat2Base = null, ?float $vat2BaseExtern = null, ?float $vat2Percent = null, ?float $vat2PercentExtern = null, ?float $vatAmount = null, ?float $vatAmountExtern = null, ?float $vatBase = null, ?float $vatBaseExtern = null, ?string $vatCode = null, ?float $vatPercent = null, ?float $vatPercentExtern = null, ?int $voidPositionId = null, ?bool $voided = null)
+    public function __construct(?bool $acceptCc = null, ?bool $acceptDebit = null, ?string $accountId = null, ?string $accountingDate = null, ?string $calculatedPrintDate = null, ?float $commissionPercent = null, ?string $costCentre = null, ?string $costUnit = null, ?string $creationTimestamp = null, ?int $creationUser = null, ?string $currency = null, ?int $dbiInfosStatus = null, ?int $degussaPositionId = null, ?string $description = null, ?string $destinationCode = null, ?int $detailPosition = null, ?string $documentCode = null, ?int $documentId = null, ?string $dueDate = null, ?float $exchangeRate = null, ?bool $forAgency = null, ?bool $imported = null, ?bool $isBackgroundPosition = null, ?bool $isCommission = null, ?bool $isDeposit = null, ?bool $isNettoSinglePrice = null, ?bool $isPackage = null, ?bool $isPackageManual = null, ?bool $isPayment = null, ?bool $isRevenue = null, ?bool $isReverseCharge = null, ?int $itemId = null, ?int $noOfItems = null, ?int $orderId = null, ?string $originalCurrency = null, ?float $originalPrice = null, ?string $packageCode = null, ?string $paidDate = null, ?string $paymentPosition = null, ?int $paymentPositionId = null, ?string $paymentType = null, ?string $planId = null, ?int $position = null, ?int $positionId = null, ?float $price = null, ?string $printDescription = null, ?string $printPackageCode = null, ?bool $printVat = null, ?string $referenceNo = null, ?float $revenuePercent = null, ?int $settlementPositionId = null, ?float $singlePrice = null, ?int $splitPositionId = null, ?bool $tokenChecked = null, ?float $totalTax = null, ?int $transactionId = null, ?string $travelNoHandling = null, ?float $vat2Amount = null, ?float $vat2AmountExtern = null, ?float $vat2Base = null, ?float $vat2BaseExtern = null, ?string $vat2Code = null, ?float $vat2Percent = null, ?float $vat2PercentExtern = null, ?float $vatAmount = null, ?float $vatAmountExtern = null, ?float $vatBase = null, ?float $vatBaseExtern = null, ?string $vatCode = null, ?float $vatPercent = null, ?float $vatPercentExtern = null, ?int $voidPositionId = null, ?bool $voided = null)
     {
         $this
             ->setAcceptCc($acceptCc)
             ->setAcceptDebit($acceptDebit)
             ->setAccountId($accountId)
+            ->setAccountingDate($accountingDate)
             ->setCalculatedPrintDate($calculatedPrintDate)
             ->setCommissionPercent($commissionPercent)
             ->setCostCentre($costCentre)
@@ -556,6 +578,7 @@ class BillingPositionDTO extends AbstractStructBase
             ->setPrice($price)
             ->setPrintDescription($printDescription)
             ->setPrintPackageCode($printPackageCode)
+            ->setPrintVat($printVat)
             ->setReferenceNo($referenceNo)
             ->setRevenuePercent($revenuePercent)
             ->setSettlementPositionId($settlementPositionId)
@@ -569,6 +592,7 @@ class BillingPositionDTO extends AbstractStructBase
             ->setVat2AmountExtern($vat2AmountExtern)
             ->setVat2Base($vat2Base)
             ->setVat2BaseExtern($vat2BaseExtern)
+            ->setVat2Code($vat2Code)
             ->setVat2Percent($vat2Percent)
             ->setVat2PercentExtern($vat2PercentExtern)
             ->setVatAmount($vatAmount)
@@ -647,6 +671,29 @@ class BillingPositionDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($accountId, true), gettype($accountId)), __LINE__);
         }
         $this->accountId = $accountId;
+        
+        return $this;
+    }
+    /**
+     * Get accountingDate value
+     * @return string|null
+     */
+    public function getAccountingDate(): ?string
+    {
+        return $this->accountingDate;
+    }
+    /**
+     * Set accountingDate value
+     * @param string $accountingDate
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingPositionDTO
+     */
+    public function setAccountingDate(?string $accountingDate = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($accountingDate) && !is_string($accountingDate)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($accountingDate, true), gettype($accountingDate)), __LINE__);
+        }
+        $this->accountingDate = $accountingDate;
         
         return $this;
     }
@@ -1640,6 +1687,29 @@ class BillingPositionDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get printVat value
+     * @return bool|null
+     */
+    public function getPrintVat(): ?bool
+    {
+        return $this->printVat;
+    }
+    /**
+     * Set printVat value
+     * @param bool $printVat
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingPositionDTO
+     */
+    public function setPrintVat(?bool $printVat = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($printVat) && !is_bool($printVat)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($printVat, true), gettype($printVat)), __LINE__);
+        }
+        $this->printVat = $printVat;
+        
+        return $this;
+    }
+    /**
      * Get referenceNo value
      * @return string|null
      */
@@ -1935,6 +2005,29 @@ class BillingPositionDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($vat2BaseExtern, true), gettype($vat2BaseExtern)), __LINE__);
         }
         $this->vat2BaseExtern = $vat2BaseExtern;
+        
+        return $this;
+    }
+    /**
+     * Get vat2Code value
+     * @return string|null
+     */
+    public function getVat2Code(): ?string
+    {
+        return $this->vat2Code;
+    }
+    /**
+     * Set vat2Code value
+     * @param string $vat2Code
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingPositionDTO
+     */
+    public function setVat2Code(?string $vat2Code = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($vat2Code) && !is_string($vat2Code)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($vat2Code, true), gettype($vat2Code)), __LINE__);
+        }
+        $this->vat2Code = $vat2Code;
         
         return $this;
     }

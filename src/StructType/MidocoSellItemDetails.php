@@ -674,6 +674,13 @@ class MidocoSellItemDetails extends AbstractStructBase
      */
     protected ?\Pggns\MidocoApi\Bank\StructType\MidocoTravelNumber $MidocoTravelNumber = null;
     /**
+     * The depositDate
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var string|null
+     */
+    protected ?string $depositDate = null;
+    /**
      * Constructor method for MidocoSellItemDetails
      * @uses MidocoSellItemDetails::setItemId()
      * @uses MidocoSellItemDetails::setItemType()
@@ -774,6 +781,7 @@ class MidocoSellItemDetails extends AbstractStructBase
      * @uses MidocoSellItemDetails::setTransfer()
      * @uses MidocoSellItemDetails::setNoOfNights()
      * @uses MidocoSellItemDetails::setMidocoTravelNumber()
+     * @uses MidocoSellItemDetails::setDepositDate()
      * @param int $itemId
      * @param string $itemType
      * @param string $originalBookingId
@@ -873,8 +881,9 @@ class MidocoSellItemDetails extends AbstractStructBase
      * @param string $transfer
      * @param string $noOfNights
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoTravelNumber $midocoTravelNumber
+     * @param string $depositDate
      */
-    public function __construct(?int $itemId = null, ?string $itemType = null, ?string $originalBookingId = null, ?string $supplierId = null, ?string $supplierName = null, ?int $supplierPosition = null, ?string $travelType = null, ?string $startTravel = null, ?string $endTravel = null, ?string $accountId = null, ?string $areaDescription = null, ?string $departureCode = null, ?string $departureDescription = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $accomodationCode = null, ?string $accomodationDescription = null, ?string $cruiseCode = null, ?string $cruiseDescription = null, ?string $itemDescription = null, ?string $cateringDescription = null, ?string $roomDescription = null, ?string $itemReferenceNo = null, ?string $insuranceDescription = null, ?string $status = null, ?bool $isStorno = null, ?string $stornoDate = null, ?string $bookingDate = null, ?string $creationUser = null, ?string $creationDate = null, ?string $carrier = null, ?string $carrierName = null, ?string $flightNo = null, ?string $departureTime = null, ?string $arrivalTime = null, ?string $days = null, ?string $returnDepartureCode = null, ?string $returnDepartureDescription = null, ?string $returnDestinationCode = null, ?string $returnDestinationDescription = null, ?string $returnCarrier = null, ?string $returnCarrierName = null, ?string $returnFlightNo = null, ?string $returnDepartureTime = null, ?string $returnArrivalTime = null, ?string $returnDays = null, ?bool $preventPrinting = false, ?string $extId = null, ?string $extSystem = null, ?string $locationDescription = null, ?bool $depositPreset = null, ?float $depositAmount = null, ?string $depositPaymentType = null, ?float $finalPaymentAmount = null, ?string $finalPaymentDate = null, ?string $finalPaymentType = null, ?bool $isOneWay = null, ?string $feeCode = null, ?string $productType = null, ?string $bookingReference = null, ?string $articleType = null, ?array $midocoAccomodationDetailsInfo4Printing = null, ?array $midocoCarDetailInfo4Printing = null, ?array $midocoFlightDetailsInfo4Printing = null, ?array $midocoInsuranceDetailInfo4Printing = null, ?array $midocoTravelDetailsInfo4Printing = null, ?array $midocoCalcItemDetailsInfo4Printing = null, ?array $midocoPassengerInfo4Printing = null, ?array $midocoCruiseDetailsInfo4Printing = null, ?array $midocoAttributeValue4Printing = null, ?array $midocoRemarks = null, ?array $midocoRemarksAbove = null, ?array $midocoRemarksAfterService = null, ?array $midocoRemarksEnd = null, ?array $midocoHint = null, ?array $midocoBusDetailsInfo4Printing = null, ?array $midocoRailDetailsInfo4Printing = null, ?array $midocoPackageDetailsInfo4Printing = null, ?array $midocoAdditionalService = null, ?array $midocoEventDetailsInfo4Printing = null, ?array $midocoDocumentitem4Printing = null, ?array $midocoTransferDetailsInfo4Printing = null, ?array $midocoSellDetailsPrice = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoSupplierType $midocoSupplier = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoSupplierAddress $midocoSupplierAddress = null, ?array $midocoSupplierTemplate = null, ?array $touchedCountry = null, ?string $travelTypeDescription = null, ?bool $immediatePayment = false, ?string $forCustomer = null, ?string $fromCustomer = null, ?int $voucherQuantity = null, ?float $voucherSinglePrice = null, ?float $revenuePercent = null, ?string $confirmationGroup = null, ?int $sellingMode = null, ?string $transfer = null, ?string $noOfNights = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoTravelNumber $midocoTravelNumber = null)
+    public function __construct(?int $itemId = null, ?string $itemType = null, ?string $originalBookingId = null, ?string $supplierId = null, ?string $supplierName = null, ?int $supplierPosition = null, ?string $travelType = null, ?string $startTravel = null, ?string $endTravel = null, ?string $accountId = null, ?string $areaDescription = null, ?string $departureCode = null, ?string $departureDescription = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $accomodationCode = null, ?string $accomodationDescription = null, ?string $cruiseCode = null, ?string $cruiseDescription = null, ?string $itemDescription = null, ?string $cateringDescription = null, ?string $roomDescription = null, ?string $itemReferenceNo = null, ?string $insuranceDescription = null, ?string $status = null, ?bool $isStorno = null, ?string $stornoDate = null, ?string $bookingDate = null, ?string $creationUser = null, ?string $creationDate = null, ?string $carrier = null, ?string $carrierName = null, ?string $flightNo = null, ?string $departureTime = null, ?string $arrivalTime = null, ?string $days = null, ?string $returnDepartureCode = null, ?string $returnDepartureDescription = null, ?string $returnDestinationCode = null, ?string $returnDestinationDescription = null, ?string $returnCarrier = null, ?string $returnCarrierName = null, ?string $returnFlightNo = null, ?string $returnDepartureTime = null, ?string $returnArrivalTime = null, ?string $returnDays = null, ?bool $preventPrinting = false, ?string $extId = null, ?string $extSystem = null, ?string $locationDescription = null, ?bool $depositPreset = null, ?float $depositAmount = null, ?string $depositPaymentType = null, ?float $finalPaymentAmount = null, ?string $finalPaymentDate = null, ?string $finalPaymentType = null, ?bool $isOneWay = null, ?string $feeCode = null, ?string $productType = null, ?string $bookingReference = null, ?string $articleType = null, ?array $midocoAccomodationDetailsInfo4Printing = null, ?array $midocoCarDetailInfo4Printing = null, ?array $midocoFlightDetailsInfo4Printing = null, ?array $midocoInsuranceDetailInfo4Printing = null, ?array $midocoTravelDetailsInfo4Printing = null, ?array $midocoCalcItemDetailsInfo4Printing = null, ?array $midocoPassengerInfo4Printing = null, ?array $midocoCruiseDetailsInfo4Printing = null, ?array $midocoAttributeValue4Printing = null, ?array $midocoRemarks = null, ?array $midocoRemarksAbove = null, ?array $midocoRemarksAfterService = null, ?array $midocoRemarksEnd = null, ?array $midocoHint = null, ?array $midocoBusDetailsInfo4Printing = null, ?array $midocoRailDetailsInfo4Printing = null, ?array $midocoPackageDetailsInfo4Printing = null, ?array $midocoAdditionalService = null, ?array $midocoEventDetailsInfo4Printing = null, ?array $midocoDocumentitem4Printing = null, ?array $midocoTransferDetailsInfo4Printing = null, ?array $midocoSellDetailsPrice = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoSupplierType $midocoSupplier = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoSupplierAddress $midocoSupplierAddress = null, ?array $midocoSupplierTemplate = null, ?array $touchedCountry = null, ?string $travelTypeDescription = null, ?bool $immediatePayment = false, ?string $forCustomer = null, ?string $fromCustomer = null, ?int $voucherQuantity = null, ?float $voucherSinglePrice = null, ?float $revenuePercent = null, ?string $confirmationGroup = null, ?int $sellingMode = null, ?string $transfer = null, ?string $noOfNights = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoTravelNumber $midocoTravelNumber = null, ?string $depositDate = null)
     {
         $this
             ->setItemId($itemId)
@@ -975,7 +984,8 @@ class MidocoSellItemDetails extends AbstractStructBase
             ->setSellingMode($sellingMode)
             ->setTransfer($transfer)
             ->setNoOfNights($noOfNights)
-            ->setMidocoTravelNumber($midocoTravelNumber);
+            ->setMidocoTravelNumber($midocoTravelNumber)
+            ->setDepositDate($depositDate);
     }
     /**
      * Get itemId value
@@ -4295,6 +4305,29 @@ class MidocoSellItemDetails extends AbstractStructBase
     public function setMidocoTravelNumber(?\Pggns\MidocoApi\Bank\StructType\MidocoTravelNumber $midocoTravelNumber = null): self
     {
         $this->MidocoTravelNumber = $midocoTravelNumber;
+        
+        return $this;
+    }
+    /**
+     * Get depositDate value
+     * @return string|null
+     */
+    public function getDepositDate(): ?string
+    {
+        return $this->depositDate;
+    }
+    /**
+     * Set depositDate value
+     * @param string $depositDate
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSellItemDetails
+     */
+    public function setDepositDate(?string $depositDate = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($depositDate) && !is_string($depositDate)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($depositDate, true), gettype($depositDate)), __LINE__);
+        }
+        $this->depositDate = $depositDate;
         
         return $this;
     }

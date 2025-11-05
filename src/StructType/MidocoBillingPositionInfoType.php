@@ -151,6 +151,11 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
      */
     protected ?float $vatAmount = null;
     /**
+     * The vatCode
+     * @var string|null
+     */
+    protected ?string $vatCode = null;
+    /**
      * The originalVatAmount
      * @var float|null
      */
@@ -170,6 +175,11 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
      * @var float|null
      */
     protected ?float $vat2amount = null;
+    /**
+     * The vat2Code
+     * @var string|null
+     */
+    protected ?string $vat2Code = null;
     /**
      * The originalVat2amount
      * @var float|null
@@ -216,6 +226,11 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
      */
     protected ?int $paymentPositionId = null;
     /**
+     * The printVat
+     * @var bool|null
+     */
+    protected ?bool $printVat = null;
+    /**
      * Constructor method for MidocoBillingPositionInfoType
      * @uses MidocoBillingPositionInfoType::setMidocoOnlinePaymentTransaction()
      * @uses MidocoBillingPositionInfoType::setMidocoMilesAndMoreBurnTransaction()
@@ -243,10 +258,12 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
      * @uses MidocoBillingPositionInfoType::setCommissionPercent()
      * @uses MidocoBillingPositionInfoType::setVatPercent()
      * @uses MidocoBillingPositionInfoType::setVatAmount()
+     * @uses MidocoBillingPositionInfoType::setVatCode()
      * @uses MidocoBillingPositionInfoType::setOriginalVatAmount()
      * @uses MidocoBillingPositionInfoType::setVat2percent()
      * @uses MidocoBillingPositionInfoType::setVat2base()
      * @uses MidocoBillingPositionInfoType::setVat2amount()
+     * @uses MidocoBillingPositionInfoType::setVat2Code()
      * @uses MidocoBillingPositionInfoType::setOriginalVat2amount()
      * @uses MidocoBillingPositionInfoType::setOrderId()
      * @uses MidocoBillingPositionInfoType::setSupplierId()
@@ -256,6 +273,7 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
      * @uses MidocoBillingPositionInfoType::setCalculatedPrintDate()
      * @uses MidocoBillingPositionInfoType::setIsPayment()
      * @uses MidocoBillingPositionInfoType::setPaymentPositionId()
+     * @uses MidocoBillingPositionInfoType::setPrintVat()
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoOnlinePaymentTransaction $midocoOnlinePaymentTransaction
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoMilesAndMoreBurnTransactionType $midocoMilesAndMoreBurnTransaction
      * @param int $ccError
@@ -282,10 +300,12 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
      * @param float $commissionPercent
      * @param float $vatPercent
      * @param float $vatAmount
+     * @param string $vatCode
      * @param float $originalVatAmount
      * @param float $vat2percent
      * @param float $vat2base
      * @param float $vat2amount
+     * @param string $vat2Code
      * @param float $originalVat2amount
      * @param int $orderId
      * @param string $supplierId
@@ -295,8 +315,9 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
      * @param string $calculatedPrintDate
      * @param bool $isPayment
      * @param int $paymentPositionId
+     * @param bool $printVat
      */
-    public function __construct(?\Pggns\MidocoApi\Bank\StructType\MidocoOnlinePaymentTransaction $midocoOnlinePaymentTransaction = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoMilesAndMoreBurnTransactionType $midocoMilesAndMoreBurnTransaction = null, ?int $ccError = null, ?int $positionId = null, ?int $transactionId = null, ?int $documentId = null, ?int $itemId = null, ?int $voidPositionId = null, ?int $position = null, ?string $accountId = null, ?string $description = null, ?string $referenceNo = null, ?int $noOfItems = null, ?float $singlePrice = null, ?string $currency = null, ?string $originalCurrency = null, ?float $price = null, ?float $originalPrice = null, ?bool $isPackage = null, ?string $destinationCode = null, ?string $costCentre = null, ?string $orderNo = null, ?string $documentCode = null, ?float $commissionPercent = null, ?float $vatPercent = null, ?float $vatAmount = null, ?float $originalVatAmount = null, ?float $vat2percent = null, ?float $vat2base = null, ?float $vat2amount = null, ?float $originalVat2amount = null, ?int $orderId = null, ?string $supplierId = null, ?string $bookingId = null, ?int $documentNo = null, ?string $packageCode = null, ?string $calculatedPrintDate = null, ?bool $isPayment = null, ?int $paymentPositionId = null)
+    public function __construct(?\Pggns\MidocoApi\Bank\StructType\MidocoOnlinePaymentTransaction $midocoOnlinePaymentTransaction = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoMilesAndMoreBurnTransactionType $midocoMilesAndMoreBurnTransaction = null, ?int $ccError = null, ?int $positionId = null, ?int $transactionId = null, ?int $documentId = null, ?int $itemId = null, ?int $voidPositionId = null, ?int $position = null, ?string $accountId = null, ?string $description = null, ?string $referenceNo = null, ?int $noOfItems = null, ?float $singlePrice = null, ?string $currency = null, ?string $originalCurrency = null, ?float $price = null, ?float $originalPrice = null, ?bool $isPackage = null, ?string $destinationCode = null, ?string $costCentre = null, ?string $orderNo = null, ?string $documentCode = null, ?float $commissionPercent = null, ?float $vatPercent = null, ?float $vatAmount = null, ?string $vatCode = null, ?float $originalVatAmount = null, ?float $vat2percent = null, ?float $vat2base = null, ?float $vat2amount = null, ?string $vat2Code = null, ?float $originalVat2amount = null, ?int $orderId = null, ?string $supplierId = null, ?string $bookingId = null, ?int $documentNo = null, ?string $packageCode = null, ?string $calculatedPrintDate = null, ?bool $isPayment = null, ?int $paymentPositionId = null, ?bool $printVat = null)
     {
         $this
             ->setMidocoOnlinePaymentTransaction($midocoOnlinePaymentTransaction)
@@ -325,10 +346,12 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
             ->setCommissionPercent($commissionPercent)
             ->setVatPercent($vatPercent)
             ->setVatAmount($vatAmount)
+            ->setVatCode($vatCode)
             ->setOriginalVatAmount($originalVatAmount)
             ->setVat2percent($vat2percent)
             ->setVat2base($vat2base)
             ->setVat2amount($vat2amount)
+            ->setVat2Code($vat2Code)
             ->setOriginalVat2amount($originalVat2amount)
             ->setOrderId($orderId)
             ->setSupplierId($supplierId)
@@ -337,7 +360,8 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
             ->setPackageCode($packageCode)
             ->setCalculatedPrintDate($calculatedPrintDate)
             ->setIsPayment($isPayment)
-            ->setPaymentPositionId($paymentPositionId);
+            ->setPaymentPositionId($paymentPositionId)
+            ->setPrintVat($printVat);
     }
     /**
      * Get MidocoOnlinePaymentTransaction value
@@ -930,6 +954,29 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
         return $this;
     }
     /**
+     * Get vatCode value
+     * @return string|null
+     */
+    public function getVatCode(): ?string
+    {
+        return $this->vatCode;
+    }
+    /**
+     * Set vatCode value
+     * @param string $vatCode
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoBillingPositionInfoType
+     */
+    public function setVatCode(?string $vatCode = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($vatCode) && !is_string($vatCode)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($vatCode, true), gettype($vatCode)), __LINE__);
+        }
+        $this->vatCode = $vatCode;
+        
+        return $this;
+    }
+    /**
      * Get originalVatAmount value
      * @return float|null
      */
@@ -1018,6 +1065,29 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($vat2amount, true), gettype($vat2amount)), __LINE__);
         }
         $this->vat2amount = $vat2amount;
+        
+        return $this;
+    }
+    /**
+     * Get vat2Code value
+     * @return string|null
+     */
+    public function getVat2Code(): ?string
+    {
+        return $this->vat2Code;
+    }
+    /**
+     * Set vat2Code value
+     * @param string $vat2Code
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoBillingPositionInfoType
+     */
+    public function setVat2Code(?string $vat2Code = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($vat2Code) && !is_string($vat2Code)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($vat2Code, true), gettype($vat2Code)), __LINE__);
+        }
+        $this->vat2Code = $vat2Code;
         
         return $this;
     }
@@ -1225,6 +1295,29 @@ class MidocoBillingPositionInfoType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($paymentPositionId, true), gettype($paymentPositionId)), __LINE__);
         }
         $this->paymentPositionId = $paymentPositionId;
+        
+        return $this;
+    }
+    /**
+     * Get printVat value
+     * @return bool|null
+     */
+    public function getPrintVat(): ?bool
+    {
+        return $this->printVat;
+    }
+    /**
+     * Set printVat value
+     * @param bool $printVat
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoBillingPositionInfoType
+     */
+    public function setPrintVat(?bool $printVat = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($printVat) && !is_bool($printVat)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($printVat, true), gettype($printVat)), __LINE__);
+        }
+        $this->printVat = $printVat;
         
         return $this;
     }

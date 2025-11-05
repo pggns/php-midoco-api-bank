@@ -25,6 +25,11 @@ class BillingPrintDTO extends AbstractStructBase
      */
     protected ?int $documentId = null;
     /**
+     * The documentType
+     * @var string|null
+     */
+    protected ?string $documentType = null;
+    /**
      * The fileName
      * @var string|null
      */
@@ -45,6 +50,11 @@ class BillingPrintDTO extends AbstractStructBase
      */
     protected ?bool $isExported = null;
     /**
+     * The mailedTo
+     * @var string|null
+     */
+    protected ?string $mailedTo = null;
+    /**
      * The media
      * @var string|null
      */
@@ -54,6 +64,11 @@ class BillingPrintDTO extends AbstractStructBase
      * @var string|null
      */
     protected ?string $printDate = null;
+    /**
+     * The printingTime
+     * @var string|null
+     */
+    protected ?string $printingTime = null;
     /**
      * The repositoryId
      * @var int|null
@@ -73,38 +88,47 @@ class BillingPrintDTO extends AbstractStructBase
      * Constructor method for BillingPrintDTO
      * @uses BillingPrintDTO::setDocumentExportDate()
      * @uses BillingPrintDTO::setDocumentId()
+     * @uses BillingPrintDTO::setDocumentType()
      * @uses BillingPrintDTO::setFileName()
      * @uses BillingPrintDTO::setIsDocumentExported()
      * @uses BillingPrintDTO::setIsDraft()
      * @uses BillingPrintDTO::setIsExported()
+     * @uses BillingPrintDTO::setMailedTo()
      * @uses BillingPrintDTO::setMedia()
      * @uses BillingPrintDTO::setPrintDate()
+     * @uses BillingPrintDTO::setPrintingTime()
      * @uses BillingPrintDTO::setRepositoryId()
      * @uses BillingPrintDTO::setUserId()
      * @uses BillingPrintDTO::setVersion()
      * @param string $documentExportDate
      * @param int $documentId
+     * @param string $documentType
      * @param string $fileName
      * @param bool $isDocumentExported
      * @param bool $isDraft
      * @param bool $isExported
+     * @param string $mailedTo
      * @param string $media
      * @param string $printDate
+     * @param string $printingTime
      * @param int $repositoryId
      * @param int $userId
      * @param int $version
      */
-    public function __construct(?string $documentExportDate = null, ?int $documentId = null, ?string $fileName = null, ?bool $isDocumentExported = null, ?bool $isDraft = null, ?bool $isExported = null, ?string $media = null, ?string $printDate = null, ?int $repositoryId = null, ?int $userId = null, ?int $version = null)
+    public function __construct(?string $documentExportDate = null, ?int $documentId = null, ?string $documentType = null, ?string $fileName = null, ?bool $isDocumentExported = null, ?bool $isDraft = null, ?bool $isExported = null, ?string $mailedTo = null, ?string $media = null, ?string $printDate = null, ?string $printingTime = null, ?int $repositoryId = null, ?int $userId = null, ?int $version = null)
     {
         $this
             ->setDocumentExportDate($documentExportDate)
             ->setDocumentId($documentId)
+            ->setDocumentType($documentType)
             ->setFileName($fileName)
             ->setIsDocumentExported($isDocumentExported)
             ->setIsDraft($isDraft)
             ->setIsExported($isExported)
+            ->setMailedTo($mailedTo)
             ->setMedia($media)
             ->setPrintDate($printDate)
+            ->setPrintingTime($printingTime)
             ->setRepositoryId($repositoryId)
             ->setUserId($userId)
             ->setVersion($version);
@@ -152,6 +176,29 @@ class BillingPrintDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($documentId, true), gettype($documentId)), __LINE__);
         }
         $this->documentId = $documentId;
+        
+        return $this;
+    }
+    /**
+     * Get documentType value
+     * @return string|null
+     */
+    public function getDocumentType(): ?string
+    {
+        return $this->documentType;
+    }
+    /**
+     * Set documentType value
+     * @param string $documentType
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingPrintDTO
+     */
+    public function setDocumentType(?string $documentType = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($documentType) && !is_string($documentType)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($documentType, true), gettype($documentType)), __LINE__);
+        }
+        $this->documentType = $documentType;
         
         return $this;
     }
@@ -248,6 +295,29 @@ class BillingPrintDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get mailedTo value
+     * @return string|null
+     */
+    public function getMailedTo(): ?string
+    {
+        return $this->mailedTo;
+    }
+    /**
+     * Set mailedTo value
+     * @param string $mailedTo
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingPrintDTO
+     */
+    public function setMailedTo(?string $mailedTo = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($mailedTo) && !is_string($mailedTo)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($mailedTo, true), gettype($mailedTo)), __LINE__);
+        }
+        $this->mailedTo = $mailedTo;
+        
+        return $this;
+    }
+    /**
      * Get media value
      * @return string|null
      */
@@ -290,6 +360,29 @@ class BillingPrintDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($printDate, true), gettype($printDate)), __LINE__);
         }
         $this->printDate = $printDate;
+        
+        return $this;
+    }
+    /**
+     * Get printingTime value
+     * @return string|null
+     */
+    public function getPrintingTime(): ?string
+    {
+        return $this->printingTime;
+    }
+    /**
+     * Set printingTime value
+     * @param string $printingTime
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingPrintDTO
+     */
+    public function setPrintingTime(?string $printingTime = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($printingTime) && !is_string($printingTime)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($printingTime, true), gettype($printingTime)), __LINE__);
+        }
+        $this->printingTime = $printingTime;
         
         return $this;
     }

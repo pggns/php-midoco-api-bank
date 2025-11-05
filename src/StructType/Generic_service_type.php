@@ -147,6 +147,13 @@ class Generic_service_type extends AbstractStructBase
      */
     protected ?string $location_description = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The departure_time
      * Meta information extracted from the WSDL
      * - base: xs:string
@@ -190,6 +197,7 @@ class Generic_service_type extends AbstractStructBase
      * @uses Generic_service_type::setService_currency()
      * @uses Generic_service_type::setService_description()
      * @uses Generic_service_type::setLocation_description()
+     * @uses Generic_service_type::setCo2_emission()
      * @uses Generic_service_type::setDeparture_time()
      * @uses Generic_service_type::setArrival_time()
      * @uses Generic_service_type::setSimpleService()
@@ -210,11 +218,12 @@ class Generic_service_type extends AbstractStructBase
      * @param string $service_currency
      * @param string $service_description
      * @param string $location_description
+     * @param float $co2_emission
      * @param string $departure_time
      * @param string $arrival_time
      * @param bool $simpleService
      */
-    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $accomodation = null, ?string $accomodation_description = null, ?string $catering = null, ?string $catering_description = null, ?string $persons_per_service = null, ?string $no_of_services = null, ?string $start_date = null, ?string $end_date = null, ?string $person_assignment = null, ?string $service_status = null, ?float $service_price = null, ?string $service_currency = 'EUR', ?string $service_description = null, ?string $location_description = null, ?string $departure_time = null, ?string $arrival_time = null, ?bool $simpleService = false)
+    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $accomodation = null, ?string $accomodation_description = null, ?string $catering = null, ?string $catering_description = null, ?string $persons_per_service = null, ?string $no_of_services = null, ?string $start_date = null, ?string $end_date = null, ?string $person_assignment = null, ?string $service_status = null, ?float $service_price = null, ?string $service_currency = 'EUR', ?string $service_description = null, ?string $location_description = null, ?float $co2_emission = null, ?string $departure_time = null, ?string $arrival_time = null, ?bool $simpleService = false)
     {
         $this
             ->setPosition($position)
@@ -234,6 +243,7 @@ class Generic_service_type extends AbstractStructBase
             ->setService_currency($service_currency)
             ->setService_description($service_description)
             ->setLocation_description($location_description)
+            ->setCo2_emission($co2_emission)
             ->setDeparture_time($departure_time)
             ->setArrival_time($arrival_time)
             ->setSimpleService($simpleService);
@@ -634,6 +644,29 @@ class Generic_service_type extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($location_description, true), gettype($location_description)), __LINE__);
         }
         $this->location_description = $this->{'location-description'} = $location_description;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Generic_service_type
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

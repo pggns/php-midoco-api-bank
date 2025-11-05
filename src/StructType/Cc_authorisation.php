@@ -78,6 +78,62 @@ class Cc_authorisation extends AbstractStructBase
      */
     protected ?string $transaction_ref_id = null;
     /**
+     * The external_id
+     * @var string|null
+     */
+    protected ?string $external_id = null;
+    /**
+     * The use_in_billing
+     * Meta information extracted from the WSDL
+     * - documentation: if capture-executed == true, import as offline CC to billing. if capture-executed == false, import as an authorised payment | transaction-ref-id must be unique to prevent double payments | only handled in midoco modus 1 (VERK)
+     * @var bool|null
+     */
+    protected ?bool $use_in_billing = null;
+    /**
+     * The payment_channel_indicator
+     * Meta information extracted from the WSDL
+     * - documentation: This field indicates whether payment data was entered by the payee online (ecom) or via mail order telefon order = offline (moto). <br/><lu>possible values: <li>ecom</li> <li>moto</li> </lu>
+     * @var string|null
+     */
+    protected ?string $payment_channel_indicator = null;
+    /**
+     * The cardholder_auth_verification
+     * Meta information extracted from the WSDL
+     * - documentation: This field indicates the way the authentication ID (XID or DSTID) was created. It is expected by the payment provider as CAVV.
+     * @var string|null
+     */
+    protected ?string $cardholder_auth_verification = null;
+    /**
+     * The electronic_commerce_indicator
+     * Meta information extracted from the WSDL
+     * - documentation: This field is for validation when receiving the ECI to be one of the named values. It is expected by the payment provider. <br/><lu>possible values: <li>00=Mastercard no 3DS authentication/failure</li> <li>01=Mastercard attempted
+     * authentication</li> <li>02=Mastercard fully authenticated</li> <li>05=Visa, AMEX, JCB, Diners/Discover fully authenticated</li> <li>06=Mastercard Acquirer exemption; no 3DS authentication</li> <li>06=Visa, AMEX, JCB, Diners/Discover attempted
+     * authentication</li> <li>07=Mastercard fully authentication - recurring/installment transaction</li> <li>07=Visa, AMEX, JCB, Diners/Disvover no 3DS authentication/failure</li> </lu>
+     * @var string|null
+     */
+    protected ?string $electronic_commerce_indicator = null;
+    /**
+     * The v3ds
+     * Meta information extracted from the WSDL
+     * - documentation: This element takes the 3D Secure version number used in the authentication process. Depending on this 3D Secure version (either 1.x or 2.x) the xid3ds1 or the dstid3ds2 need to be provided as well.
+     * @var string|null
+     */
+    protected ?string $v3ds = null;
+    /**
+     * The dstid
+     * Meta information extracted from the WSDL
+     * - documentation: <b>Transaction ID in 3D Secure version 2.x cases (dstId)<b/><br/> This transaction reference is issued by the bank when a 3DS version 2.x authentication was successful. It is expected by the payment provider. <br/>
+     * @var string|null
+     */
+    protected ?string $dstid = null;
+    /**
+     * The initial_ecom_transaction_id
+     * Meta information extracted from the WSDL
+     * - documentation: Transaction ID of the initial successful ECOM transaction. Used as reference in every subsequent debit transaction
+     * @var string|null
+     */
+    protected ?string $initial_ecom_transaction_id = null;
+    /**
      * Constructor method for cc-authorisation
      * @uses Cc_authorisation::setAuth_code()
      * @uses Cc_authorisation::setAuth_amount()
@@ -89,6 +145,14 @@ class Cc_authorisation extends AbstractStructBase
      * @uses Cc_authorisation::setCc_token()
      * @uses Cc_authorisation::setPosition()
      * @uses Cc_authorisation::setTransaction_ref_id()
+     * @uses Cc_authorisation::setExternal_id()
+     * @uses Cc_authorisation::setUse_in_billing()
+     * @uses Cc_authorisation::setPayment_channel_indicator()
+     * @uses Cc_authorisation::setCardholder_auth_verification()
+     * @uses Cc_authorisation::setElectronic_commerce_indicator()
+     * @uses Cc_authorisation::setV3ds()
+     * @uses Cc_authorisation::setDstid()
+     * @uses Cc_authorisation::setInitial_ecom_transaction_id()
      * @param string $auth_code
      * @param float $auth_amount
      * @param string $currency
@@ -99,8 +163,16 @@ class Cc_authorisation extends AbstractStructBase
      * @param \Pggns\MidocoApi\Bank\StructType\Cc_token $cc_token
      * @param int $position
      * @param string $transaction_ref_id
+     * @param string $external_id
+     * @param bool $use_in_billing
+     * @param string $payment_channel_indicator
+     * @param string $cardholder_auth_verification
+     * @param string $electronic_commerce_indicator
+     * @param string $v3ds
+     * @param string $dstid
+     * @param string $initial_ecom_transaction_id
      */
-    public function __construct(?string $auth_code = null, ?float $auth_amount = null, ?string $currency = null, ?bool $capture_executed = null, ?string $cc_type = null, ?string $cc_number = null, ?bool $authorisation_executed = null, ?\Pggns\MidocoApi\Bank\StructType\Cc_token $cc_token = null, ?int $position = null, ?string $transaction_ref_id = null)
+    public function __construct(?string $auth_code = null, ?float $auth_amount = null, ?string $currency = null, ?bool $capture_executed = null, ?string $cc_type = null, ?string $cc_number = null, ?bool $authorisation_executed = null, ?\Pggns\MidocoApi\Bank\StructType\Cc_token $cc_token = null, ?int $position = null, ?string $transaction_ref_id = null, ?string $external_id = null, ?bool $use_in_billing = null, ?string $payment_channel_indicator = null, ?string $cardholder_auth_verification = null, ?string $electronic_commerce_indicator = null, ?string $v3ds = null, ?string $dstid = null, ?string $initial_ecom_transaction_id = null)
     {
         $this
             ->setAuth_code($auth_code)
@@ -112,7 +184,15 @@ class Cc_authorisation extends AbstractStructBase
             ->setAuthorisation_executed($authorisation_executed)
             ->setCc_token($cc_token)
             ->setPosition($position)
-            ->setTransaction_ref_id($transaction_ref_id);
+            ->setTransaction_ref_id($transaction_ref_id)
+            ->setExternal_id($external_id)
+            ->setUse_in_billing($use_in_billing)
+            ->setPayment_channel_indicator($payment_channel_indicator)
+            ->setCardholder_auth_verification($cardholder_auth_verification)
+            ->setElectronic_commerce_indicator($electronic_commerce_indicator)
+            ->setV3ds($v3ds)
+            ->setDstid($dstid)
+            ->setInitial_ecom_transaction_id($initial_ecom_transaction_id);
     }
     /**
      * Get auth_code value
@@ -337,6 +417,190 @@ class Cc_authorisation extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($transaction_ref_id, true), gettype($transaction_ref_id)), __LINE__);
         }
         $this->transaction_ref_id = $this->{'transaction-ref-id'} = $transaction_ref_id;
+        
+        return $this;
+    }
+    /**
+     * Get external_id value
+     * @return string|null
+     */
+    public function getExternal_id(): ?string
+    {
+        return $this->{'external-id'};
+    }
+    /**
+     * Set external_id value
+     * @param string $external_id
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setExternal_id(?string $external_id = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($external_id) && !is_string($external_id)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($external_id, true), gettype($external_id)), __LINE__);
+        }
+        $this->external_id = $this->{'external-id'} = $external_id;
+        
+        return $this;
+    }
+    /**
+     * Get use_in_billing value
+     * @return bool|null
+     */
+    public function getUse_in_billing(): ?bool
+    {
+        return $this->{'use-in-billing'};
+    }
+    /**
+     * Set use_in_billing value
+     * @param bool $use_in_billing
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setUse_in_billing(?bool $use_in_billing = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($use_in_billing) && !is_bool($use_in_billing)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($use_in_billing, true), gettype($use_in_billing)), __LINE__);
+        }
+        $this->use_in_billing = $this->{'use-in-billing'} = $use_in_billing;
+        
+        return $this;
+    }
+    /**
+     * Get payment_channel_indicator value
+     * @return string|null
+     */
+    public function getPayment_channel_indicator(): ?string
+    {
+        return $this->{'payment-channel-indicator'};
+    }
+    /**
+     * Set payment_channel_indicator value
+     * @param string $payment_channel_indicator
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setPayment_channel_indicator(?string $payment_channel_indicator = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($payment_channel_indicator) && !is_string($payment_channel_indicator)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($payment_channel_indicator, true), gettype($payment_channel_indicator)), __LINE__);
+        }
+        $this->payment_channel_indicator = $this->{'payment-channel-indicator'} = $payment_channel_indicator;
+        
+        return $this;
+    }
+    /**
+     * Get cardholder_auth_verification value
+     * @return string|null
+     */
+    public function getCardholder_auth_verification(): ?string
+    {
+        return $this->{'cardholder-auth-verification'};
+    }
+    /**
+     * Set cardholder_auth_verification value
+     * @param string $cardholder_auth_verification
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setCardholder_auth_verification(?string $cardholder_auth_verification = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($cardholder_auth_verification) && !is_string($cardholder_auth_verification)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($cardholder_auth_verification, true), gettype($cardholder_auth_verification)), __LINE__);
+        }
+        $this->cardholder_auth_verification = $this->{'cardholder-auth-verification'} = $cardholder_auth_verification;
+        
+        return $this;
+    }
+    /**
+     * Get electronic_commerce_indicator value
+     * @return string|null
+     */
+    public function getElectronic_commerce_indicator(): ?string
+    {
+        return $this->{'electronic-commerce-indicator'};
+    }
+    /**
+     * Set electronic_commerce_indicator value
+     * @param string $electronic_commerce_indicator
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setElectronic_commerce_indicator(?string $electronic_commerce_indicator = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($electronic_commerce_indicator) && !is_string($electronic_commerce_indicator)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($electronic_commerce_indicator, true), gettype($electronic_commerce_indicator)), __LINE__);
+        }
+        $this->electronic_commerce_indicator = $this->{'electronic-commerce-indicator'} = $electronic_commerce_indicator;
+        
+        return $this;
+    }
+    /**
+     * Get v3ds value
+     * @return string|null
+     */
+    public function getV3ds(): ?string
+    {
+        return $this->v3ds;
+    }
+    /**
+     * Set v3ds value
+     * @param string $v3ds
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setV3ds(?string $v3ds = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($v3ds) && !is_string($v3ds)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($v3ds, true), gettype($v3ds)), __LINE__);
+        }
+        $this->v3ds = $v3ds;
+        
+        return $this;
+    }
+    /**
+     * Get dstid value
+     * @return string|null
+     */
+    public function getDstid(): ?string
+    {
+        return $this->dstid;
+    }
+    /**
+     * Set dstid value
+     * @param string $dstid
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setDstid(?string $dstid = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($dstid) && !is_string($dstid)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($dstid, true), gettype($dstid)), __LINE__);
+        }
+        $this->dstid = $dstid;
+        
+        return $this;
+    }
+    /**
+     * Get initial_ecom_transaction_id value
+     * @return string|null
+     */
+    public function getInitial_ecom_transaction_id(): ?string
+    {
+        return $this->{'initial-ecom-transaction-id'};
+    }
+    /**
+     * Set initial_ecom_transaction_id value
+     * @param string $initial_ecom_transaction_id
+     * @return \Pggns\MidocoApi\Bank\StructType\Cc_authorisation
+     */
+    public function setInitial_ecom_transaction_id(?string $initial_ecom_transaction_id = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($initial_ecom_transaction_id) && !is_string($initial_ecom_transaction_id)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($initial_ecom_transaction_id, true), gettype($initial_ecom_transaction_id)), __LINE__);
+        }
+        $this->initial_ecom_transaction_id = $this->{'initial-ecom-transaction-id'} = $initial_ecom_transaction_id;
         
         return $this;
     }

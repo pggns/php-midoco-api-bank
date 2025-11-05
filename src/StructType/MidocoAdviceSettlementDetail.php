@@ -24,14 +24,30 @@ class MidocoAdviceSettlementDetail extends AdviceSettlemDetailDTO
      */
     protected ?array $MidocoAdviceDetailVatDiv = null;
     /**
+     * The orderNo
+     * @var int|null
+     */
+    protected ?int $orderNo = null;
+    /**
+     * The itemType
+     * @var string|null
+     */
+    protected ?string $itemType = null;
+    /**
      * Constructor method for MidocoAdviceSettlementDetail
      * @uses MidocoAdviceSettlementDetail::setMidocoAdviceDetailVatDiv()
+     * @uses MidocoAdviceSettlementDetail::setOrderNo()
+     * @uses MidocoAdviceSettlementDetail::setItemType()
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoAdviceDetailVatDiv[] $midocoAdviceDetailVatDiv
+     * @param int $orderNo
+     * @param string $itemType
      */
-    public function __construct(?array $midocoAdviceDetailVatDiv = null)
+    public function __construct(?array $midocoAdviceDetailVatDiv = null, ?int $orderNo = null, ?string $itemType = null)
     {
         $this
-            ->setMidocoAdviceDetailVatDiv($midocoAdviceDetailVatDiv);
+            ->setMidocoAdviceDetailVatDiv($midocoAdviceDetailVatDiv)
+            ->setOrderNo($orderNo)
+            ->setItemType($itemType);
     }
     /**
      * Get MidocoAdviceDetailVatDiv value
@@ -97,6 +113,52 @@ class MidocoAdviceSettlementDetail extends AdviceSettlemDetailDTO
             throw new InvalidArgumentException(sprintf('The MidocoAdviceDetailVatDiv property can only contain items of type \Pggns\MidocoApi\Bank\StructType\MidocoAdviceDetailVatDiv, %s given', is_object($item) ? get_class($item) : (is_array($item) ? implode(', ', $item) : gettype($item))), __LINE__);
         }
         $this->MidocoAdviceDetailVatDiv[] = $item;
+        
+        return $this;
+    }
+    /**
+     * Get orderNo value
+     * @return int|null
+     */
+    public function getOrderNo(): ?int
+    {
+        return $this->orderNo;
+    }
+    /**
+     * Set orderNo value
+     * @param int $orderNo
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoAdviceSettlementDetail
+     */
+    public function setOrderNo(?int $orderNo = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($orderNo) && !(is_int($orderNo) || ctype_digit($orderNo))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($orderNo, true), gettype($orderNo)), __LINE__);
+        }
+        $this->orderNo = $orderNo;
+        
+        return $this;
+    }
+    /**
+     * Get itemType value
+     * @return string|null
+     */
+    public function getItemType(): ?string
+    {
+        return $this->itemType;
+    }
+    /**
+     * Set itemType value
+     * @param string $itemType
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoAdviceSettlementDetail
+     */
+    public function setItemType(?string $itemType = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($itemType) && !is_string($itemType)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($itemType, true), gettype($itemType)), __LINE__);
+        }
+        $this->itemType = $itemType;
         
         return $this;
     }

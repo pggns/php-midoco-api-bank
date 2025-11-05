@@ -145,6 +145,11 @@ class BankStatementEntryDTO extends AbstractStructBase
      */
     protected ?bool $isExported = null;
     /**
+     * The isIgnored
+     * @var bool|null
+     */
+    protected ?bool $isIgnored = null;
+    /**
      * The modifyTimestamp
      * @var string|null
      */
@@ -164,6 +169,21 @@ class BankStatementEntryDTO extends AbstractStructBase
      * @var string|null
      */
     protected ?string $pageNo = null;
+    /**
+     * The paymentExchangeRate
+     * @var float|null
+     */
+    protected ?float $paymentExchangeRate = null;
+    /**
+     * The paymentOriginalCurrency
+     * @var string|null
+     */
+    protected ?string $paymentOriginalCurrency = null;
+    /**
+     * The paymentOriginalValue
+     * @var float|null
+     */
+    protected ?float $paymentOriginalValue = null;
     /**
      * The position
      * @var int|null
@@ -232,10 +252,14 @@ class BankStatementEntryDTO extends AbstractStructBase
      * @uses BankStatementEntryDTO::setIsBooked()
      * @uses BankStatementEntryDTO::setIsChargeBack()
      * @uses BankStatementEntryDTO::setIsExported()
+     * @uses BankStatementEntryDTO::setIsIgnored()
      * @uses BankStatementEntryDTO::setModifyTimestamp()
      * @uses BankStatementEntryDTO::setOriginalCurrency()
      * @uses BankStatementEntryDTO::setOriginalValue()
      * @uses BankStatementEntryDTO::setPageNo()
+     * @uses BankStatementEntryDTO::setPaymentExchangeRate()
+     * @uses BankStatementEntryDTO::setPaymentOriginalCurrency()
+     * @uses BankStatementEntryDTO::setPaymentOriginalValue()
      * @uses BankStatementEntryDTO::setPosition()
      * @uses BankStatementEntryDTO::setPrimanotaNo()
      * @uses BankStatementEntryDTO::setStatementId()
@@ -270,10 +294,14 @@ class BankStatementEntryDTO extends AbstractStructBase
      * @param bool $isBooked
      * @param bool $isChargeBack
      * @param bool $isExported
+     * @param bool $isIgnored
      * @param string $modifyTimestamp
      * @param string $originalCurrency
      * @param float $originalValue
      * @param string $pageNo
+     * @param float $paymentExchangeRate
+     * @param string $paymentOriginalCurrency
+     * @param float $paymentOriginalValue
      * @param int $position
      * @param string $primanotaNo
      * @param int $statementId
@@ -283,7 +311,7 @@ class BankStatementEntryDTO extends AbstractStructBase
      * @param string $workingTimestamp
      * @param int $workingUser
      */
-    public function __construct(?int $accountPosition = null, ?string $bankRef = null, ?string $bookingDate = null, ?string $commentModifyDate = null, ?int $commentModifyUser = null, ?string $commentText = null, ?string $crc32 = null, ?string $currency = null, ?string $customerRef = null, ?string $debitCreditIndicator = null, ?string $errorBundle = null, ?string $errorCode = null, ?string $errorParameters = null, ?float $exchangeRate = null, ?string $exportDate = null, ?float $feeAmount = null, ?string $feeCurrency = null, ?string $infoAccountNo = null, ?string $infoBankNo = null, ?string $infoIban = null, ?string $infoName1 = null, ?string $infoName2 = null, ?string $infoSwiftBicCode = null, ?bool $isBooked = null, ?bool $isChargeBack = null, ?bool $isExported = null, ?string $modifyTimestamp = null, ?string $originalCurrency = null, ?float $originalValue = null, ?string $pageNo = null, ?int $position = null, ?string $primanotaNo = null, ?int $statementId = null, ?string $statementNo = null, ?float $value = null, ?string $valutaDate = null, ?string $workingTimestamp = null, ?int $workingUser = null)
+    public function __construct(?int $accountPosition = null, ?string $bankRef = null, ?string $bookingDate = null, ?string $commentModifyDate = null, ?int $commentModifyUser = null, ?string $commentText = null, ?string $crc32 = null, ?string $currency = null, ?string $customerRef = null, ?string $debitCreditIndicator = null, ?string $errorBundle = null, ?string $errorCode = null, ?string $errorParameters = null, ?float $exchangeRate = null, ?string $exportDate = null, ?float $feeAmount = null, ?string $feeCurrency = null, ?string $infoAccountNo = null, ?string $infoBankNo = null, ?string $infoIban = null, ?string $infoName1 = null, ?string $infoName2 = null, ?string $infoSwiftBicCode = null, ?bool $isBooked = null, ?bool $isChargeBack = null, ?bool $isExported = null, ?bool $isIgnored = null, ?string $modifyTimestamp = null, ?string $originalCurrency = null, ?float $originalValue = null, ?string $pageNo = null, ?float $paymentExchangeRate = null, ?string $paymentOriginalCurrency = null, ?float $paymentOriginalValue = null, ?int $position = null, ?string $primanotaNo = null, ?int $statementId = null, ?string $statementNo = null, ?float $value = null, ?string $valutaDate = null, ?string $workingTimestamp = null, ?int $workingUser = null)
     {
         $this
             ->setAccountPosition($accountPosition)
@@ -312,10 +340,14 @@ class BankStatementEntryDTO extends AbstractStructBase
             ->setIsBooked($isBooked)
             ->setIsChargeBack($isChargeBack)
             ->setIsExported($isExported)
+            ->setIsIgnored($isIgnored)
             ->setModifyTimestamp($modifyTimestamp)
             ->setOriginalCurrency($originalCurrency)
             ->setOriginalValue($originalValue)
             ->setPageNo($pageNo)
+            ->setPaymentExchangeRate($paymentExchangeRate)
+            ->setPaymentOriginalCurrency($paymentOriginalCurrency)
+            ->setPaymentOriginalValue($paymentOriginalValue)
             ->setPosition($position)
             ->setPrimanotaNo($primanotaNo)
             ->setStatementId($statementId)
@@ -924,6 +956,29 @@ class BankStatementEntryDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get isIgnored value
+     * @return bool|null
+     */
+    public function getIsIgnored(): ?bool
+    {
+        return $this->isIgnored;
+    }
+    /**
+     * Set isIgnored value
+     * @param bool $isIgnored
+     * @return \Pggns\MidocoApi\Bank\StructType\BankStatementEntryDTO
+     */
+    public function setIsIgnored(?bool $isIgnored = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isIgnored) && !is_bool($isIgnored)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isIgnored, true), gettype($isIgnored)), __LINE__);
+        }
+        $this->isIgnored = $isIgnored;
+        
+        return $this;
+    }
+    /**
      * Get modifyTimestamp value
      * @return string|null
      */
@@ -1012,6 +1067,75 @@ class BankStatementEntryDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($pageNo, true), gettype($pageNo)), __LINE__);
         }
         $this->pageNo = $pageNo;
+        
+        return $this;
+    }
+    /**
+     * Get paymentExchangeRate value
+     * @return float|null
+     */
+    public function getPaymentExchangeRate(): ?float
+    {
+        return $this->paymentExchangeRate;
+    }
+    /**
+     * Set paymentExchangeRate value
+     * @param float $paymentExchangeRate
+     * @return \Pggns\MidocoApi\Bank\StructType\BankStatementEntryDTO
+     */
+    public function setPaymentExchangeRate(?float $paymentExchangeRate = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($paymentExchangeRate) && !(is_float($paymentExchangeRate) || is_numeric($paymentExchangeRate))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($paymentExchangeRate, true), gettype($paymentExchangeRate)), __LINE__);
+        }
+        $this->paymentExchangeRate = $paymentExchangeRate;
+        
+        return $this;
+    }
+    /**
+     * Get paymentOriginalCurrency value
+     * @return string|null
+     */
+    public function getPaymentOriginalCurrency(): ?string
+    {
+        return $this->paymentOriginalCurrency;
+    }
+    /**
+     * Set paymentOriginalCurrency value
+     * @param string $paymentOriginalCurrency
+     * @return \Pggns\MidocoApi\Bank\StructType\BankStatementEntryDTO
+     */
+    public function setPaymentOriginalCurrency(?string $paymentOriginalCurrency = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($paymentOriginalCurrency) && !is_string($paymentOriginalCurrency)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($paymentOriginalCurrency, true), gettype($paymentOriginalCurrency)), __LINE__);
+        }
+        $this->paymentOriginalCurrency = $paymentOriginalCurrency;
+        
+        return $this;
+    }
+    /**
+     * Get paymentOriginalValue value
+     * @return float|null
+     */
+    public function getPaymentOriginalValue(): ?float
+    {
+        return $this->paymentOriginalValue;
+    }
+    /**
+     * Set paymentOriginalValue value
+     * @param float $paymentOriginalValue
+     * @return \Pggns\MidocoApi\Bank\StructType\BankStatementEntryDTO
+     */
+    public function setPaymentOriginalValue(?float $paymentOriginalValue = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($paymentOriginalValue) && !(is_float($paymentOriginalValue) || is_numeric($paymentOriginalValue))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($paymentOriginalValue, true), gettype($paymentOriginalValue)), __LINE__);
+        }
+        $this->paymentOriginalValue = $paymentOriginalValue;
         
         return $this;
     }

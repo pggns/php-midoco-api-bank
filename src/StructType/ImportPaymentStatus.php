@@ -25,6 +25,13 @@ class ImportPaymentStatus extends AbstractStructBase
      */
     protected ?int $importedPaymentId = null;
     /**
+     * The receiptId
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var int|null
+     */
+    protected ?int $receiptId = null;
+    /**
      * The errorParameter
      * Meta information extracted from the WSDL
      * - maxOccurs: unbounded
@@ -46,20 +53,23 @@ class ImportPaymentStatus extends AbstractStructBase
      * Constructor method for ImportPaymentStatus
      * @uses ImportPaymentStatus::setOrderId()
      * @uses ImportPaymentStatus::setImportedPaymentId()
+     * @uses ImportPaymentStatus::setReceiptId()
      * @uses ImportPaymentStatus::setErrorParameter()
      * @uses ImportPaymentStatus::setErrorCode()
      * @uses ImportPaymentStatus::setErrorBundle()
      * @param int $orderId
      * @param int $importedPaymentId
+     * @param int $receiptId
      * @param string[] $errorParameter
      * @param string $errorCode
      * @param string $errorBundle
      */
-    public function __construct(?int $orderId = null, ?int $importedPaymentId = null, ?array $errorParameter = null, ?string $errorCode = null, ?string $errorBundle = null)
+    public function __construct(?int $orderId = null, ?int $importedPaymentId = null, ?int $receiptId = null, ?array $errorParameter = null, ?string $errorCode = null, ?string $errorBundle = null)
     {
         $this
             ->setOrderId($orderId)
             ->setImportedPaymentId($importedPaymentId)
+            ->setReceiptId($receiptId)
             ->setErrorParameter($errorParameter)
             ->setErrorCode($errorCode)
             ->setErrorBundle($errorBundle);
@@ -107,6 +117,29 @@ class ImportPaymentStatus extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($importedPaymentId, true), gettype($importedPaymentId)), __LINE__);
         }
         $this->importedPaymentId = $importedPaymentId;
+        
+        return $this;
+    }
+    /**
+     * Get receiptId value
+     * @return int|null
+     */
+    public function getReceiptId(): ?int
+    {
+        return $this->receiptId;
+    }
+    /**
+     * Set receiptId value
+     * @param int $receiptId
+     * @return \Pggns\MidocoApi\Bank\StructType\ImportPaymentStatus
+     */
+    public function setReceiptId(?int $receiptId = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($receiptId) && !(is_int($receiptId) || ctype_digit($receiptId))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($receiptId, true), gettype($receiptId)), __LINE__);
+        }
+        $this->receiptId = $receiptId;
         
         return $this;
     }

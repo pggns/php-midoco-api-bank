@@ -98,6 +98,16 @@ class Cc_token_type extends AbstractStructEnumBase
      */
     const VALUE_GETNET_TOKEN = 'GETNET_TOKEN';
     /**
+     * Constant for value 'NXTTRAVEL_TOKEN'
+     * @return string 'NXTTRAVEL_TOKEN'
+     */
+    const VALUE_NXTTRAVEL_TOKEN = 'NXTTRAVEL_TOKEN';
+    /**
+     * Constant for value 'ADYEN_TOKEN'
+     * @return string 'ADYEN_TOKEN'
+     */
+    const VALUE_ADYEN_TOKEN = 'ADYEN_TOKEN';
+    /**
      * Return allowed values
      * @uses self::VALUE_MIDOCO_TOKEN
      * @uses self::VALUE_BS_TOKEN
@@ -116,6 +126,8 @@ class Cc_token_type extends AbstractStructEnumBase
      * @uses self::VALUE_DATATRANS_TOKEN
      * @uses self::VALUE_L_3_P_TOKEN
      * @uses self::VALUE_GETNET_TOKEN
+     * @uses self::VALUE_NXTTRAVEL_TOKEN
+     * @uses self::VALUE_ADYEN_TOKEN
      * @return string[]
      */
     public static function getValidValues(): array
@@ -138,6 +150,8 @@ class Cc_token_type extends AbstractStructEnumBase
             self::VALUE_DATATRANS_TOKEN,
             self::VALUE_L_3_P_TOKEN,
             self::VALUE_GETNET_TOKEN,
+            self::VALUE_NXTTRAVEL_TOKEN,
+            self::VALUE_ADYEN_TOKEN,
         ];
     }
 }

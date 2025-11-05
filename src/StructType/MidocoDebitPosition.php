@@ -60,6 +60,16 @@ class MidocoDebitPosition extends MidocoDebit
      */
     protected ?string $firstTraveller = null;
     /**
+     * The agencyId
+     * @var string|null
+     */
+    protected ?string $agencyId = null;
+    /**
+     * The travelDate
+     * @var string|null
+     */
+    protected ?string $travelDate = null;
+    /**
      * Constructor method for MidocoDebitPosition
      * @uses MidocoDebitPosition::setPurpose()
      * @uses MidocoDebitPosition::setIban()
@@ -70,6 +80,8 @@ class MidocoDebitPosition extends MidocoDebit
      * @uses MidocoDebitPosition::setIsRecurrent()
      * @uses MidocoDebitPosition::setMandateType()
      * @uses MidocoDebitPosition::setFirstTraveller()
+     * @uses MidocoDebitPosition::setAgencyId()
+     * @uses MidocoDebitPosition::setTravelDate()
      * @param string $purpose
      * @param string $iban
      * @param string $swiftBicCode
@@ -79,8 +91,10 @@ class MidocoDebitPosition extends MidocoDebit
      * @param bool $isRecurrent
      * @param string $mandateType
      * @param string $firstTraveller
+     * @param string $agencyId
+     * @param string $travelDate
      */
-    public function __construct(?string $purpose = null, ?string $iban = null, ?string $swiftBicCode = null, ?int $mandateId = null, ?string $executionDate = null, ?string $mandateReference = null, ?bool $isRecurrent = null, ?string $mandateType = null, ?string $firstTraveller = null)
+    public function __construct(?string $purpose = null, ?string $iban = null, ?string $swiftBicCode = null, ?int $mandateId = null, ?string $executionDate = null, ?string $mandateReference = null, ?bool $isRecurrent = null, ?string $mandateType = null, ?string $firstTraveller = null, ?string $agencyId = null, ?string $travelDate = null)
     {
         $this
             ->setPurpose($purpose)
@@ -91,7 +105,9 @@ class MidocoDebitPosition extends MidocoDebit
             ->setMandateReference($mandateReference)
             ->setIsRecurrent($isRecurrent)
             ->setMandateType($mandateType)
-            ->setFirstTraveller($firstTraveller);
+            ->setFirstTraveller($firstTraveller)
+            ->setAgencyId($agencyId)
+            ->setTravelDate($travelDate);
     }
     /**
      * Get purpose value
@@ -297,6 +313,52 @@ class MidocoDebitPosition extends MidocoDebit
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($firstTraveller, true), gettype($firstTraveller)), __LINE__);
         }
         $this->firstTraveller = $firstTraveller;
+        
+        return $this;
+    }
+    /**
+     * Get agencyId value
+     * @return string|null
+     */
+    public function getAgencyId(): ?string
+    {
+        return $this->agencyId;
+    }
+    /**
+     * Set agencyId value
+     * @param string $agencyId
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoDebitPosition
+     */
+    public function setAgencyId(?string $agencyId = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($agencyId) && !is_string($agencyId)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($agencyId, true), gettype($agencyId)), __LINE__);
+        }
+        $this->agencyId = $agencyId;
+        
+        return $this;
+    }
+    /**
+     * Get travelDate value
+     * @return string|null
+     */
+    public function getTravelDate(): ?string
+    {
+        return $this->travelDate;
+    }
+    /**
+     * Set travelDate value
+     * @param string $travelDate
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoDebitPosition
+     */
+    public function setTravelDate(?string $travelDate = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($travelDate) && !is_string($travelDate)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($travelDate, true), gettype($travelDate)), __LINE__);
+        }
+        $this->travelDate = $travelDate;
         
         return $this;
     }

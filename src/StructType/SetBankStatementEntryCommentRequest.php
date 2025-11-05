@@ -43,23 +43,33 @@ class SetBankStatementEntryCommentRequest extends AbstractStructBase
      */
     protected ?string $commentText = null;
     /**
+     * The ignored
+     * Meta information extracted from the WSDL
+     * - use: optional
+     * @var bool|null
+     */
+    protected ?bool $ignored = null;
+    /**
      * Constructor method for SetBankStatementEntryCommentRequest
      * @uses SetBankStatementEntryCommentRequest::setAccountPosition()
      * @uses SetBankStatementEntryCommentRequest::setStatementId()
      * @uses SetBankStatementEntryCommentRequest::setPosition()
      * @uses SetBankStatementEntryCommentRequest::setCommentText()
+     * @uses SetBankStatementEntryCommentRequest::setIgnored()
      * @param int $accountPosition
      * @param int $statementId
      * @param int $position
      * @param string $commentText
+     * @param bool $ignored
      */
-    public function __construct(int $accountPosition, int $statementId, int $position, ?string $commentText = null)
+    public function __construct(int $accountPosition, int $statementId, int $position, ?string $commentText = null, ?bool $ignored = null)
     {
         $this
             ->setAccountPosition($accountPosition)
             ->setStatementId($statementId)
             ->setPosition($position)
-            ->setCommentText($commentText);
+            ->setCommentText($commentText)
+            ->setIgnored($ignored);
     }
     /**
      * Get accountPosition value
@@ -150,6 +160,29 @@ class SetBankStatementEntryCommentRequest extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($commentText, true), gettype($commentText)), __LINE__);
         }
         $this->commentText = $commentText;
+        
+        return $this;
+    }
+    /**
+     * Get ignored value
+     * @return bool|null
+     */
+    public function getIgnored(): ?bool
+    {
+        return $this->ignored;
+    }
+    /**
+     * Set ignored value
+     * @param bool $ignored
+     * @return \Pggns\MidocoApi\Bank\StructType\SetBankStatementEntryCommentRequest
+     */
+    public function setIgnored(?bool $ignored = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($ignored) && !is_bool($ignored)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($ignored, true), gettype($ignored)), __LINE__);
+        }
+        $this->ignored = $ignored;
         
         return $this;
     }

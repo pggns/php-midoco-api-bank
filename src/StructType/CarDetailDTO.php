@@ -40,6 +40,11 @@ class CarDetailDTO extends AbstractStructBase
      */
     protected ?string $category = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The collectionInfo
      * @var string|null
      */
@@ -221,6 +226,7 @@ class CarDetailDTO extends AbstractStructBase
      * @uses CarDetailDTO::setCarSupplier()
      * @uses CarDetailDTO::setCarType()
      * @uses CarDetailDTO::setCategory()
+     * @uses CarDetailDTO::setCo2Emission()
      * @uses CarDetailDTO::setCollectionInfo()
      * @uses CarDetailDTO::setCorporateDiscount()
      * @uses CarDetailDTO::setCountryCode()
@@ -261,6 +267,7 @@ class CarDetailDTO extends AbstractStructBase
      * @param string $carSupplier
      * @param string $carType
      * @param string $category
+     * @param float $co2Emission
      * @param string $collectionInfo
      * @param string $corporateDiscount
      * @param string $countryCode
@@ -297,7 +304,7 @@ class CarDetailDTO extends AbstractStructBase
      * @param string $serviceStatus
      * @param bool $vatIncluded
      */
-    public function __construct(?string $areaDescription = null, ?string $carDescription = null, ?string $carSupplier = null, ?string $carType = null, ?string $category = null, ?string $collectionInfo = null, ?string $corporateDiscount = null, ?string $countryCode = null, ?string $countryDescription = null, ?string $currency = null, ?string $deliveryInfo = null, ?string $destinationArea = null, ?string $dropoffInfo = null, ?string $flightNo = null, ?string $insuranceDescription = null, ?string $insuranceType = null, ?int $itemId = null, ?int $noOfServices = null, ?string $pickupCode = null, ?string $pickupDate = null, ?string $pickupDescription = null, ?string $pickupInfo = null, ?string $pickupTime = null, ?int $position = null, ?int $referencePosition = null, ?string $regionCode = null, ?string $regionDescription = null, ?string $returnAreaDescription = null, ?string $returnCode = null, ?string $returnCountryCode = null, ?string $returnCountryDescription = null, ?string $returnDate = null, ?string $returnDescription = null, ?string $returnDestinationArea = null, ?string $returnTime = null, ?string $serviceCode = null, ?string $serviceName = null, ?float $servicePrice = null, ?string $serviceStatus = null, ?bool $vatIncluded = null)
+    public function __construct(?string $areaDescription = null, ?string $carDescription = null, ?string $carSupplier = null, ?string $carType = null, ?string $category = null, ?float $co2Emission = null, ?string $collectionInfo = null, ?string $corporateDiscount = null, ?string $countryCode = null, ?string $countryDescription = null, ?string $currency = null, ?string $deliveryInfo = null, ?string $destinationArea = null, ?string $dropoffInfo = null, ?string $flightNo = null, ?string $insuranceDescription = null, ?string $insuranceType = null, ?int $itemId = null, ?int $noOfServices = null, ?string $pickupCode = null, ?string $pickupDate = null, ?string $pickupDescription = null, ?string $pickupInfo = null, ?string $pickupTime = null, ?int $position = null, ?int $referencePosition = null, ?string $regionCode = null, ?string $regionDescription = null, ?string $returnAreaDescription = null, ?string $returnCode = null, ?string $returnCountryCode = null, ?string $returnCountryDescription = null, ?string $returnDate = null, ?string $returnDescription = null, ?string $returnDestinationArea = null, ?string $returnTime = null, ?string $serviceCode = null, ?string $serviceName = null, ?float $servicePrice = null, ?string $serviceStatus = null, ?bool $vatIncluded = null)
     {
         $this
             ->setAreaDescription($areaDescription)
@@ -305,6 +312,7 @@ class CarDetailDTO extends AbstractStructBase
             ->setCarSupplier($carSupplier)
             ->setCarType($carType)
             ->setCategory($category)
+            ->setCo2Emission($co2Emission)
             ->setCollectionInfo($collectionInfo)
             ->setCorporateDiscount($corporateDiscount)
             ->setCountryCode($countryCode)
@@ -453,6 +461,29 @@ class CarDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($category, true), gettype($category)), __LINE__);
         }
         $this->category = $category;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\CarDetailDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

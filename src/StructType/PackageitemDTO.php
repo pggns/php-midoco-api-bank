@@ -20,6 +20,11 @@ class PackageitemDTO extends AbstractStructBase
      */
     protected ?string $bookingDate = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The destination
      * @var string|null
      */
@@ -147,6 +152,7 @@ class PackageitemDTO extends AbstractStructBase
     /**
      * Constructor method for PackageitemDTO
      * @uses PackageitemDTO::setBookingDate()
+     * @uses PackageitemDTO::setCo2Emission()
      * @uses PackageitemDTO::setDestination()
      * @uses PackageitemDTO::setEndTravel()
      * @uses PackageitemDTO::setExtSystem()
@@ -173,6 +179,7 @@ class PackageitemDTO extends AbstractStructBase
      * @uses PackageitemDTO::setTravelNo()
      * @uses PackageitemDTO::setTraveltype()
      * @param string $bookingDate
+     * @param float $co2Emission
      * @param string $destination
      * @param string $endTravel
      * @param string $extSystem
@@ -199,10 +206,11 @@ class PackageitemDTO extends AbstractStructBase
      * @param string $travelNo
      * @param string $traveltype
      */
-    public function __construct(?string $bookingDate = null, ?string $destination = null, ?string $endTravel = null, ?string $extSystem = null, ?bool $groupItemFlag = null, ?string $groupItemName = null, ?string $insuranceCancelDate = null, ?string $insuranceDate = null, ?string $insuranceId = null, ?string $insuranceValidFrom = null, ?string $insuranceValidUntil = null, ?float $insuredAmount = null, ?float $insuredCancelAmount = null, ?bool $isSingleMargin = null, ?int $itemId = null, ?int $noOfPersons = null, ?bool $offlineBooking = null, ?bool $offlineCancel = null, ?string $packageId = null, ?string $policyNo = null, ?string $startTravel = null, ?string $status = null, ?string $stornoDate = null, ?string $supplierId = null, ?string $travelNo = null, ?string $traveltype = null)
+    public function __construct(?string $bookingDate = null, ?float $co2Emission = null, ?string $destination = null, ?string $endTravel = null, ?string $extSystem = null, ?bool $groupItemFlag = null, ?string $groupItemName = null, ?string $insuranceCancelDate = null, ?string $insuranceDate = null, ?string $insuranceId = null, ?string $insuranceValidFrom = null, ?string $insuranceValidUntil = null, ?float $insuredAmount = null, ?float $insuredCancelAmount = null, ?bool $isSingleMargin = null, ?int $itemId = null, ?int $noOfPersons = null, ?bool $offlineBooking = null, ?bool $offlineCancel = null, ?string $packageId = null, ?string $policyNo = null, ?string $startTravel = null, ?string $status = null, ?string $stornoDate = null, ?string $supplierId = null, ?string $travelNo = null, ?string $traveltype = null)
     {
         $this
             ->setBookingDate($bookingDate)
+            ->setCo2Emission($co2Emission)
             ->setDestination($destination)
             ->setEndTravel($endTravel)
             ->setExtSystem($extSystem)
@@ -249,6 +257,29 @@ class PackageitemDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($bookingDate, true), gettype($bookingDate)), __LINE__);
         }
         $this->bookingDate = $bookingDate;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\PackageitemDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

@@ -128,6 +128,11 @@ class OnlinePaymentInfoType extends AbstractStructBase
      */
     protected ?string $settlementDate = null;
     /**
+     * The externalId
+     * @var string|null
+     */
+    protected ?string $externalId = null;
+    /**
      * Constructor method for OnlinePaymentInfoType
      * @uses OnlinePaymentInfoType::setCcOnlinePaymentMetadata()
      * @uses OnlinePaymentInfoType::setCcType()
@@ -151,6 +156,7 @@ class OnlinePaymentInfoType extends AbstractStructBase
      * @uses OnlinePaymentInfoType::setInitialEcomTransactionId()
      * @uses OnlinePaymentInfoType::setCurrency()
      * @uses OnlinePaymentInfoType::setSettlementDate()
+     * @uses OnlinePaymentInfoType::setExternalId()
      * @param \Pggns\MidocoApi\Bank\StructType\CcOnlinePaymentMetadata $ccOnlinePaymentMetadata
      * @param string $ccType
      * @param string $ccNo
@@ -173,8 +179,9 @@ class OnlinePaymentInfoType extends AbstractStructBase
      * @param string $initialEcomTransactionId
      * @param string $currency
      * @param string $settlementDate
+     * @param string $externalId
      */
-    public function __construct(?\Pggns\MidocoApi\Bank\StructType\CcOnlinePaymentMetadata $ccOnlinePaymentMetadata = null, ?string $ccType = null, ?string $ccNo = null, ?string $ccCvc = null, ?string $ccCvcToken = null, ?string $ccExpiry = null, ?string $cardHolder = null, ?string $ccToken = null, ?string $ccTokenType = null, ?bool $isRecurring = null, ?string $ccTokenCreationTimestamp = null, ?string $xid = null, ?string $paymentChannelIndicator = null, ?string $cardholderAuthVerification = null, ?string $electronicCommerceIndicator = null, ?float $authAmount = null, ?float $remainingAuthAmount = null, ?string $v3ds = null, ?string $dstid = null, ?string $initialEcomTransactionId = null, ?string $currency = null, ?string $settlementDate = null)
+    public function __construct(?\Pggns\MidocoApi\Bank\StructType\CcOnlinePaymentMetadata $ccOnlinePaymentMetadata = null, ?string $ccType = null, ?string $ccNo = null, ?string $ccCvc = null, ?string $ccCvcToken = null, ?string $ccExpiry = null, ?string $cardHolder = null, ?string $ccToken = null, ?string $ccTokenType = null, ?bool $isRecurring = null, ?string $ccTokenCreationTimestamp = null, ?string $xid = null, ?string $paymentChannelIndicator = null, ?string $cardholderAuthVerification = null, ?string $electronicCommerceIndicator = null, ?float $authAmount = null, ?float $remainingAuthAmount = null, ?string $v3ds = null, ?string $dstid = null, ?string $initialEcomTransactionId = null, ?string $currency = null, ?string $settlementDate = null, ?string $externalId = null)
     {
         $this
             ->setCcOnlinePaymentMetadata($ccOnlinePaymentMetadata)
@@ -198,7 +205,8 @@ class OnlinePaymentInfoType extends AbstractStructBase
             ->setDstid($dstid)
             ->setInitialEcomTransactionId($initialEcomTransactionId)
             ->setCurrency($currency)
-            ->setSettlementDate($settlementDate);
+            ->setSettlementDate($settlementDate)
+            ->setExternalId($externalId);
     }
     /**
      * Get CcOnlinePaymentMetadata value
@@ -699,6 +707,29 @@ class OnlinePaymentInfoType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($settlementDate, true), gettype($settlementDate)), __LINE__);
         }
         $this->settlementDate = $settlementDate;
+        
+        return $this;
+    }
+    /**
+     * Get externalId value
+     * @return string|null
+     */
+    public function getExternalId(): ?string
+    {
+        return $this->externalId;
+    }
+    /**
+     * Set externalId value
+     * @param string $externalId
+     * @return \Pggns\MidocoApi\Bank\StructType\OnlinePaymentInfoType
+     */
+    public function setExternalId(?string $externalId = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($externalId) && !is_string($externalId)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($externalId, true), gettype($externalId)), __LINE__);
+        }
+        $this->externalId = $externalId;
         
         return $this;
     }

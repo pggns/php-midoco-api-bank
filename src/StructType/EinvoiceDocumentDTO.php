@@ -30,6 +30,11 @@ class EinvoiceDocumentDTO extends AbstractStructBase
      */
     protected ?int $documentId = null;
     /**
+     * The documentType
+     * @var string|null
+     */
+    protected ?string $documentType = null;
+    /**
      * The fileName
      * @var string|null
      */
@@ -60,6 +65,11 @@ class EinvoiceDocumentDTO extends AbstractStructBase
      */
     protected ?string $orderRef = null;
     /**
+     * The parent
+     * @var int|null
+     */
+    protected ?int $parent = null;
+    /**
      * The provisionBy
      * @var int|null
      */
@@ -79,40 +89,46 @@ class EinvoiceDocumentDTO extends AbstractStructBase
      * @uses EinvoiceDocumentDTO::setCreationTimestamp()
      * @uses EinvoiceDocumentDTO::setDocumentExportDate()
      * @uses EinvoiceDocumentDTO::setDocumentId()
+     * @uses EinvoiceDocumentDTO::setDocumentType()
      * @uses EinvoiceDocumentDTO::setFileName()
      * @uses EinvoiceDocumentDTO::setFileType()
      * @uses EinvoiceDocumentDTO::setGateway()
      * @uses EinvoiceDocumentDTO::setId()
      * @uses EinvoiceDocumentDTO::setIsDocumentExported()
      * @uses EinvoiceDocumentDTO::setOrderRef()
+     * @uses EinvoiceDocumentDTO::setParent()
      * @uses EinvoiceDocumentDTO::setProvisionBy()
      * @uses EinvoiceDocumentDTO::setProvisionTimestamp()
      * @uses EinvoiceDocumentDTO::setRepositoryId()
      * @param string $creationTimestamp
      * @param string $documentExportDate
      * @param int $documentId
+     * @param string $documentType
      * @param string $fileName
      * @param string $fileType
      * @param string $gateway
      * @param int $id
      * @param bool $isDocumentExported
      * @param string $orderRef
+     * @param int $parent
      * @param int $provisionBy
      * @param string $provisionTimestamp
      * @param int $repositoryId
      */
-    public function __construct(?string $creationTimestamp = null, ?string $documentExportDate = null, ?int $documentId = null, ?string $fileName = null, ?string $fileType = null, ?string $gateway = null, ?int $id = null, ?bool $isDocumentExported = null, ?string $orderRef = null, ?int $provisionBy = null, ?string $provisionTimestamp = null, ?int $repositoryId = null)
+    public function __construct(?string $creationTimestamp = null, ?string $documentExportDate = null, ?int $documentId = null, ?string $documentType = null, ?string $fileName = null, ?string $fileType = null, ?string $gateway = null, ?int $id = null, ?bool $isDocumentExported = null, ?string $orderRef = null, ?int $parent = null, ?int $provisionBy = null, ?string $provisionTimestamp = null, ?int $repositoryId = null)
     {
         $this
             ->setCreationTimestamp($creationTimestamp)
             ->setDocumentExportDate($documentExportDate)
             ->setDocumentId($documentId)
+            ->setDocumentType($documentType)
             ->setFileName($fileName)
             ->setFileType($fileType)
             ->setGateway($gateway)
             ->setId($id)
             ->setIsDocumentExported($isDocumentExported)
             ->setOrderRef($orderRef)
+            ->setParent($parent)
             ->setProvisionBy($provisionBy)
             ->setProvisionTimestamp($provisionTimestamp)
             ->setRepositoryId($repositoryId);
@@ -183,6 +199,29 @@ class EinvoiceDocumentDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($documentId, true), gettype($documentId)), __LINE__);
         }
         $this->documentId = $documentId;
+        
+        return $this;
+    }
+    /**
+     * Get documentType value
+     * @return string|null
+     */
+    public function getDocumentType(): ?string
+    {
+        return $this->documentType;
+    }
+    /**
+     * Set documentType value
+     * @param string $documentType
+     * @return \Pggns\MidocoApi\Bank\StructType\EinvoiceDocumentDTO
+     */
+    public function setDocumentType(?string $documentType = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($documentType) && !is_string($documentType)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($documentType, true), gettype($documentType)), __LINE__);
+        }
+        $this->documentType = $documentType;
         
         return $this;
     }
@@ -321,6 +360,29 @@ class EinvoiceDocumentDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($orderRef, true), gettype($orderRef)), __LINE__);
         }
         $this->orderRef = $orderRef;
+        
+        return $this;
+    }
+    /**
+     * Get parent value
+     * @return int|null
+     */
+    public function getParent(): ?int
+    {
+        return $this->parent;
+    }
+    /**
+     * Set parent value
+     * @param int $parent
+     * @return \Pggns\MidocoApi\Bank\StructType\EinvoiceDocumentDTO
+     */
+    public function setParent(?int $parent = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($parent) && !(is_int($parent) || ctype_digit($parent))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($parent, true), gettype($parent)), __LINE__);
+        }
+        $this->parent = $parent;
         
         return $this;
     }

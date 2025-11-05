@@ -25,6 +25,11 @@ class TransferDetailDTO extends AbstractStructBase
      */
     protected ?string $bookingId = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The currency
      * @var string|null
      */
@@ -208,6 +213,7 @@ class TransferDetailDTO extends AbstractStructBase
      * Constructor method for TransferDetailDTO
      * @uses TransferDetailDTO::setBaggageAllowance()
      * @uses TransferDetailDTO::setBookingId()
+     * @uses TransferDetailDTO::setCo2Emission()
      * @uses TransferDetailDTO::setCurrency()
      * @uses TransferDetailDTO::setDepartureCode()
      * @uses TransferDetailDTO::setDepartureDate()
@@ -246,6 +252,7 @@ class TransferDetailDTO extends AbstractStructBase
      * @uses TransferDetailDTO::setVehicleDescription()
      * @param string $baggageAllowance
      * @param string $bookingId
+     * @param float $co2Emission
      * @param string $currency
      * @param string $departureCode
      * @param string $departureDate
@@ -283,11 +290,12 @@ class TransferDetailDTO extends AbstractStructBase
      * @param string $vehicleCode
      * @param string $vehicleDescription
      */
-    public function __construct(?string $baggageAllowance = null, ?string $bookingId = null, ?string $currency = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDescription = null, ?string $departureLocation = null, ?string $departurePoint = null, ?string $departureTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $direction = null, ?string $duration = null, ?string $emergencyNumber = null, ?bool $isOneWay = null, ?int $itemId = null, ?int $maxPassengers = null, ?string $paxAssigned = null, ?int $personsPerService = null, ?int $position = null, ?int $referencePosition = null, ?string $returnDepartureCode = null, ?string $returnDepartureDate = null, ?string $returnDepartureDescription = null, ?string $returnDepartureTime = null, ?string $returnDestinationCode = null, ?string $returnDestinationDescription = null, ?string $serviceDescription = null, ?string $serviceStatus = null, ?string $supplierId = null, ?float $totalPrice = null, ?string $transferAddress1 = null, ?string $transferAddress2 = null, ?string $transferAddress3 = null, ?string $transferAddress4 = null, ?string $typeOfTransfer = null, ?string $vehicleCode = null, ?string $vehicleDescription = null)
+    public function __construct(?string $baggageAllowance = null, ?string $bookingId = null, ?float $co2Emission = null, ?string $currency = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDescription = null, ?string $departureLocation = null, ?string $departurePoint = null, ?string $departureTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $direction = null, ?string $duration = null, ?string $emergencyNumber = null, ?bool $isOneWay = null, ?int $itemId = null, ?int $maxPassengers = null, ?string $paxAssigned = null, ?int $personsPerService = null, ?int $position = null, ?int $referencePosition = null, ?string $returnDepartureCode = null, ?string $returnDepartureDate = null, ?string $returnDepartureDescription = null, ?string $returnDepartureTime = null, ?string $returnDestinationCode = null, ?string $returnDestinationDescription = null, ?string $serviceDescription = null, ?string $serviceStatus = null, ?string $supplierId = null, ?float $totalPrice = null, ?string $transferAddress1 = null, ?string $transferAddress2 = null, ?string $transferAddress3 = null, ?string $transferAddress4 = null, ?string $typeOfTransfer = null, ?string $vehicleCode = null, ?string $vehicleDescription = null)
     {
         $this
             ->setBaggageAllowance($baggageAllowance)
             ->setBookingId($bookingId)
+            ->setCo2Emission($co2Emission)
             ->setCurrency($currency)
             ->setDepartureCode($departureCode)
             ->setDepartureDate($departureDate)
@@ -368,6 +376,29 @@ class TransferDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($bookingId, true), gettype($bookingId)), __LINE__);
         }
         $this->bookingId = $bookingId;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\TransferDetailDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

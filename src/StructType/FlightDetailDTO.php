@@ -210,6 +210,11 @@ class FlightDetailDTO extends AbstractStructBase
      */
     protected ?string $serviceStatus = null;
     /**
+     * The stopIndicator
+     * @var string|null
+     */
+    protected ?string $stopIndicator = null;
+    /**
      * The stopoverCount
      * @var int|null
      */
@@ -255,6 +260,7 @@ class FlightDetailDTO extends AbstractStructBase
      * @uses FlightDetailDTO::setReferencePosition()
      * @uses FlightDetailDTO::setSegmentNo()
      * @uses FlightDetailDTO::setServiceStatus()
+     * @uses FlightDetailDTO::setStopIndicator()
      * @uses FlightDetailDTO::setStopoverCount()
      * @param string $aircraftType
      * @param string $arrivalDate
@@ -295,9 +301,10 @@ class FlightDetailDTO extends AbstractStructBase
      * @param int $referencePosition
      * @param int $segmentNo
      * @param string $serviceStatus
+     * @param string $stopIndicator
      * @param int $stopoverCount
      */
-    public function __construct(?string $aircraftType = null, ?string $arrivalDate = null, ?string $arrivalTime = null, ?string $baggageAllowance = null, ?string $bookingClass = null, ?string $cabinClass = null, ?string $carrier = null, ?string $checkinTime = null, ?string $classDescription = null, ?float $co2Emission = null, ?string $compensationCurrency = null, ?string $delay = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDescription = null, ?string $departureTerminal = null, ?string $departureTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $duration = null, ?float $estimatedCompensation = null, ?string $fairplaneLink = null, ?string $fareBase = null, ?bool $flightCanceled = null, ?string $flightNo = null, ?bool $isDeleted = null, ?bool $isFairplaneLocked = null, ?bool $isFairplaneSubmitted = null, ?int $itemId = null, ?int $miles = null, ?bool $openSegment = null, ?string $operatingCarrier = null, ?string $operatingCarrierFlightNo = null, ?string $personAssignment = null, ?int $position = null, ?bool $preventPrinting = null, ?int $referencePosition = null, ?int $segmentNo = null, ?string $serviceStatus = null, ?int $stopoverCount = null)
+    public function __construct(?string $aircraftType = null, ?string $arrivalDate = null, ?string $arrivalTime = null, ?string $baggageAllowance = null, ?string $bookingClass = null, ?string $cabinClass = null, ?string $carrier = null, ?string $checkinTime = null, ?string $classDescription = null, ?float $co2Emission = null, ?string $compensationCurrency = null, ?string $delay = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDescription = null, ?string $departureTerminal = null, ?string $departureTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $duration = null, ?float $estimatedCompensation = null, ?string $fairplaneLink = null, ?string $fareBase = null, ?bool $flightCanceled = null, ?string $flightNo = null, ?bool $isDeleted = null, ?bool $isFairplaneLocked = null, ?bool $isFairplaneSubmitted = null, ?int $itemId = null, ?int $miles = null, ?bool $openSegment = null, ?string $operatingCarrier = null, ?string $operatingCarrierFlightNo = null, ?string $personAssignment = null, ?int $position = null, ?bool $preventPrinting = null, ?int $referencePosition = null, ?int $segmentNo = null, ?string $serviceStatus = null, ?string $stopIndicator = null, ?int $stopoverCount = null)
     {
         $this
             ->setAircraftType($aircraftType)
@@ -339,6 +346,7 @@ class FlightDetailDTO extends AbstractStructBase
             ->setReferencePosition($referencePosition)
             ->setSegmentNo($segmentNo)
             ->setServiceStatus($serviceStatus)
+            ->setStopIndicator($stopIndicator)
             ->setStopoverCount($stopoverCount);
     }
     /**
@@ -1235,6 +1243,29 @@ class FlightDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($serviceStatus, true), gettype($serviceStatus)), __LINE__);
         }
         $this->serviceStatus = $serviceStatus;
+        
+        return $this;
+    }
+    /**
+     * Get stopIndicator value
+     * @return string|null
+     */
+    public function getStopIndicator(): ?string
+    {
+        return $this->stopIndicator;
+    }
+    /**
+     * Set stopIndicator value
+     * @param string $stopIndicator
+     * @return \Pggns\MidocoApi\Bank\StructType\FlightDetailDTO
+     */
+    public function setStopIndicator(?string $stopIndicator = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($stopIndicator) && !is_string($stopIndicator)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($stopIndicator, true), gettype($stopIndicator)), __LINE__);
+        }
+        $this->stopIndicator = $stopIndicator;
         
         return $this;
     }

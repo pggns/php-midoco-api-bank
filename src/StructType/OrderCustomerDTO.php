@@ -165,6 +165,11 @@ class OrderCustomerDTO extends AbstractStructBase
      */
     protected ?string $state = null;
     /**
+     * The stateId
+     * @var string|null
+     */
+    protected ?string $stateId = null;
+    /**
      * The street
      * @var string|null
      */
@@ -221,6 +226,7 @@ class OrderCustomerDTO extends AbstractStructBase
      * @uses OrderCustomerDTO::setReferenceUrl()
      * @uses OrderCustomerDTO::setSalutation()
      * @uses OrderCustomerDTO::setState()
+     * @uses OrderCustomerDTO::setStateId()
      * @uses OrderCustomerDTO::setStreet()
      * @uses OrderCustomerDTO::setStreetNo()
      * @uses OrderCustomerDTO::setTitle()
@@ -256,13 +262,14 @@ class OrderCustomerDTO extends AbstractStructBase
      * @param string $referenceUrl
      * @param string $salutation
      * @param string $state
+     * @param string $stateId
      * @param string $street
      * @param string $streetNo
      * @param string $title
      * @param string $type
      * @param string $vatId
      */
-    public function __construct(?bool $addressChecked = null, ?string $addressCheckedStatus = null, ?string $addressType = null, ?string $birthday = null, ?string $city = null, ?string $companyName = null, ?string $consentTimestamp = null, ?string $contactPerson = null, ?string $country = null, ?bool $customerConsentUpdated = null, ?string $endorsement = null, ?string $externalConsentId = null, ?string $forename = null, ?int $gender = null, ?bool $hasBtContract = null, ?bool $isDeleted = null, ?bool $isSpecialCustomer = null, ?string $middleName = null, ?int $midocoCustomerId = null, ?string $name = null, ?string $name2 = null, ?string $nationality = null, ?int $orderId = null, ?string $postOfficeBox = null, ?string $postalCode = null, ?string $referenceCustomerId = null, ?string $referenceSystemId = null, ?string $referenceUrl = null, ?string $salutation = null, ?string $state = null, ?string $street = null, ?string $streetNo = null, ?string $title = null, ?string $type = null, ?string $vatId = null)
+    public function __construct(?bool $addressChecked = null, ?string $addressCheckedStatus = null, ?string $addressType = null, ?string $birthday = null, ?string $city = null, ?string $companyName = null, ?string $consentTimestamp = null, ?string $contactPerson = null, ?string $country = null, ?bool $customerConsentUpdated = null, ?string $endorsement = null, ?string $externalConsentId = null, ?string $forename = null, ?int $gender = null, ?bool $hasBtContract = null, ?bool $isDeleted = null, ?bool $isSpecialCustomer = null, ?string $middleName = null, ?int $midocoCustomerId = null, ?string $name = null, ?string $name2 = null, ?string $nationality = null, ?int $orderId = null, ?string $postOfficeBox = null, ?string $postalCode = null, ?string $referenceCustomerId = null, ?string $referenceSystemId = null, ?string $referenceUrl = null, ?string $salutation = null, ?string $state = null, ?string $stateId = null, ?string $street = null, ?string $streetNo = null, ?string $title = null, ?string $type = null, ?string $vatId = null)
     {
         $this
             ->setAddressChecked($addressChecked)
@@ -295,6 +302,7 @@ class OrderCustomerDTO extends AbstractStructBase
             ->setReferenceUrl($referenceUrl)
             ->setSalutation($salutation)
             ->setState($state)
+            ->setStateId($stateId)
             ->setStreet($street)
             ->setStreetNo($streetNo)
             ->setTitle($title)
@@ -988,6 +996,29 @@ class OrderCustomerDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($state, true), gettype($state)), __LINE__);
         }
         $this->state = $state;
+        
+        return $this;
+    }
+    /**
+     * Get stateId value
+     * @return string|null
+     */
+    public function getStateId(): ?string
+    {
+        return $this->stateId;
+    }
+    /**
+     * Set stateId value
+     * @param string $stateId
+     * @return \Pggns\MidocoApi\Bank\StructType\OrderCustomerDTO
+     */
+    public function setStateId(?string $stateId = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($stateId) && !is_string($stateId)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($stateId, true), gettype($stateId)), __LINE__);
+        }
+        $this->stateId = $stateId;
         
         return $this;
     }

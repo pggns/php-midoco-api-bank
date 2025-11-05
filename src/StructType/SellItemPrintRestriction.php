@@ -36,20 +36,30 @@ class SellItemPrintRestriction extends AbstractStructBase
      */
     protected ?int $itemId = null;
     /**
+     * The invoicePossible
+     * Meta information extracted from the WSDL
+     * - default: true
+     * @var bool|null
+     */
+    protected ?bool $invoicePossible = null;
+    /**
      * Constructor method for SellItemPrintRestriction
      * @uses SellItemPrintRestriction::setMustPrintSeparateFrom()
      * @uses SellItemPrintRestriction::setMustPrintWith()
      * @uses SellItemPrintRestriction::setItemId()
+     * @uses SellItemPrintRestriction::setInvoicePossible()
      * @param int[] $mustPrintSeparateFrom
      * @param int[] $mustPrintWith
      * @param int $itemId
+     * @param bool $invoicePossible
      */
-    public function __construct(?array $mustPrintSeparateFrom = null, ?array $mustPrintWith = null, ?int $itemId = null)
+    public function __construct(?array $mustPrintSeparateFrom = null, ?array $mustPrintWith = null, ?int $itemId = null, ?bool $invoicePossible = true)
     {
         $this
             ->setMustPrintSeparateFrom($mustPrintSeparateFrom)
             ->setMustPrintWith($mustPrintWith)
-            ->setItemId($itemId);
+            ->setItemId($itemId)
+            ->setInvoicePossible($invoicePossible);
     }
     /**
      * Get mustPrintSeparateFrom value
@@ -205,6 +215,29 @@ class SellItemPrintRestriction extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($itemId, true), gettype($itemId)), __LINE__);
         }
         $this->itemId = $itemId;
+        
+        return $this;
+    }
+    /**
+     * Get invoicePossible value
+     * @return bool|null
+     */
+    public function getInvoicePossible(): ?bool
+    {
+        return $this->invoicePossible;
+    }
+    /**
+     * Set invoicePossible value
+     * @param bool $invoicePossible
+     * @return \Pggns\MidocoApi\Bank\StructType\SellItemPrintRestriction
+     */
+    public function setInvoicePossible(?bool $invoicePossible = true): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($invoicePossible) && !is_bool($invoicePossible)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($invoicePossible, true), gettype($invoicePossible)), __LINE__);
+        }
+        $this->invoicePossible = $invoicePossible;
         
         return $this;
     }

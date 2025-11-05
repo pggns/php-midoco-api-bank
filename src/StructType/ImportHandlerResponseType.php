@@ -49,14 +49,6 @@ class ImportHandlerResponseType extends AbstractStructBase
      */
     protected ?string $result = null;
     /**
-     * The error
-     * Meta information extracted from the WSDL
-     * - documentation: An error message or the reason the import was ignored. @deprecated Use ImportHandlerResponseMessage elements instead.
-     * - minOccurs: 0
-     * @var string|null
-     */
-    protected ?string $error = null;
-    /**
      * The ImportHandlerResponseMessage
      * Meta information extracted from the WSDL
      * - maxOccurs: unbounded
@@ -71,23 +63,20 @@ class ImportHandlerResponseType extends AbstractStructBase
      * @uses ImportHandlerResponseType::setOrderNo()
      * @uses ImportHandlerResponseType::setUnitName()
      * @uses ImportHandlerResponseType::setResult()
-     * @uses ImportHandlerResponseType::setError()
      * @uses ImportHandlerResponseType::setImportHandlerResponseMessage()
      * @param int $orderId
      * @param int $orderNo
      * @param string $unitName
      * @param string $result
-     * @param string $error
      * @param \Pggns\MidocoApi\Bank\StructType\ImportHandlerResponseMessage[] $importHandlerResponseMessage
      */
-    public function __construct(?int $orderId = null, ?int $orderNo = null, ?string $unitName = null, ?string $result = null, ?string $error = null, ?array $importHandlerResponseMessage = null)
+    public function __construct(?int $orderId = null, ?int $orderNo = null, ?string $unitName = null, ?string $result = null, ?array $importHandlerResponseMessage = null)
     {
         $this
             ->setOrderId($orderId)
             ->setOrderNo($orderNo)
             ->setUnitName($unitName)
             ->setResult($result)
-            ->setError($error)
             ->setImportHandlerResponseMessage($importHandlerResponseMessage);
     }
     /**
@@ -179,29 +168,6 @@ class ImportHandlerResponseType extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($result, true), gettype($result)), __LINE__);
         }
         $this->result = $result;
-        
-        return $this;
-    }
-    /**
-     * Get error value
-     * @return string|null
-     */
-    public function getError(): ?string
-    {
-        return $this->error;
-    }
-    /**
-     * Set error value
-     * @param string $error
-     * @return \Pggns\MidocoApi\Bank\StructType\ImportHandlerResponseType
-     */
-    public function setError(?string $error = null): self
-    {
-        // validation for constraint: string
-        if (!is_null($error) && !is_string($error)) {
-            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($error, true), gettype($error)), __LINE__);
-        }
-        $this->error = $error;
         
         return $this;
     }

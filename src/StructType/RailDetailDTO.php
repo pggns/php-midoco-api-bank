@@ -80,6 +80,11 @@ class RailDetailDTO extends AbstractStructBase
      */
     protected ?string $ccType = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The companyCustomer
      * @var bool|null
      */
@@ -364,6 +369,7 @@ class RailDetailDTO extends AbstractStructBase
      * @uses RailDetailDTO::setCcNumber()
      * @uses RailDetailDTO::setCcSlipNo()
      * @uses RailDetailDTO::setCcType()
+     * @uses RailDetailDTO::setCo2Emission()
      * @uses RailDetailDTO::setCompanyCustomer()
      * @uses RailDetailDTO::setCrsAgencyNo()
      * @uses RailDetailDTO::setCurrency()
@@ -431,6 +437,7 @@ class RailDetailDTO extends AbstractStructBase
      * @param string $ccNumber
      * @param string $ccSlipNo
      * @param string $ccType
+     * @param float $co2Emission
      * @param bool $companyCustomer
      * @param string $crsAgencyNo
      * @param string $currency
@@ -486,7 +493,7 @@ class RailDetailDTO extends AbstractStructBase
      * @param float $vatPercent
      * @param string $waggon
      */
-    public function __construct(?string $adapter = null, ?string $arrivalCode = null, ?string $arrivalDate = null, ?string $arrivalDesc = null, ?string $arrivalPlatform = null, ?string $arrivalTime = null, ?string $bookingClass = null, ?string $bookingType = null, ?float $cancellationFee = null, ?string $ccApprovalCode = null, ?string $ccNumber = null, ?string $ccSlipNo = null, ?string $ccType = null, ?bool $companyCustomer = null, ?string $crsAgencyNo = null, ?string $currency = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDesc = null, ?string $departurePlatform = null, ?string $departureTime = null, ?string $documentNo = null, ?string $domesticIndicator = null, ?float $feeAmount = null, ?bool $globalPrice = null, ?string $issueType = null, ?int $itemId = null, ?string $journeyType = null, ?string $lastCancelDate = null, ?int $noOfChildren = null, ?string $partition = null, ?float $passengercommrate = null, ?int $paxPerServices = null, ?string $paymentMode = null, ?string $personAssignment = null, ?int $position = null, ?string $priceClass = null, ?string $priceType = null, ?string $productType = null, ?string $reductionCode = null, ?string $reductionDesc = null, ?int $referencePosition = null, ?string $seat = null, ?string $seatExtra = null, ?string $serviceCode = null, ?string $serviceDesc = null, ?string $serviceName = null, ?float $servicePrice = null, ?string $serviceStatus = null, ?string $tariffCode = null, ?string $tariffDesc = null, ?string $ticketCategory = null, ?bool $tokenChecked = null, ?string $tourTicket = null, ?string $traffic = null, ?string $trainNo = null, ?string $trainType = null, ?string $validFrom = null, ?string $validTo = null, ?float $vat2Amount = null, ?float $vat2Base = null, ?float $vat2Percent = null, ?float $vatAmount = null, ?float $vatBase = null, ?bool $vatIncluded = null, ?float $vatPercent = null, ?string $waggon = null)
+    public function __construct(?string $adapter = null, ?string $arrivalCode = null, ?string $arrivalDate = null, ?string $arrivalDesc = null, ?string $arrivalPlatform = null, ?string $arrivalTime = null, ?string $bookingClass = null, ?string $bookingType = null, ?float $cancellationFee = null, ?string $ccApprovalCode = null, ?string $ccNumber = null, ?string $ccSlipNo = null, ?string $ccType = null, ?float $co2Emission = null, ?bool $companyCustomer = null, ?string $crsAgencyNo = null, ?string $currency = null, ?string $departureCode = null, ?string $departureDate = null, ?string $departureDesc = null, ?string $departurePlatform = null, ?string $departureTime = null, ?string $documentNo = null, ?string $domesticIndicator = null, ?float $feeAmount = null, ?bool $globalPrice = null, ?string $issueType = null, ?int $itemId = null, ?string $journeyType = null, ?string $lastCancelDate = null, ?int $noOfChildren = null, ?string $partition = null, ?float $passengercommrate = null, ?int $paxPerServices = null, ?string $paymentMode = null, ?string $personAssignment = null, ?int $position = null, ?string $priceClass = null, ?string $priceType = null, ?string $productType = null, ?string $reductionCode = null, ?string $reductionDesc = null, ?int $referencePosition = null, ?string $seat = null, ?string $seatExtra = null, ?string $serviceCode = null, ?string $serviceDesc = null, ?string $serviceName = null, ?float $servicePrice = null, ?string $serviceStatus = null, ?string $tariffCode = null, ?string $tariffDesc = null, ?string $ticketCategory = null, ?bool $tokenChecked = null, ?string $tourTicket = null, ?string $traffic = null, ?string $trainNo = null, ?string $trainType = null, ?string $validFrom = null, ?string $validTo = null, ?float $vat2Amount = null, ?float $vat2Base = null, ?float $vat2Percent = null, ?float $vatAmount = null, ?float $vatBase = null, ?bool $vatIncluded = null, ?float $vatPercent = null, ?string $waggon = null)
     {
         $this
             ->setAdapter($adapter)
@@ -502,6 +509,7 @@ class RailDetailDTO extends AbstractStructBase
             ->setCcNumber($ccNumber)
             ->setCcSlipNo($ccSlipNo)
             ->setCcType($ccType)
+            ->setCo2Emission($co2Emission)
             ->setCompanyCustomer($companyCustomer)
             ->setCrsAgencyNo($crsAgencyNo)
             ->setCurrency($currency)
@@ -853,6 +861,29 @@ class RailDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($ccType, true), gettype($ccType)), __LINE__);
         }
         $this->ccType = $ccType;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\RailDetailDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

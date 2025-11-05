@@ -25,6 +25,11 @@ class EventDetailDTO extends AbstractStructBase
      */
     protected ?string $bookingReference = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The currency
      * @var string|null
      */
@@ -163,6 +168,7 @@ class EventDetailDTO extends AbstractStructBase
      * Constructor method for EventDetailDTO
      * @uses EventDetailDTO::setAdvanceSalePrice()
      * @uses EventDetailDTO::setBookingReference()
+     * @uses EventDetailDTO::setCo2Emission()
      * @uses EventDetailDTO::setCurrency()
      * @uses EventDetailDTO::setDescription()
      * @uses EventDetailDTO::setDiscountType()
@@ -192,6 +198,7 @@ class EventDetailDTO extends AbstractStructBase
      * @uses EventDetailDTO::setTotalPrice()
      * @param float $advanceSalePrice
      * @param string $bookingReference
+     * @param float $co2Emission
      * @param string $currency
      * @param string $description
      * @param string $discountType
@@ -220,11 +227,12 @@ class EventDetailDTO extends AbstractStructBase
      * @param string $ticketCategory
      * @param float $totalPrice
      */
-    public function __construct(?float $advanceSalePrice = null, ?string $bookingReference = null, ?string $currency = null, ?string $description = null, ?string $discountType = null, ?string $endDate = null, ?string $endTime = null, ?int $itemId = null, ?string $locationAddress1 = null, ?string $locationAddress2 = null, ?string $locationAddress3 = null, ?string $locationAddress4 = null, ?string $locationName = null, ?string $name = null, ?int $noOfTickets = null, ?string $organizer = null, ?int $position = null, ?float $price = null, ?int $referencePosition = null, ?string $rowNo = null, ?string $seatArea = null, ?string $seatNo = null, ?string $serviceCode = null, ?string $serviceName = null, ?string $serviceStatus = null, ?string $startDate = null, ?string $startTime = null, ?string $ticketCategory = null, ?float $totalPrice = null)
+    public function __construct(?float $advanceSalePrice = null, ?string $bookingReference = null, ?float $co2Emission = null, ?string $currency = null, ?string $description = null, ?string $discountType = null, ?string $endDate = null, ?string $endTime = null, ?int $itemId = null, ?string $locationAddress1 = null, ?string $locationAddress2 = null, ?string $locationAddress3 = null, ?string $locationAddress4 = null, ?string $locationName = null, ?string $name = null, ?int $noOfTickets = null, ?string $organizer = null, ?int $position = null, ?float $price = null, ?int $referencePosition = null, ?string $rowNo = null, ?string $seatArea = null, ?string $seatNo = null, ?string $serviceCode = null, ?string $serviceName = null, ?string $serviceStatus = null, ?string $startDate = null, ?string $startTime = null, ?string $ticketCategory = null, ?float $totalPrice = null)
     {
         $this
             ->setAdvanceSalePrice($advanceSalePrice)
             ->setBookingReference($bookingReference)
+            ->setCo2Emission($co2Emission)
             ->setCurrency($currency)
             ->setDescription($description)
             ->setDiscountType($discountType)
@@ -296,6 +304,29 @@ class EventDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($bookingReference, true), gettype($bookingReference)), __LINE__);
         }
         $this->bookingReference = $bookingReference;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\EventDetailDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

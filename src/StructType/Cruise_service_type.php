@@ -149,6 +149,13 @@ class Cruise_service_type extends AbstractStructBase
      */
     protected ?string $country = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The transfer
      * @var string|null
      */
@@ -270,6 +277,7 @@ class Cruise_service_type extends AbstractStructBase
      * @uses Cruise_service_type::setCurrency()
      * @uses Cruise_service_type::setVat_included()
      * @uses Cruise_service_type::setCountry()
+     * @uses Cruise_service_type::setCo2_emission()
      * @uses Cruise_service_type::setTransfer()
      * @uses Cruise_service_type::setEmbarkation()
      * @uses Cruise_service_type::setDebarkation()
@@ -304,6 +312,7 @@ class Cruise_service_type extends AbstractStructBase
      * @param string $currency
      * @param bool $vat_included
      * @param string $country
+     * @param float $co2_emission
      * @param string $transfer
      * @param string $embarkation
      * @param string $debarkation
@@ -320,7 +329,7 @@ class Cruise_service_type extends AbstractStructBase
      * @param string $return_departure_descr
      * @param string $return_destination_descr
      */
-    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $service_description = null, ?string $cabin_code = null, ?string $cabin_description = null, ?string $catering_code = null, ?string $catering_description = null, ?string $start_date = null, ?string $end_date = null, ?string $persons_per_service = null, ?string $no_of_services = null, ?int $no_of_nights = null, ?string $service_status = null, ?string $person_assignment = null, ?float $total_price = null, ?string $currency = 'EUR', ?bool $vat_included = false, ?string $country = null, ?string $transfer = null, ?string $embarkation = null, ?string $debarkation = null, ?string $route = null, ?string $deck = null, ?string $cabin_no = null, ?string $vehicle = null, ?string $vehicle_dimension = null, ?string $vehicle_plate_number = null, ?string $arrival_transport_type = null, ?string $departure_descr = null, ?string $destination_descr = null, ?string $return_transport_type = null, ?string $return_departure_descr = null, ?string $return_destination_descr = null)
+    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $service_description = null, ?string $cabin_code = null, ?string $cabin_description = null, ?string $catering_code = null, ?string $catering_description = null, ?string $start_date = null, ?string $end_date = null, ?string $persons_per_service = null, ?string $no_of_services = null, ?int $no_of_nights = null, ?string $service_status = null, ?string $person_assignment = null, ?float $total_price = null, ?string $currency = 'EUR', ?bool $vat_included = false, ?string $country = null, ?float $co2_emission = null, ?string $transfer = null, ?string $embarkation = null, ?string $debarkation = null, ?string $route = null, ?string $deck = null, ?string $cabin_no = null, ?string $vehicle = null, ?string $vehicle_dimension = null, ?string $vehicle_plate_number = null, ?string $arrival_transport_type = null, ?string $departure_descr = null, ?string $destination_descr = null, ?string $return_transport_type = null, ?string $return_departure_descr = null, ?string $return_destination_descr = null)
     {
         $this
             ->setPosition($position)
@@ -342,6 +351,7 @@ class Cruise_service_type extends AbstractStructBase
             ->setCurrency($currency)
             ->setVat_included($vat_included)
             ->setCountry($country)
+            ->setCo2_emission($co2_emission)
             ->setTransfer($transfer)
             ->setEmbarkation($embarkation)
             ->setDebarkation($debarkation)
@@ -816,6 +826,29 @@ class Cruise_service_type extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($country, true), gettype($country)), __LINE__);
         }
         $this->country = $country;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Cruise_service_type
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

@@ -132,8 +132,8 @@ class Booking_price extends AbstractStructBase
     /**
      * The customer_selling_price
      * Meta information extracted from the WSDL
-     * - documentation: Sets the foreign currency customer selling price of a sell item. This element price has priority and could overwrite base-total-price. Only available for non-package-child sellitems. The element displayed-currency with foreign
-     * currency for order is mandatory. Order-Adapter-Settings: FX_CALC_CUSTOMER_SELLING_PRICE_EDITABLE = Y required
+     * - documentation: Sets the foreign currency customer selling price of a sell item. This element price has priority and could overwrite base-total-price. Not working for package-child sellitems. Required: - The xml-attribute displayed-currency with
+     * foreign currency for order in element prices. - Order-Adapter-Settings: FX_CALC_CUSTOMER_SELLING_PRICE_EDITABLE = Y
      * - minOccurs: 0
      * @var float|null
      */

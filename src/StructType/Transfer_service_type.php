@@ -151,6 +151,13 @@ class Transfer_service_type extends AbstractStructBase
      */
     protected ?string $departure_point = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The destination_code
      * Meta information extracted from the WSDL
      * - minOccurs: 0
@@ -313,6 +320,7 @@ class Transfer_service_type extends AbstractStructBase
      * @uses Transfer_service_type::setDeparture_description()
      * @uses Transfer_service_type::setDeparture_location()
      * @uses Transfer_service_type::setDeparture_point()
+     * @uses Transfer_service_type::setCo2_emission()
      * @uses Transfer_service_type::setDestination_code()
      * @uses Transfer_service_type::setDestination_description()
      * @uses Transfer_service_type::setReturn_departure_code()
@@ -349,6 +357,7 @@ class Transfer_service_type extends AbstractStructBase
      * @param string $departure_description
      * @param string $departure_location
      * @param string $departure_point
+     * @param float $co2_emission
      * @param string $destination_code
      * @param string $destination_description
      * @param string $return_departure_code
@@ -369,7 +378,7 @@ class Transfer_service_type extends AbstractStructBase
      * @param int $max_passengers
      * @param bool $simpleService
      */
-    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $persons_per_service = null, ?string $start_date = null, ?string $end_date = null, ?string $start_time = null, ?string $end_time = null, ?string $person_assignment = null, ?string $service_status = null, ?float $service_price = null, ?string $service_currency = 'EUR', ?string $service_description = null, ?string $departure_code = null, ?string $departure_description = null, ?string $departure_location = null, ?string $departure_point = null, ?string $destination_code = null, ?string $destination_description = null, ?string $return_departure_code = null, ?string $return_departure_description = null, ?string $return_destination_code = null, ?string $return_destination_description = null, ?string $baggage_allowance = null, ?string $duration = null, ?string $transfer_address1 = null, ?string $transfer_address2 = null, ?string $transfer_address3 = null, ?string $transfer_address4 = null, ?string $vehicle_code = null, ?string $vehicle_description = null, ?string $type_of_transfer = null, ?string $direction = null, ?string $emergency_Number = null, ?int $max_passengers = null, ?bool $simpleService = false)
+    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $persons_per_service = null, ?string $start_date = null, ?string $end_date = null, ?string $start_time = null, ?string $end_time = null, ?string $person_assignment = null, ?string $service_status = null, ?float $service_price = null, ?string $service_currency = 'EUR', ?string $service_description = null, ?string $departure_code = null, ?string $departure_description = null, ?string $departure_location = null, ?string $departure_point = null, ?float $co2_emission = null, ?string $destination_code = null, ?string $destination_description = null, ?string $return_departure_code = null, ?string $return_departure_description = null, ?string $return_destination_code = null, ?string $return_destination_description = null, ?string $baggage_allowance = null, ?string $duration = null, ?string $transfer_address1 = null, ?string $transfer_address2 = null, ?string $transfer_address3 = null, ?string $transfer_address4 = null, ?string $vehicle_code = null, ?string $vehicle_description = null, ?string $type_of_transfer = null, ?string $direction = null, ?string $emergency_Number = null, ?int $max_passengers = null, ?bool $simpleService = false)
     {
         $this
             ->setPosition($position)
@@ -389,6 +398,7 @@ class Transfer_service_type extends AbstractStructBase
             ->setDeparture_description($departure_description)
             ->setDeparture_location($departure_location)
             ->setDeparture_point($departure_point)
+            ->setCo2_emission($co2_emission)
             ->setDestination_code($destination_code)
             ->setDestination_description($destination_description)
             ->setReturn_departure_code($return_departure_code)
@@ -813,6 +823,29 @@ class Transfer_service_type extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($departure_point, true), gettype($departure_point)), __LINE__);
         }
         $this->departure_point = $this->{'departure-point'} = $departure_point;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Transfer_service_type
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

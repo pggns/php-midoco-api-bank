@@ -77,6 +77,11 @@ class SellItemProvisionType extends SellItemProvisionDTO
      */
     protected ?string $supplierInvoiceVatCode = null;
     /**
+     * The supplierInvoiceVatAmount
+     * @var float|null
+     */
+    protected ?float $supplierInvoiceVatAmount = null;
+    /**
      * The isStorno
      * Meta information extracted from the WSDL
      * - default: false
@@ -115,6 +120,7 @@ class SellItemProvisionType extends SellItemProvisionDTO
      * @uses SellItemProvisionType::setSettlmAccountsSupplier()
      * @uses SellItemProvisionType::setPreventPaymentForEntry()
      * @uses SellItemProvisionType::setSupplierInvoiceVatCode()
+     * @uses SellItemProvisionType::setSupplierInvoiceVatAmount()
      * @uses SellItemProvisionType::setIsStorno()
      * @uses SellItemProvisionType::setStornoDate()
      * @uses SellItemProvisionType::setBaseBuyingPrice()
@@ -130,13 +136,14 @@ class SellItemProvisionType extends SellItemProvisionDTO
      * @param string $settlmAccountsSupplier
      * @param bool $preventPaymentForEntry
      * @param string $supplierInvoiceVatCode
+     * @param float $supplierInvoiceVatAmount
      * @param bool $isStorno
      * @param string $stornoDate
      * @param float $baseBuyingPrice
      * @param float $supplierBuyingPrice
      * @param float $originalSupplierInvoiceAmount
      */
-    public function __construct(?array $midocoRevenueBookingVatDiv = null, ?array $midocoTravelnoPurchaseAssignment = null, ?bool $needsVatDivision = false, ?string $travelNo = null, ?string $travelNoHandling = null, ?float $travelNoB2cPercent = null, ?bool $commissionVatFreeRc = null, ?string $settlmAccountsSupplier = null, ?bool $preventPaymentForEntry = false, ?string $supplierInvoiceVatCode = null, ?bool $isStorno = false, ?string $stornoDate = null, ?float $baseBuyingPrice = null, ?float $supplierBuyingPrice = null, ?float $originalSupplierInvoiceAmount = null)
+    public function __construct(?array $midocoRevenueBookingVatDiv = null, ?array $midocoTravelnoPurchaseAssignment = null, ?bool $needsVatDivision = false, ?string $travelNo = null, ?string $travelNoHandling = null, ?float $travelNoB2cPercent = null, ?bool $commissionVatFreeRc = null, ?string $settlmAccountsSupplier = null, ?bool $preventPaymentForEntry = false, ?string $supplierInvoiceVatCode = null, ?float $supplierInvoiceVatAmount = null, ?bool $isStorno = false, ?string $stornoDate = null, ?float $baseBuyingPrice = null, ?float $supplierBuyingPrice = null, ?float $originalSupplierInvoiceAmount = null)
     {
         $this
             ->setMidocoRevenueBookingVatDiv($midocoRevenueBookingVatDiv)
@@ -149,6 +156,7 @@ class SellItemProvisionType extends SellItemProvisionDTO
             ->setSettlmAccountsSupplier($settlmAccountsSupplier)
             ->setPreventPaymentForEntry($preventPaymentForEntry)
             ->setSupplierInvoiceVatCode($supplierInvoiceVatCode)
+            ->setSupplierInvoiceVatAmount($supplierInvoiceVatAmount)
             ->setIsStorno($isStorno)
             ->setStornoDate($stornoDate)
             ->setBaseBuyingPrice($baseBuyingPrice)
@@ -470,6 +478,29 @@ class SellItemProvisionType extends SellItemProvisionDTO
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($supplierInvoiceVatCode, true), gettype($supplierInvoiceVatCode)), __LINE__);
         }
         $this->supplierInvoiceVatCode = $supplierInvoiceVatCode;
+        
+        return $this;
+    }
+    /**
+     * Get supplierInvoiceVatAmount value
+     * @return float|null
+     */
+    public function getSupplierInvoiceVatAmount(): ?float
+    {
+        return $this->supplierInvoiceVatAmount;
+    }
+    /**
+     * Set supplierInvoiceVatAmount value
+     * @param float $supplierInvoiceVatAmount
+     * @return \Pggns\MidocoApi\Bank\StructType\SellItemProvisionType
+     */
+    public function setSupplierInvoiceVatAmount(?float $supplierInvoiceVatAmount = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($supplierInvoiceVatAmount) && !(is_float($supplierInvoiceVatAmount) || is_numeric($supplierInvoiceVatAmount))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($supplierInvoiceVatAmount, true), gettype($supplierInvoiceVatAmount)), __LINE__);
+        }
+        $this->supplierInvoiceVatAmount = $supplierInvoiceVatAmount;
         
         return $this;
     }

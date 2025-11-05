@@ -18,24 +18,24 @@ class MidocoGetCompanyCustomerType extends AbstractStructBase
      * The MidocoCrmCustomer
      * Meta information extracted from the WSDL
      * - ref: MidocoCrmCustomer
-     * @var \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO|null
+     * @var \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer|null
      */
-    protected ?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $MidocoCrmCustomer = null;
+    protected ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $MidocoCrmCustomer = null;
     /**
      * The MidocoCrmCompany
      * Meta information extracted from the WSDL
      * - ref: MidocoCrmCompany
-     * @var \Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO|null
+     * @var \Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany|null
      */
-    protected ?\Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO $MidocoCrmCompany = null;
+    protected ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany $MidocoCrmCompany = null;
     /**
      * Constructor method for MidocoGetCompanyCustomerType
      * @uses MidocoGetCompanyCustomerType::setMidocoCrmCustomer()
      * @uses MidocoGetCompanyCustomerType::setMidocoCrmCompany()
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO $midocoCrmCompany
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany $midocoCrmCompany
      */
-    public function __construct(?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer = null, ?\Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO $midocoCrmCompany = null)
+    public function __construct(?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany $midocoCrmCompany = null)
     {
         $this
             ->setMidocoCrmCustomer($midocoCrmCustomer)
@@ -43,18 +43,18 @@ class MidocoGetCompanyCustomerType extends AbstractStructBase
     }
     /**
      * Get MidocoCrmCustomer value
-     * @return \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO|null
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer|null
      */
-    public function getMidocoCrmCustomer(): ?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO
+    public function getMidocoCrmCustomer(): ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer
     {
         return $this->MidocoCrmCustomer;
     }
     /**
      * Set MidocoCrmCustomer value
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer
      * @return \Pggns\MidocoApi\Bank\StructType\MidocoGetCompanyCustomerType
      */
-    public function setMidocoCrmCustomer(?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer = null): self
+    public function setMidocoCrmCustomer(?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer = null): self
     {
         $this->MidocoCrmCustomer = $midocoCrmCustomer;
         
@@ -62,18 +62,18 @@ class MidocoGetCompanyCustomerType extends AbstractStructBase
     }
     /**
      * Get MidocoCrmCompany value
-     * @return \Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO|null
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany|null
      */
-    public function getMidocoCrmCompany(): ?\Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO
+    public function getMidocoCrmCompany(): ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany
     {
         return $this->MidocoCrmCompany;
     }
     /**
      * Set MidocoCrmCompany value
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO $midocoCrmCompany
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany $midocoCrmCompany
      * @return \Pggns\MidocoApi\Bank\StructType\MidocoGetCompanyCustomerType
      */
-    public function setMidocoCrmCompany(?\Pggns\MidocoApi\Bank\StructType\CrmCompanyDTO $midocoCrmCompany = null): self
+    public function setMidocoCrmCompany(?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCompany $midocoCrmCompany = null): self
     {
         $this->MidocoCrmCompany = $midocoCrmCompany;
         

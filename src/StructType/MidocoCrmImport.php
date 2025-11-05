@@ -18,9 +18,9 @@ class MidocoCrmImport extends AbstractStructBase
      * The MidocoCrmCustomer
      * Meta information extracted from the WSDL
      * - ref: MidocoCrmCustomer
-     * @var \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO|null
+     * @var \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer|null
      */
-    protected ?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $MidocoCrmCustomer = null;
+    protected ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $MidocoCrmCustomer = null;
     /**
      * The MidocoSaveAddress
      * Meta information extracted from the WSDL
@@ -112,7 +112,7 @@ class MidocoCrmImport extends AbstractStructBase
      * @uses MidocoCrmImport::setMidocoCrmNotice()
      * @uses MidocoCrmImport::setMidocoCrmBonusCard()
      * @uses MidocoCrmImport::setMidocoCrmCcCard()
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer
      * @param \Pggns\MidocoApi\Bank\StructType\SaveAddressDTO $midocoSaveAddress
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoContactEntryType[] $midocoContactEntry
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCriteria[] $midocoCrmCriteria
@@ -123,7 +123,7 @@ class MidocoCrmImport extends AbstractStructBase
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmBonusCard[] $midocoCrmBonusCard
      * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCcCard[] $midocoCrmCcCard
      */
-    public function __construct(?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer = null, ?\Pggns\MidocoApi\Bank\StructType\SaveAddressDTO $midocoSaveAddress = null, ?array $midocoContactEntry = null, ?array $midocoCrmCriteria = null, ?array $midocoCustomerTravel = null, ?array $midocoContactHistory = null, ?array $midocoCrmPersonTraveller = null, ?array $midocoCrmNotice = null, ?array $midocoCrmBonusCard = null, ?array $midocoCrmCcCard = null)
+    public function __construct(?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer = null, ?\Pggns\MidocoApi\Bank\StructType\SaveAddressDTO $midocoSaveAddress = null, ?array $midocoContactEntry = null, ?array $midocoCrmCriteria = null, ?array $midocoCustomerTravel = null, ?array $midocoContactHistory = null, ?array $midocoCrmPersonTraveller = null, ?array $midocoCrmNotice = null, ?array $midocoCrmBonusCard = null, ?array $midocoCrmCcCard = null)
     {
         $this
             ->setMidocoCrmCustomer($midocoCrmCustomer)
@@ -139,18 +139,18 @@ class MidocoCrmImport extends AbstractStructBase
     }
     /**
      * Get MidocoCrmCustomer value
-     * @return \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO|null
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer|null
      */
-    public function getMidocoCrmCustomer(): ?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO
+    public function getMidocoCrmCustomer(): ?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer
     {
         return $this->MidocoCrmCustomer;
     }
     /**
      * Set MidocoCrmCustomer value
-     * @param \Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer
+     * @param \Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer
      * @return \Pggns\MidocoApi\Bank\StructType\MidocoCrmImport
      */
-    public function setMidocoCrmCustomer(?\Pggns\MidocoApi\Bank\StructType\CrmCustomerDTO $midocoCrmCustomer = null): self
+    public function setMidocoCrmCustomer(?\Pggns\MidocoApi\Bank\StructType\MidocoCrmCustomer $midocoCrmCustomer = null): self
     {
         $this->MidocoCrmCustomer = $midocoCrmCustomer;
         

@@ -85,6 +85,11 @@ class BankBookingJournalDTO extends AbstractStructBase
      */
     protected ?float $exchangeRate = null;
     /**
+     * The exchangeRateManuallyChanged
+     * @var bool|null
+     */
+    protected ?bool $exchangeRateManuallyChanged = null;
+    /**
      * The isBooked
      * @var bool|null
      */
@@ -124,6 +129,26 @@ class BankBookingJournalDTO extends AbstractStructBase
      * @var float|null
      */
     protected ?float $originalEntryAmount = null;
+    /**
+     * The originalEntryCurrency
+     * @var string|null
+     */
+    protected ?string $originalEntryCurrency = null;
+    /**
+     * The paymentExchangeRate
+     * @var float|null
+     */
+    protected ?float $paymentExchangeRate = null;
+    /**
+     * The paymentOriginalCurrency
+     * @var string|null
+     */
+    protected ?string $paymentOriginalCurrency = null;
+    /**
+     * The paymentOriginalValue
+     * @var float|null
+     */
+    protected ?float $paymentOriginalValue = null;
     /**
      * The position
      * @var int|null
@@ -225,6 +250,11 @@ class BankBookingJournalDTO extends AbstractStructBase
      */
     protected ?int $statementId = null;
     /**
+     * The usePaymentAmountForSplitting
+     * @var bool|null
+     */
+    protected ?bool $usePaymentAmountForSplitting = null;
+    /**
      * The vatAmount
      * @var float|null
      */
@@ -255,6 +285,7 @@ class BankBookingJournalDTO extends AbstractStructBase
      * @uses BankBookingJournalDTO::setDebitEntry()
      * @uses BankBookingJournalDTO::setEntryAmount()
      * @uses BankBookingJournalDTO::setExchangeRate()
+     * @uses BankBookingJournalDTO::setExchangeRateManuallyChanged()
      * @uses BankBookingJournalDTO::setIsBooked()
      * @uses BankBookingJournalDTO::setIsExported()
      * @uses BankBookingJournalDTO::setIsPreAccounted()
@@ -263,6 +294,10 @@ class BankBookingJournalDTO extends AbstractStructBase
      * @uses BankBookingJournalDTO::setOriginalAmount()
      * @uses BankBookingJournalDTO::setOriginalCurrency()
      * @uses BankBookingJournalDTO::setOriginalEntryAmount()
+     * @uses BankBookingJournalDTO::setOriginalEntryCurrency()
+     * @uses BankBookingJournalDTO::setPaymentExchangeRate()
+     * @uses BankBookingJournalDTO::setPaymentOriginalCurrency()
+     * @uses BankBookingJournalDTO::setPaymentOriginalValue()
      * @uses BankBookingJournalDTO::setPosition()
      * @uses BankBookingJournalDTO::setProtocolId()
      * @uses BankBookingJournalDTO::setProvCostCentre()
@@ -283,6 +318,7 @@ class BankBookingJournalDTO extends AbstractStructBase
      * @uses BankBookingJournalDTO::setSkontoAmount()
      * @uses BankBookingJournalDTO::setSkontoVatAmount()
      * @uses BankBookingJournalDTO::setStatementId()
+     * @uses BankBookingJournalDTO::setUsePaymentAmountForSplitting()
      * @uses BankBookingJournalDTO::setVatAmount()
      * @uses BankBookingJournalDTO::setVatCode()
      * @uses BankBookingJournalDTO::setVatPercent()
@@ -300,6 +336,7 @@ class BankBookingJournalDTO extends AbstractStructBase
      * @param string $debitEntry
      * @param float $entryAmount
      * @param float $exchangeRate
+     * @param bool $exchangeRateManuallyChanged
      * @param bool $isBooked
      * @param bool $isExported
      * @param bool $isPreAccounted
@@ -308,6 +345,10 @@ class BankBookingJournalDTO extends AbstractStructBase
      * @param float $originalAmount
      * @param string $originalCurrency
      * @param float $originalEntryAmount
+     * @param string $originalEntryCurrency
+     * @param float $paymentExchangeRate
+     * @param string $paymentOriginalCurrency
+     * @param float $paymentOriginalValue
      * @param int $position
      * @param int $protocolId
      * @param string $provCostCentre
@@ -328,11 +369,12 @@ class BankBookingJournalDTO extends AbstractStructBase
      * @param float $skontoAmount
      * @param float $skontoVatAmount
      * @param int $statementId
+     * @param bool $usePaymentAmountForSplitting
      * @param float $vatAmount
      * @param string $vatCode
      * @param float $vatPercent
      */
-    public function __construct(?int $accountPosition = null, ?bool $automaticVat = null, ?float $bookingAmount = null, ?string $bookingText = null, ?string $bookingType = null, ?string $costCentre = null, ?string $costUnit = null, ?string $creditAccount = null, ?string $creditEntry = null, ?string $currency = null, ?string $debitAccount = null, ?string $debitEntry = null, ?float $entryAmount = null, ?float $exchangeRate = null, ?bool $isBooked = null, ?bool $isExported = null, ?bool $isPreAccounted = null, ?int $journalId = null, ?int $journalPosition = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?float $originalEntryAmount = null, ?int $position = null, ?int $protocolId = null, ?string $provCostCentre = null, ?string $provInsuranceAccount = null, ?int $provItemId = null, ?string $provReceiptDate = null, ?string $provReceiptNo = null, ?string $provWovatAccount = null, ?string $provWvatAccount = null, ?float $provinsurance = null, ?float $provwovatamount = null, ?float $provwvatamount = null, ?string $receiptDate = null, ?string $receiptNo = null, ?bool $receiptSend = null, ?int $revenueId = null, ?string $settlementType = null, ?float $skontoAmount = null, ?float $skontoVatAmount = null, ?int $statementId = null, ?float $vatAmount = null, ?string $vatCode = null, ?float $vatPercent = null)
+    public function __construct(?int $accountPosition = null, ?bool $automaticVat = null, ?float $bookingAmount = null, ?string $bookingText = null, ?string $bookingType = null, ?string $costCentre = null, ?string $costUnit = null, ?string $creditAccount = null, ?string $creditEntry = null, ?string $currency = null, ?string $debitAccount = null, ?string $debitEntry = null, ?float $entryAmount = null, ?float $exchangeRate = null, ?bool $exchangeRateManuallyChanged = null, ?bool $isBooked = null, ?bool $isExported = null, ?bool $isPreAccounted = null, ?int $journalId = null, ?int $journalPosition = null, ?float $originalAmount = null, ?string $originalCurrency = null, ?float $originalEntryAmount = null, ?string $originalEntryCurrency = null, ?float $paymentExchangeRate = null, ?string $paymentOriginalCurrency = null, ?float $paymentOriginalValue = null, ?int $position = null, ?int $protocolId = null, ?string $provCostCentre = null, ?string $provInsuranceAccount = null, ?int $provItemId = null, ?string $provReceiptDate = null, ?string $provReceiptNo = null, ?string $provWovatAccount = null, ?string $provWvatAccount = null, ?float $provinsurance = null, ?float $provwovatamount = null, ?float $provwvatamount = null, ?string $receiptDate = null, ?string $receiptNo = null, ?bool $receiptSend = null, ?int $revenueId = null, ?string $settlementType = null, ?float $skontoAmount = null, ?float $skontoVatAmount = null, ?int $statementId = null, ?bool $usePaymentAmountForSplitting = null, ?float $vatAmount = null, ?string $vatCode = null, ?float $vatPercent = null)
     {
         $this
             ->setAccountPosition($accountPosition)
@@ -349,6 +391,7 @@ class BankBookingJournalDTO extends AbstractStructBase
             ->setDebitEntry($debitEntry)
             ->setEntryAmount($entryAmount)
             ->setExchangeRate($exchangeRate)
+            ->setExchangeRateManuallyChanged($exchangeRateManuallyChanged)
             ->setIsBooked($isBooked)
             ->setIsExported($isExported)
             ->setIsPreAccounted($isPreAccounted)
@@ -357,6 +400,10 @@ class BankBookingJournalDTO extends AbstractStructBase
             ->setOriginalAmount($originalAmount)
             ->setOriginalCurrency($originalCurrency)
             ->setOriginalEntryAmount($originalEntryAmount)
+            ->setOriginalEntryCurrency($originalEntryCurrency)
+            ->setPaymentExchangeRate($paymentExchangeRate)
+            ->setPaymentOriginalCurrency($paymentOriginalCurrency)
+            ->setPaymentOriginalValue($paymentOriginalValue)
             ->setPosition($position)
             ->setProtocolId($protocolId)
             ->setProvCostCentre($provCostCentre)
@@ -377,6 +424,7 @@ class BankBookingJournalDTO extends AbstractStructBase
             ->setSkontoAmount($skontoAmount)
             ->setSkontoVatAmount($skontoVatAmount)
             ->setStatementId($statementId)
+            ->setUsePaymentAmountForSplitting($usePaymentAmountForSplitting)
             ->setVatAmount($vatAmount)
             ->setVatCode($vatCode)
             ->setVatPercent($vatPercent);
@@ -704,6 +752,29 @@ class BankBookingJournalDTO extends AbstractStructBase
         return $this;
     }
     /**
+     * Get exchangeRateManuallyChanged value
+     * @return bool|null
+     */
+    public function getExchangeRateManuallyChanged(): ?bool
+    {
+        return $this->exchangeRateManuallyChanged;
+    }
+    /**
+     * Set exchangeRateManuallyChanged value
+     * @param bool $exchangeRateManuallyChanged
+     * @return \Pggns\MidocoApi\Bank\StructType\BankBookingJournalDTO
+     */
+    public function setExchangeRateManuallyChanged(?bool $exchangeRateManuallyChanged = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($exchangeRateManuallyChanged) && !is_bool($exchangeRateManuallyChanged)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($exchangeRateManuallyChanged, true), gettype($exchangeRateManuallyChanged)), __LINE__);
+        }
+        $this->exchangeRateManuallyChanged = $exchangeRateManuallyChanged;
+        
+        return $this;
+    }
+    /**
      * Get isBooked value
      * @return bool|null
      */
@@ -884,6 +955,98 @@ class BankBookingJournalDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($originalEntryAmount, true), gettype($originalEntryAmount)), __LINE__);
         }
         $this->originalEntryAmount = $originalEntryAmount;
+        
+        return $this;
+    }
+    /**
+     * Get originalEntryCurrency value
+     * @return string|null
+     */
+    public function getOriginalEntryCurrency(): ?string
+    {
+        return $this->originalEntryCurrency;
+    }
+    /**
+     * Set originalEntryCurrency value
+     * @param string $originalEntryCurrency
+     * @return \Pggns\MidocoApi\Bank\StructType\BankBookingJournalDTO
+     */
+    public function setOriginalEntryCurrency(?string $originalEntryCurrency = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($originalEntryCurrency) && !is_string($originalEntryCurrency)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($originalEntryCurrency, true), gettype($originalEntryCurrency)), __LINE__);
+        }
+        $this->originalEntryCurrency = $originalEntryCurrency;
+        
+        return $this;
+    }
+    /**
+     * Get paymentExchangeRate value
+     * @return float|null
+     */
+    public function getPaymentExchangeRate(): ?float
+    {
+        return $this->paymentExchangeRate;
+    }
+    /**
+     * Set paymentExchangeRate value
+     * @param float $paymentExchangeRate
+     * @return \Pggns\MidocoApi\Bank\StructType\BankBookingJournalDTO
+     */
+    public function setPaymentExchangeRate(?float $paymentExchangeRate = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($paymentExchangeRate) && !(is_float($paymentExchangeRate) || is_numeric($paymentExchangeRate))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($paymentExchangeRate, true), gettype($paymentExchangeRate)), __LINE__);
+        }
+        $this->paymentExchangeRate = $paymentExchangeRate;
+        
+        return $this;
+    }
+    /**
+     * Get paymentOriginalCurrency value
+     * @return string|null
+     */
+    public function getPaymentOriginalCurrency(): ?string
+    {
+        return $this->paymentOriginalCurrency;
+    }
+    /**
+     * Set paymentOriginalCurrency value
+     * @param string $paymentOriginalCurrency
+     * @return \Pggns\MidocoApi\Bank\StructType\BankBookingJournalDTO
+     */
+    public function setPaymentOriginalCurrency(?string $paymentOriginalCurrency = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($paymentOriginalCurrency) && !is_string($paymentOriginalCurrency)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($paymentOriginalCurrency, true), gettype($paymentOriginalCurrency)), __LINE__);
+        }
+        $this->paymentOriginalCurrency = $paymentOriginalCurrency;
+        
+        return $this;
+    }
+    /**
+     * Get paymentOriginalValue value
+     * @return float|null
+     */
+    public function getPaymentOriginalValue(): ?float
+    {
+        return $this->paymentOriginalValue;
+    }
+    /**
+     * Set paymentOriginalValue value
+     * @param float $paymentOriginalValue
+     * @return \Pggns\MidocoApi\Bank\StructType\BankBookingJournalDTO
+     */
+    public function setPaymentOriginalValue(?float $paymentOriginalValue = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($paymentOriginalValue) && !(is_float($paymentOriginalValue) || is_numeric($paymentOriginalValue))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($paymentOriginalValue, true), gettype($paymentOriginalValue)), __LINE__);
+        }
+        $this->paymentOriginalValue = $paymentOriginalValue;
         
         return $this;
     }
@@ -1344,6 +1507,29 @@ class BankBookingJournalDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($statementId, true), gettype($statementId)), __LINE__);
         }
         $this->statementId = $statementId;
+        
+        return $this;
+    }
+    /**
+     * Get usePaymentAmountForSplitting value
+     * @return bool|null
+     */
+    public function getUsePaymentAmountForSplitting(): ?bool
+    {
+        return $this->usePaymentAmountForSplitting;
+    }
+    /**
+     * Set usePaymentAmountForSplitting value
+     * @param bool $usePaymentAmountForSplitting
+     * @return \Pggns\MidocoApi\Bank\StructType\BankBookingJournalDTO
+     */
+    public function setUsePaymentAmountForSplitting(?bool $usePaymentAmountForSplitting = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($usePaymentAmountForSplitting) && !is_bool($usePaymentAmountForSplitting)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($usePaymentAmountForSplitting, true), gettype($usePaymentAmountForSplitting)), __LINE__);
+        }
+        $this->usePaymentAmountForSplitting = $usePaymentAmountForSplitting;
         
         return $this;
     }

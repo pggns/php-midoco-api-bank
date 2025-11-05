@@ -75,6 +75,11 @@ class BillingPositionAttribDTO extends AbstractStructBase
      */
     protected ?int $sellingUser = null;
     /**
+     * The transactionNo
+     * @var int|null
+     */
+    protected ?int $transactionNo = null;
+    /**
      * The travellerId
      * @var int|null
      */
@@ -103,6 +108,7 @@ class BillingPositionAttribDTO extends AbstractStructBase
      * @uses BillingPositionAttribDTO::setProjectNo()
      * @uses BillingPositionAttribDTO::setSecPrice()
      * @uses BillingPositionAttribDTO::setSellingUser()
+     * @uses BillingPositionAttribDTO::setTransactionNo()
      * @uses BillingPositionAttribDTO::setTravellerId()
      * @uses BillingPositionAttribDTO::setTravellerName()
      * @uses BillingPositionAttribDTO::setVoucherNo()
@@ -118,11 +124,12 @@ class BillingPositionAttribDTO extends AbstractStructBase
      * @param string $projectNo
      * @param float $secPrice
      * @param int $sellingUser
+     * @param int $transactionNo
      * @param int $travellerId
      * @param string $travellerName
      * @param string $voucherNo
      */
-    public function __construct(?string $approvalCode = null, ?int $changingUser = null, ?string $costCentre = null, ?string $customData = null, ?string $customDbHeader = null, ?string $customType = null, ?string $orderNo = null, ?string $personalNo = null, ?int $positionId = null, ?string $projectNo = null, ?float $secPrice = null, ?int $sellingUser = null, ?int $travellerId = null, ?string $travellerName = null, ?string $voucherNo = null)
+    public function __construct(?string $approvalCode = null, ?int $changingUser = null, ?string $costCentre = null, ?string $customData = null, ?string $customDbHeader = null, ?string $customType = null, ?string $orderNo = null, ?string $personalNo = null, ?int $positionId = null, ?string $projectNo = null, ?float $secPrice = null, ?int $sellingUser = null, ?int $transactionNo = null, ?int $travellerId = null, ?string $travellerName = null, ?string $voucherNo = null)
     {
         $this
             ->setApprovalCode($approvalCode)
@@ -137,6 +144,7 @@ class BillingPositionAttribDTO extends AbstractStructBase
             ->setProjectNo($projectNo)
             ->setSecPrice($secPrice)
             ->setSellingUser($sellingUser)
+            ->setTransactionNo($transactionNo)
             ->setTravellerId($travellerId)
             ->setTravellerName($travellerName)
             ->setVoucherNo($voucherNo);
@@ -414,6 +422,29 @@ class BillingPositionAttribDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($sellingUser, true), gettype($sellingUser)), __LINE__);
         }
         $this->sellingUser = $sellingUser;
+        
+        return $this;
+    }
+    /**
+     * Get transactionNo value
+     * @return int|null
+     */
+    public function getTransactionNo(): ?int
+    {
+        return $this->transactionNo;
+    }
+    /**
+     * Set transactionNo value
+     * @param int $transactionNo
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingPositionAttribDTO
+     */
+    public function setTransactionNo(?int $transactionNo = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($transactionNo) && !(is_int($transactionNo) || ctype_digit($transactionNo))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($transactionNo, true), gettype($transactionNo)), __LINE__);
+        }
+        $this->transactionNo = $transactionNo;
         
         return $this;
     }

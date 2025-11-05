@@ -480,6 +480,13 @@ class Booking extends AbstractStructBase
      */
     protected ?string $travel_no_description = null;
     /**
+     * The travel_no_handling
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var string|null
+     */
+    protected ?string $travel_no_handling = null;
+    /**
      * The catalog
      * Meta information extracted from the WSDL
      * - documentation: The traveltype of the booking. In case of a STADIS-booking this should be the content of the field TRAVELTYPE
@@ -649,6 +656,13 @@ class Booking extends AbstractStructBase
      */
     protected ?string $settlement_type = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - documentation: CO2 Emmission for the booking
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The group_item_name
      * Meta information extracted from the WSDL
      * - documentation: group information field for sellitem and billingposition e.g. the combination of flight date flight number
@@ -720,6 +734,7 @@ class Booking extends AbstractStructBase
      * @uses Booking::setExternalPayment()
      * @uses Booking::setTravel_no()
      * @uses Booking::setTravel_no_description()
+     * @uses Booking::setTravel_no_handling()
      * @uses Booking::setCatalog()
      * @uses Booking::setProduct_type()
      * @uses Booking::setIs_request()
@@ -744,6 +759,7 @@ class Booking extends AbstractStructBase
      * @uses Booking::setContract_time()
      * @uses Booking::setTransfer()
      * @uses Booking::setSettlement_type()
+     * @uses Booking::setCo2_emission()
      * @uses Booking::setGroup_item_name()
      * @uses Booking::setGroup_item_flag()
      * @param string $supplier
@@ -802,6 +818,7 @@ class Booking extends AbstractStructBase
      * @param \Pggns\MidocoApi\Bank\StructType\ExternalPayment[] $externalPayment
      * @param string $travel_no
      * @param string $travel_no_description
+     * @param string $travel_no_handling
      * @param string $catalog
      * @param string $product_type
      * @param bool $is_request
@@ -826,10 +843,11 @@ class Booking extends AbstractStructBase
      * @param string $contract_time
      * @param string $transfer
      * @param string $settlement_type
+     * @param float $co2_emission
      * @param string $group_item_name
      * @param bool $group_item_flag
      */
-    public function __construct(string $supplier, int $position, ?int $option_period = null, ?string $service_description = null, ?string $accomodation_code = null, ?string $accomodation_description = null, ?string $departure_code = null, ?string $departure_description = null, ?string $destination_code = null, ?string $destination_description = null, ?string $return_departure_code = null, ?string $return_departure_description = null, ?string $return_destination_code = null, ?string $return_destination_description = null, ?string $return_code = null, ?string $return_description = null, ?string $catering_description = null, ?string $room_description = null, ?string $insurance_description = null, ?string $area_code = null, ?string $area_description = null, ?string $location_description = null, ?string $country = null, ?string $country_description = null, ?string $cruise_description = null, ?string $source_ext_id = null, ?string $source_ext_system = null, ?string $carrier = null, ?string $flight_no = null, ?string $return_carrier = null, ?string $return_flight_no = null, ?array $generic_service = null, ?array $car_service = null, ?array $flight_service = null, ?array $accomodation_service = null, ?array $insurance_service = null, ?array $transfer_service = null, ?array $bus_service = null, ?array $rail_service = null, ?array $cruise_service = null, ?array $event_service = null, ?\Pggns\MidocoApi\Bank\StructType\Hints $hints = null, ?array $person = null, ?array $cc_authorisation = null, ?array $midoco_cc_authorisation = null, ?array $remark = null, ?array $saving = null, ?array $attribute = null, ?array $additionalService = null, ?string $departure_time = null, ?string $arrival_time = null, ?string $return_departure_time = null, ?string $return_arrival_time = null, ?array $externalPayment = null, ?string $travel_no = null, ?string $travel_no_description = null, ?string $catalog = null, ?string $product_type = null, ?bool $is_request = false, ?bool $is_option = false, ?bool $is_one_way = false, ?string $booking_id = null, ?string $booking_version = null, ?string $supplier_agency = null, ?string $reference_booking_id = null, ?string $reference_type = null, ?string $reference_url = null, ?int $price_ref = null, ?int $configuration_ref = null, ?int $package_ref = null, ?bool $prevent_printing = null, ?string $category = null, ?string $booking_date = null, ?string $creation_date = null, ?string $selling_mode = null, ?string $confirmation_group = null, ?bool $mobility_indicator = null, ?string $contract_time = null, ?string $transfer = null, ?string $settlement_type = null, ?string $group_item_name = null, ?bool $group_item_flag = null)
+    public function __construct(string $supplier, int $position, ?int $option_period = null, ?string $service_description = null, ?string $accomodation_code = null, ?string $accomodation_description = null, ?string $departure_code = null, ?string $departure_description = null, ?string $destination_code = null, ?string $destination_description = null, ?string $return_departure_code = null, ?string $return_departure_description = null, ?string $return_destination_code = null, ?string $return_destination_description = null, ?string $return_code = null, ?string $return_description = null, ?string $catering_description = null, ?string $room_description = null, ?string $insurance_description = null, ?string $area_code = null, ?string $area_description = null, ?string $location_description = null, ?string $country = null, ?string $country_description = null, ?string $cruise_description = null, ?string $source_ext_id = null, ?string $source_ext_system = null, ?string $carrier = null, ?string $flight_no = null, ?string $return_carrier = null, ?string $return_flight_no = null, ?array $generic_service = null, ?array $car_service = null, ?array $flight_service = null, ?array $accomodation_service = null, ?array $insurance_service = null, ?array $transfer_service = null, ?array $bus_service = null, ?array $rail_service = null, ?array $cruise_service = null, ?array $event_service = null, ?\Pggns\MidocoApi\Bank\StructType\Hints $hints = null, ?array $person = null, ?array $cc_authorisation = null, ?array $midoco_cc_authorisation = null, ?array $remark = null, ?array $saving = null, ?array $attribute = null, ?array $additionalService = null, ?string $departure_time = null, ?string $arrival_time = null, ?string $return_departure_time = null, ?string $return_arrival_time = null, ?array $externalPayment = null, ?string $travel_no = null, ?string $travel_no_description = null, ?string $travel_no_handling = null, ?string $catalog = null, ?string $product_type = null, ?bool $is_request = false, ?bool $is_option = false, ?bool $is_one_way = false, ?string $booking_id = null, ?string $booking_version = null, ?string $supplier_agency = null, ?string $reference_booking_id = null, ?string $reference_type = null, ?string $reference_url = null, ?int $price_ref = null, ?int $configuration_ref = null, ?int $package_ref = null, ?bool $prevent_printing = null, ?string $category = null, ?string $booking_date = null, ?string $creation_date = null, ?string $selling_mode = null, ?string $confirmation_group = null, ?bool $mobility_indicator = null, ?string $contract_time = null, ?string $transfer = null, ?string $settlement_type = null, ?float $co2_emission = null, ?string $group_item_name = null, ?bool $group_item_flag = null)
     {
         $this
             ->setSupplier($supplier)
@@ -888,6 +906,7 @@ class Booking extends AbstractStructBase
             ->setExternalPayment($externalPayment)
             ->setTravel_no($travel_no)
             ->setTravel_no_description($travel_no_description)
+            ->setTravel_no_handling($travel_no_handling)
             ->setCatalog($catalog)
             ->setProduct_type($product_type)
             ->setIs_request($is_request)
@@ -912,6 +931,7 @@ class Booking extends AbstractStructBase
             ->setContract_time($contract_time)
             ->setTransfer($transfer)
             ->setSettlement_type($settlement_type)
+            ->setCo2_emission($co2_emission)
             ->setGroup_item_name($group_item_name)
             ->setGroup_item_flag($group_item_flag);
     }
@@ -3024,6 +3044,32 @@ class Booking extends AbstractStructBase
         return $this;
     }
     /**
+     * Get travel_no_handling value
+     * @return string|null
+     */
+    public function getTravel_no_handling(): ?string
+    {
+        return $this->{'travel-no-handling'};
+    }
+    /**
+     * Set travel_no_handling value
+     * @uses \Pggns\MidocoApi\Bank\EnumType\Travel_no_handling::valueIsValid()
+     * @uses \Pggns\MidocoApi\Bank\EnumType\Travel_no_handling::getValidValues()
+     * @throws InvalidArgumentException
+     * @param string $travel_no_handling
+     * @return \Pggns\MidocoApi\Bank\StructType\Booking
+     */
+    public function setTravel_no_handling(?string $travel_no_handling = null): self
+    {
+        // validation for constraint: enumeration
+        if (!\Pggns\MidocoApi\Bank\EnumType\Travel_no_handling::valueIsValid($travel_no_handling)) {
+            throw new InvalidArgumentException(sprintf('Invalid value(s) %s, please use one of: %s from enumeration class \Pggns\MidocoApi\Bank\EnumType\Travel_no_handling', is_array($travel_no_handling) ? implode(', ', $travel_no_handling) : var_export($travel_no_handling, true), implode(', ', \Pggns\MidocoApi\Bank\EnumType\Travel_no_handling::getValidValues())), __LINE__);
+        }
+        $this->travel_no_handling = $this->{'travel-no-handling'} = $travel_no_handling;
+        
+        return $this;
+    }
+    /**
      * Get catalog value
      * @return string|null
      */
@@ -3575,6 +3621,29 @@ class Booking extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($settlement_type, true), gettype($settlement_type)), __LINE__);
         }
         $this->settlement_type = $this->{'settlement-type'} = $settlement_type;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Booking
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

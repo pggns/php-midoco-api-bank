@@ -45,6 +45,11 @@ class TravelDetailDTO extends AbstractStructBase
      */
     protected ?string $cateringDescription = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The countryCode
      * @var string|null
      */
@@ -297,6 +302,7 @@ class TravelDetailDTO extends AbstractStructBase
      * @uses TravelDetailDTO::setCarrier()
      * @uses TravelDetailDTO::setCatering()
      * @uses TravelDetailDTO::setCateringDescription()
+     * @uses TravelDetailDTO::setCo2Emission()
      * @uses TravelDetailDTO::setCountryCode()
      * @uses TravelDetailDTO::setCountryDescription()
      * @uses TravelDetailDTO::setCurrency()
@@ -352,6 +358,7 @@ class TravelDetailDTO extends AbstractStructBase
      * @param string $carrier
      * @param string $catering
      * @param string $cateringDescription
+     * @param float $co2Emission
      * @param string $countryCode
      * @param string $countryDescription
      * @param string $currency
@@ -402,7 +409,7 @@ class TravelDetailDTO extends AbstractStructBase
      * @param string $tariffCode
      * @param string $transfer
      */
-    public function __construct(?string $accomodation = null, ?string $accomodationDescription = null, ?string $arrivalTime = null, ?string $carrier = null, ?string $catering = null, ?string $cateringDescription = null, ?string $countryCode = null, ?string $countryDescription = null, ?string $currency = null, ?string $departureCode = null, ?string $departureDescription = null, ?string $departureTime = null, ?string $departureViaCode = null, ?string $departureViaDescription = null, ?string $departureViaTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $endDate = null, ?float $exchangeRate = null, ?string $flightNo = null, ?string $hotelCategory = null, ?string $hotelCode = null, ?string $hotelName = null, ?string $iffCode = null, ?int $itemId = null, ?string $noOfServices = null, ?int $opicCode = null, ?string $originalCurrency = null, ?string $originalItemBookingId = null, ?int $originalItemItemId = null, ?int $originalItemPositionNo = null, ?string $originalItemSupplierId = null, ?float $originalPrice = null, ?string $paxAssigned = null, ?int $personsPerService = null, ?int $positionNo = null, ?float $price = null, ?string $retViaCode = null, ?string $retViaDescription = null, ?string $retViaTime = null, ?string $returnArrivalTime = null, ?string $returnCarrier = null, ?string $returnDepartureCode = null, ?string $returnDepartureDescription = null, ?string $returnDepartureTime = null, ?string $returnDestinationCode = null, ?string $returnDestinationDescription = null, ?string $returnFlightNo = null, ?string $serviceCode = null, ?string $serviceDescription = null, ?string $serviceName = null, ?string $serviceStatus = null, ?string $startDate = null, ?string $tariffCode = null, ?string $transfer = null)
+    public function __construct(?string $accomodation = null, ?string $accomodationDescription = null, ?string $arrivalTime = null, ?string $carrier = null, ?string $catering = null, ?string $cateringDescription = null, ?float $co2Emission = null, ?string $countryCode = null, ?string $countryDescription = null, ?string $currency = null, ?string $departureCode = null, ?string $departureDescription = null, ?string $departureTime = null, ?string $departureViaCode = null, ?string $departureViaDescription = null, ?string $departureViaTime = null, ?string $destinationCode = null, ?string $destinationDescription = null, ?string $endDate = null, ?float $exchangeRate = null, ?string $flightNo = null, ?string $hotelCategory = null, ?string $hotelCode = null, ?string $hotelName = null, ?string $iffCode = null, ?int $itemId = null, ?string $noOfServices = null, ?int $opicCode = null, ?string $originalCurrency = null, ?string $originalItemBookingId = null, ?int $originalItemItemId = null, ?int $originalItemPositionNo = null, ?string $originalItemSupplierId = null, ?float $originalPrice = null, ?string $paxAssigned = null, ?int $personsPerService = null, ?int $positionNo = null, ?float $price = null, ?string $retViaCode = null, ?string $retViaDescription = null, ?string $retViaTime = null, ?string $returnArrivalTime = null, ?string $returnCarrier = null, ?string $returnDepartureCode = null, ?string $returnDepartureDescription = null, ?string $returnDepartureTime = null, ?string $returnDestinationCode = null, ?string $returnDestinationDescription = null, ?string $returnFlightNo = null, ?string $serviceCode = null, ?string $serviceDescription = null, ?string $serviceName = null, ?string $serviceStatus = null, ?string $startDate = null, ?string $tariffCode = null, ?string $transfer = null)
     {
         $this
             ->setAccomodation($accomodation)
@@ -411,6 +418,7 @@ class TravelDetailDTO extends AbstractStructBase
             ->setCarrier($carrier)
             ->setCatering($catering)
             ->setCateringDescription($cateringDescription)
+            ->setCo2Emission($co2Emission)
             ->setCountryCode($countryCode)
             ->setCountryDescription($countryDescription)
             ->setCurrency($currency)
@@ -596,6 +604,29 @@ class TravelDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($cateringDescription, true), gettype($cateringDescription)), __LINE__);
         }
         $this->cateringDescription = $cateringDescription;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\TravelDetailDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

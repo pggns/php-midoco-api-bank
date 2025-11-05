@@ -85,6 +85,11 @@ class TravelCmDTO extends AbstractStructBase
      */
     protected ?int $opicCode = null;
     /**
+     * The position
+     * @var int|null
+     */
+    protected ?int $position = null;
+    /**
      * The postalCode
      * @var string|null
      */
@@ -135,6 +140,7 @@ class TravelCmDTO extends AbstractStructBase
      * @uses TravelCmDTO::setLocation()
      * @uses TravelCmDTO::setLongitude()
      * @uses TravelCmDTO::setOpicCode()
+     * @uses TravelCmDTO::setPosition()
      * @uses TravelCmDTO::setPostalCode()
      * @uses TravelCmDTO::setProvider()
      * @uses TravelCmDTO::setRegion()
@@ -156,6 +162,7 @@ class TravelCmDTO extends AbstractStructBase
      * @param string $location
      * @param float $longitude
      * @param int $opicCode
+     * @param int $position
      * @param string $postalCode
      * @param string $provider
      * @param string $region
@@ -164,7 +171,7 @@ class TravelCmDTO extends AbstractStructBase
      * @param string $streetNo
      * @param int $travelType
      */
-    public function __construct(?string $area = null, ?float $category = null, ?string $city = null, ?string $countryCode = null, ?string $countryDesc = null, ?string $errorInfo = null, ?string $hotelChain = null, ?string $hotelCode = null, ?string $hotelName = null, ?int $itemId = null, ?float $latitude = null, ?string $location = null, ?float $longitude = null, ?int $opicCode = null, ?string $postalCode = null, ?string $provider = null, ?string $region = null, ?string $status = null, ?string $street = null, ?string $streetNo = null, ?int $travelType = null)
+    public function __construct(?string $area = null, ?float $category = null, ?string $city = null, ?string $countryCode = null, ?string $countryDesc = null, ?string $errorInfo = null, ?string $hotelChain = null, ?string $hotelCode = null, ?string $hotelName = null, ?int $itemId = null, ?float $latitude = null, ?string $location = null, ?float $longitude = null, ?int $opicCode = null, ?int $position = null, ?string $postalCode = null, ?string $provider = null, ?string $region = null, ?string $status = null, ?string $street = null, ?string $streetNo = null, ?int $travelType = null)
     {
         $this
             ->setArea($area)
@@ -181,6 +188,7 @@ class TravelCmDTO extends AbstractStructBase
             ->setLocation($location)
             ->setLongitude($longitude)
             ->setOpicCode($opicCode)
+            ->setPosition($position)
             ->setPostalCode($postalCode)
             ->setProvider($provider)
             ->setRegion($region)
@@ -508,6 +516,29 @@ class TravelCmDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($opicCode, true), gettype($opicCode)), __LINE__);
         }
         $this->opicCode = $opicCode;
+        
+        return $this;
+    }
+    /**
+     * Get position value
+     * @return int|null
+     */
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+    /**
+     * Set position value
+     * @param int $position
+     * @return \Pggns\MidocoApi\Bank\StructType\TravelCmDTO
+     */
+    public function setPosition(?int $position = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($position) && !(is_int($position) || ctype_digit($position))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($position, true), gettype($position)), __LINE__);
+        }
+        $this->position = $position;
         
         return $this;
     }

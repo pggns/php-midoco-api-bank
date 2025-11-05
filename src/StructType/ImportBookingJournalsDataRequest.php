@@ -20,6 +20,11 @@ class ImportBookingJournalsDataRequest extends AbstractStructBase
      */
     protected ?string $Data = null;
     /**
+     * The formatName
+     * @var string|null
+     */
+    protected ?string $formatName = null;
+    /**
      * The format
      * @var string|null
      */
@@ -57,6 +62,7 @@ class ImportBookingJournalsDataRequest extends AbstractStructBase
     /**
      * Constructor method for ImportBookingJournalsDataRequest
      * @uses ImportBookingJournalsDataRequest::setData()
+     * @uses ImportBookingJournalsDataRequest::setFormatName()
      * @uses ImportBookingJournalsDataRequest::setFormat()
      * @uses ImportBookingJournalsDataRequest::setFileName()
      * @uses ImportBookingJournalsDataRequest::setDelimiter()
@@ -65,6 +71,7 @@ class ImportBookingJournalsDataRequest extends AbstractStructBase
      * @uses ImportBookingJournalsDataRequest::setGenericDataFormat()
      * @uses ImportBookingJournalsDataRequest::setTextInQuotes()
      * @param string $data
+     * @param string $formatName
      * @param string $format
      * @param string $fileName
      * @param string $delimiter
@@ -73,10 +80,11 @@ class ImportBookingJournalsDataRequest extends AbstractStructBase
      * @param string $genericDataFormat
      * @param bool $textInQuotes
      */
-    public function __construct(?string $data = null, ?string $format = null, ?string $fileName = null, ?string $delimiter = null, ?string $dateFormat = null, ?string $decimalDelimiter = null, ?string $genericDataFormat = null, ?bool $textInQuotes = null)
+    public function __construct(?string $data = null, ?string $formatName = null, ?string $format = null, ?string $fileName = null, ?string $delimiter = null, ?string $dateFormat = null, ?string $decimalDelimiter = null, ?string $genericDataFormat = null, ?bool $textInQuotes = null)
     {
         $this
             ->setData($data)
+            ->setFormatName($formatName)
             ->setFormat($format)
             ->setFileName($fileName)
             ->setDelimiter($delimiter)
@@ -105,6 +113,29 @@ class ImportBookingJournalsDataRequest extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($data, true), gettype($data)), __LINE__);
         }
         $this->Data = $data;
+        
+        return $this;
+    }
+    /**
+     * Get formatName value
+     * @return string|null
+     */
+    public function getFormatName(): ?string
+    {
+        return $this->formatName;
+    }
+    /**
+     * Set formatName value
+     * @param string $formatName
+     * @return \Pggns\MidocoApi\Bank\StructType\ImportBookingJournalsDataRequest
+     */
+    public function setFormatName(?string $formatName = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($formatName) && !is_string($formatName)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($formatName, true), gettype($formatName)), __LINE__);
+        }
+        $this->formatName = $formatName;
         
         return $this;
     }

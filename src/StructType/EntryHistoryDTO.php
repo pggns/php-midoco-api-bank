@@ -60,6 +60,11 @@ class EntryHistoryDTO extends AbstractStructBase
      */
     protected ?float $invoicedAmount = null;
     /**
+     * The isDirty
+     * @var bool|null
+     */
+    protected ?bool $isDirty = null;
+    /**
      * The journalId
      * @var int|null
      */
@@ -105,6 +110,7 @@ class EntryHistoryDTO extends AbstractStructBase
      * @uses EntryHistoryDTO::setEntryId()
      * @uses EntryHistoryDTO::setHistoryId()
      * @uses EntryHistoryDTO::setInvoicedAmount()
+     * @uses EntryHistoryDTO::setIsDirty()
      * @uses EntryHistoryDTO::setJournalId()
      * @uses EntryHistoryDTO::setOriginalCurrency()
      * @uses EntryHistoryDTO::setOriginalInvoicedAmount()
@@ -121,6 +127,7 @@ class EntryHistoryDTO extends AbstractStructBase
      * @param string $entryId
      * @param int $historyId
      * @param float $invoicedAmount
+     * @param bool $isDirty
      * @param int $journalId
      * @param string $originalCurrency
      * @param float $originalInvoicedAmount
@@ -129,7 +136,7 @@ class EntryHistoryDTO extends AbstractStructBase
      * @param string $planId
      * @param string $receiptDate
      */
-    public function __construct(?string $accountId = null, ?string $bookingText = null, ?string $comment = null, ?string $commentDatetime = null, ?int $commentUser = null, ?string $currency = null, ?string $entryId = null, ?int $historyId = null, ?float $invoicedAmount = null, ?int $journalId = null, ?string $originalCurrency = null, ?float $originalInvoicedAmount = null, ?float $originalPaidAmount = null, ?float $paidAmount = null, ?string $planId = null, ?string $receiptDate = null)
+    public function __construct(?string $accountId = null, ?string $bookingText = null, ?string $comment = null, ?string $commentDatetime = null, ?int $commentUser = null, ?string $currency = null, ?string $entryId = null, ?int $historyId = null, ?float $invoicedAmount = null, ?bool $isDirty = null, ?int $journalId = null, ?string $originalCurrency = null, ?float $originalInvoicedAmount = null, ?float $originalPaidAmount = null, ?float $paidAmount = null, ?string $planId = null, ?string $receiptDate = null)
     {
         $this
             ->setAccountId($accountId)
@@ -141,6 +148,7 @@ class EntryHistoryDTO extends AbstractStructBase
             ->setEntryId($entryId)
             ->setHistoryId($historyId)
             ->setInvoicedAmount($invoicedAmount)
+            ->setIsDirty($isDirty)
             ->setJournalId($journalId)
             ->setOriginalCurrency($originalCurrency)
             ->setOriginalInvoicedAmount($originalInvoicedAmount)
@@ -353,6 +361,29 @@ class EntryHistoryDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($invoicedAmount, true), gettype($invoicedAmount)), __LINE__);
         }
         $this->invoicedAmount = $invoicedAmount;
+        
+        return $this;
+    }
+    /**
+     * Get isDirty value
+     * @return bool|null
+     */
+    public function getIsDirty(): ?bool
+    {
+        return $this->isDirty;
+    }
+    /**
+     * Set isDirty value
+     * @param bool $isDirty
+     * @return \Pggns\MidocoApi\Bank\StructType\EntryHistoryDTO
+     */
+    public function setIsDirty(?bool $isDirty = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($isDirty) && !is_bool($isDirty)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($isDirty, true), gettype($isDirty)), __LINE__);
+        }
+        $this->isDirty = $isDirty;
         
         return $this;
     }

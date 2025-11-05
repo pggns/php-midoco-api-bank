@@ -40,6 +40,11 @@ class BillingVatCalculationDTO extends AbstractStructBase
      */
     protected ?float $vatBase = null;
     /**
+     * The vatCode
+     * @var string|null
+     */
+    protected ?string $vatCode = null;
+    /**
      * The vatDescription
      * @var string|null
      */
@@ -61,6 +66,7 @@ class BillingVatCalculationDTO extends AbstractStructBase
      * @uses BillingVatCalculationDTO::setVatAddress()
      * @uses BillingVatCalculationDTO::setVatAmount()
      * @uses BillingVatCalculationDTO::setVatBase()
+     * @uses BillingVatCalculationDTO::setVatCode()
      * @uses BillingVatCalculationDTO::setVatDescription()
      * @uses BillingVatCalculationDTO::setVatId()
      * @uses BillingVatCalculationDTO::setVatPercent()
@@ -69,11 +75,12 @@ class BillingVatCalculationDTO extends AbstractStructBase
      * @param string $vatAddress
      * @param float $vatAmount
      * @param float $vatBase
+     * @param string $vatCode
      * @param string $vatDescription
      * @param string $vatId
      * @param float $vatPercent
      */
-    public function __construct(?int $documentId = null, ?bool $isOwn = null, ?string $vatAddress = null, ?float $vatAmount = null, ?float $vatBase = null, ?string $vatDescription = null, ?string $vatId = null, ?float $vatPercent = null)
+    public function __construct(?int $documentId = null, ?bool $isOwn = null, ?string $vatAddress = null, ?float $vatAmount = null, ?float $vatBase = null, ?string $vatCode = null, ?string $vatDescription = null, ?string $vatId = null, ?float $vatPercent = null)
     {
         $this
             ->setDocumentId($documentId)
@@ -81,6 +88,7 @@ class BillingVatCalculationDTO extends AbstractStructBase
             ->setVatAddress($vatAddress)
             ->setVatAmount($vatAmount)
             ->setVatBase($vatBase)
+            ->setVatCode($vatCode)
             ->setVatDescription($vatDescription)
             ->setVatId($vatId)
             ->setVatPercent($vatPercent);
@@ -197,6 +205,29 @@ class BillingVatCalculationDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($vatBase, true), gettype($vatBase)), __LINE__);
         }
         $this->vatBase = $vatBase;
+        
+        return $this;
+    }
+    /**
+     * Get vatCode value
+     * @return string|null
+     */
+    public function getVatCode(): ?string
+    {
+        return $this->vatCode;
+    }
+    /**
+     * Set vatCode value
+     * @param string $vatCode
+     * @return \Pggns\MidocoApi\Bank\StructType\BillingVatCalculationDTO
+     */
+    public function setVatCode(?string $vatCode = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($vatCode) && !is_string($vatCode)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($vatCode, true), gettype($vatCode)), __LINE__);
+        }
+        $this->vatCode = $vatCode;
         
         return $this;
     }

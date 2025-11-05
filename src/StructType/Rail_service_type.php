@@ -164,6 +164,13 @@ class Rail_service_type extends AbstractStructBase
      */
     protected ?string $seat = null;
     /**
+     * The co2_emission
+     * Meta information extracted from the WSDL
+     * - minOccurs: 0
+     * @var float|null
+     */
+    protected ?float $co2_emission = null;
+    /**
      * The document_no
      * @var string|null
      */
@@ -290,6 +297,7 @@ class Rail_service_type extends AbstractStructBase
      * @uses Rail_service_type::setWaggon()
      * @uses Rail_service_type::setPartition()
      * @uses Rail_service_type::setSeat()
+     * @uses Rail_service_type::setCo2_emission()
      * @uses Rail_service_type::setDocument_no()
      * @uses Rail_service_type::setService_status()
      * @uses Rail_service_type::setPerson_assignment()
@@ -327,6 +335,7 @@ class Rail_service_type extends AbstractStructBase
      * @param string $waggon
      * @param string $partition
      * @param string $seat
+     * @param float $co2_emission
      * @param string $document_no
      * @param string $service_status
      * @param string $person_assignment
@@ -343,7 +352,7 @@ class Rail_service_type extends AbstractStructBase
      * @param string $ticket_category
      * @param \Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information
      */
-    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $service_description = null, ?string $departure_date = null, ?string $departure_time = null, ?string $departure_code = null, ?string $departure_desc = null, ?string $departure_platform = null, ?string $arrival_date = null, ?string $arrival_time = null, ?string $arrival_code = null, ?string $arrival_desc = null, ?string $arrival_platform = null, ?string $booking_class = null, ?string $tariff_code = null, ?string $tariff_desc = null, ?string $train_no = null, ?string $train_type = null, ?string $waggon = null, ?string $partition = null, ?string $seat = null, ?string $document_no = null, ?string $service_status = null, ?string $person_assignment = null, ?float $service_price = null, ?string $currency = 'EUR', ?bool $vat_included = false, ?bool $company_customer = false, ?int $pax_per_service = null, ?string $reduction_code = null, ?string $reduction_desc = null, ?string $valid_from = null, ?string $last_cancel_date = null, ?int $no_of_children = null, ?string $ticket_category = null, ?\Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information = null)
+    public function __construct(int $position, ?string $service_code = null, ?string $service_name = null, ?string $service_description = null, ?string $departure_date = null, ?string $departure_time = null, ?string $departure_code = null, ?string $departure_desc = null, ?string $departure_platform = null, ?string $arrival_date = null, ?string $arrival_time = null, ?string $arrival_code = null, ?string $arrival_desc = null, ?string $arrival_platform = null, ?string $booking_class = null, ?string $tariff_code = null, ?string $tariff_desc = null, ?string $train_no = null, ?string $train_type = null, ?string $waggon = null, ?string $partition = null, ?string $seat = null, ?float $co2_emission = null, ?string $document_no = null, ?string $service_status = null, ?string $person_assignment = null, ?float $service_price = null, ?string $currency = 'EUR', ?bool $vat_included = false, ?bool $company_customer = false, ?int $pax_per_service = null, ?string $reduction_code = null, ?string $reduction_desc = null, ?string $valid_from = null, ?string $last_cancel_date = null, ?int $no_of_children = null, ?string $ticket_category = null, ?\Pggns\MidocoApi\Bank\StructType\Cc_information $cc_information = null)
     {
         $this
             ->setPosition($position)
@@ -368,6 +377,7 @@ class Rail_service_type extends AbstractStructBase
             ->setWaggon($waggon)
             ->setPartition($partition)
             ->setSeat($seat)
+            ->setCo2_emission($co2_emission)
             ->setDocument_no($document_no)
             ->setService_status($service_status)
             ->setPerson_assignment($person_assignment)
@@ -919,6 +929,29 @@ class Rail_service_type extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($seat, true), gettype($seat)), __LINE__);
         }
         $this->seat = $seat;
+        
+        return $this;
+    }
+    /**
+     * Get co2_emission value
+     * @return float|null
+     */
+    public function getCo2_emission(): ?float
+    {
+        return $this->{'co2-emission'};
+    }
+    /**
+     * Set co2_emission value
+     * @param float $co2_emission
+     * @return \Pggns\MidocoApi\Bank\StructType\Rail_service_type
+     */
+    public function setCo2_emission(?float $co2_emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2_emission) && !(is_float($co2_emission) || is_numeric($co2_emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2_emission, true), gettype($co2_emission)), __LINE__);
+        }
+        $this->co2_emission = $this->{'co2-emission'} = $co2_emission;
         
         return $this;
     }

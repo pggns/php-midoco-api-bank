@@ -85,6 +85,11 @@ class MidocoMarginSaleItem extends AbstractStructBase
      */
     protected ?float $openInkassoPrice = null;
     /**
+     * The colorStatus
+     * @var int|null
+     */
+    protected ?int $colorStatus = null;
+    /**
      * Constructor method for MidocoMarginSaleItem
      * @uses MidocoMarginSaleItem::setItemId()
      * @uses MidocoMarginSaleItem::setOrderNo()
@@ -100,6 +105,7 @@ class MidocoMarginSaleItem extends AbstractStructBase
      * @uses MidocoMarginSaleItem::setInkassoPrice()
      * @uses MidocoMarginSaleItem::setMargin()
      * @uses MidocoMarginSaleItem::setOpenInkassoPrice()
+     * @uses MidocoMarginSaleItem::setColorStatus()
      * @param int $itemId
      * @param int $orderNo
      * @param string $supplierId
@@ -114,8 +120,9 @@ class MidocoMarginSaleItem extends AbstractStructBase
      * @param float $inkassoPrice
      * @param float $margin
      * @param float $openInkassoPrice
+     * @param int $colorStatus
      */
-    public function __construct(?int $itemId = null, ?int $orderNo = null, ?string $supplierId = null, ?string $bookingId = null, ?string $startTravel = null, ?string $status = null, ?float $openAmount = null, ?float $totalAmount = null, ?float $marginAmount = null, ?bool $paid = null, ?float $diAmount = null, ?float $inkassoPrice = null, ?float $margin = null, ?float $openInkassoPrice = null)
+    public function __construct(?int $itemId = null, ?int $orderNo = null, ?string $supplierId = null, ?string $bookingId = null, ?string $startTravel = null, ?string $status = null, ?float $openAmount = null, ?float $totalAmount = null, ?float $marginAmount = null, ?bool $paid = null, ?float $diAmount = null, ?float $inkassoPrice = null, ?float $margin = null, ?float $openInkassoPrice = null, ?int $colorStatus = null)
     {
         $this
             ->setItemId($itemId)
@@ -131,7 +138,8 @@ class MidocoMarginSaleItem extends AbstractStructBase
             ->setDiAmount($diAmount)
             ->setInkassoPrice($inkassoPrice)
             ->setMargin($margin)
-            ->setOpenInkassoPrice($openInkassoPrice);
+            ->setOpenInkassoPrice($openInkassoPrice)
+            ->setColorStatus($colorStatus);
     }
     /**
      * Get itemId value
@@ -452,6 +460,29 @@ class MidocoMarginSaleItem extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($openInkassoPrice, true), gettype($openInkassoPrice)), __LINE__);
         }
         $this->openInkassoPrice = $openInkassoPrice;
+        
+        return $this;
+    }
+    /**
+     * Get colorStatus value
+     * @return int|null
+     */
+    public function getColorStatus(): ?int
+    {
+        return $this->colorStatus;
+    }
+    /**
+     * Set colorStatus value
+     * @param int $colorStatus
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoMarginSaleItem
+     */
+    public function setColorStatus(?int $colorStatus = null): self
+    {
+        // validation for constraint: int
+        if (!is_null($colorStatus) && !(is_int($colorStatus) || ctype_digit($colorStatus))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($colorStatus, true), gettype($colorStatus)), __LINE__);
+        }
+        $this->colorStatus = $colorStatus;
         
         return $this;
     }

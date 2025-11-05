@@ -40,6 +40,11 @@ class BusDetailDTO extends AbstractStructBase
      */
     protected ?string $cateringDescription = null;
     /**
+     * The co2Emission
+     * @var float|null
+     */
+    protected ?float $co2Emission = null;
+    /**
      * The currency
      * @var string|null
      */
@@ -226,6 +231,7 @@ class BusDetailDTO extends AbstractStructBase
      * @uses BusDetailDTO::setCategory()
      * @uses BusDetailDTO::setCateringCode()
      * @uses BusDetailDTO::setCateringDescription()
+     * @uses BusDetailDTO::setCo2Emission()
      * @uses BusDetailDTO::setCurrency()
      * @uses BusDetailDTO::setItemId()
      * @uses BusDetailDTO::setNoOfNights()
@@ -267,6 +273,7 @@ class BusDetailDTO extends AbstractStructBase
      * @param string $category
      * @param string $cateringCode
      * @param string $cateringDescription
+     * @param float $co2Emission
      * @param string $currency
      * @param int $itemId
      * @param string $noOfNights
@@ -304,7 +311,7 @@ class BusDetailDTO extends AbstractStructBase
      * @param string $transfer
      * @param bool $vatIncluded
      */
-    public function __construct(?string $accomodationCode = null, ?string $accomodationDesc = null, ?string $category = null, ?string $cateringCode = null, ?string $cateringDescription = null, ?string $currency = null, ?int $itemId = null, ?string $noOfNights = null, ?string $outFromCityCode = null, ?string $outFromCityDesc = null, ?string $outFromDate = null, ?string $outFromTime = null, ?string $outPlatform = null, ?string $outSeat = null, ?string $outToCityCode = null, ?string $outToCityDesc = null, ?string $outToDate = null, ?string $outToTime = null, ?int $paxPerServices = null, ?string $personAssignment = null, ?int $position = null, ?int $referencePosition = null, ?string $retFromCityCode = null, ?string $retFromCityDesc = null, ?string $retFromDate = null, ?string $retFromTime = null, ?string $retPlatform = null, ?string $retSeat = null, ?string $retToCityCode = null, ?string $retToCityDesc = null, ?string $retToDate = null, ?string $retToTime = null, ?string $roomCode = null, ?string $roomDescription = null, ?string $serviceCode = null, ?string $serviceDesc = null, ?string $serviceName = null, ?float $servicePrice = null, ?string $serviceStatus = null, ?string $transfer = null, ?bool $vatIncluded = null)
+    public function __construct(?string $accomodationCode = null, ?string $accomodationDesc = null, ?string $category = null, ?string $cateringCode = null, ?string $cateringDescription = null, ?float $co2Emission = null, ?string $currency = null, ?int $itemId = null, ?string $noOfNights = null, ?string $outFromCityCode = null, ?string $outFromCityDesc = null, ?string $outFromDate = null, ?string $outFromTime = null, ?string $outPlatform = null, ?string $outSeat = null, ?string $outToCityCode = null, ?string $outToCityDesc = null, ?string $outToDate = null, ?string $outToTime = null, ?int $paxPerServices = null, ?string $personAssignment = null, ?int $position = null, ?int $referencePosition = null, ?string $retFromCityCode = null, ?string $retFromCityDesc = null, ?string $retFromDate = null, ?string $retFromTime = null, ?string $retPlatform = null, ?string $retSeat = null, ?string $retToCityCode = null, ?string $retToCityDesc = null, ?string $retToDate = null, ?string $retToTime = null, ?string $roomCode = null, ?string $roomDescription = null, ?string $serviceCode = null, ?string $serviceDesc = null, ?string $serviceName = null, ?float $servicePrice = null, ?string $serviceStatus = null, ?string $transfer = null, ?bool $vatIncluded = null)
     {
         $this
             ->setAccomodationCode($accomodationCode)
@@ -312,6 +319,7 @@ class BusDetailDTO extends AbstractStructBase
             ->setCategory($category)
             ->setCateringCode($cateringCode)
             ->setCateringDescription($cateringDescription)
+            ->setCo2Emission($co2Emission)
             ->setCurrency($currency)
             ->setItemId($itemId)
             ->setNoOfNights($noOfNights)
@@ -461,6 +469,29 @@ class BusDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($cateringDescription, true), gettype($cateringDescription)), __LINE__);
         }
         $this->cateringDescription = $cateringDescription;
+        
+        return $this;
+    }
+    /**
+     * Get co2Emission value
+     * @return float|null
+     */
+    public function getCo2Emission(): ?float
+    {
+        return $this->co2Emission;
+    }
+    /**
+     * Set co2Emission value
+     * @param float $co2Emission
+     * @return \Pggns\MidocoApi\Bank\StructType\BusDetailDTO
+     */
+    public function setCo2Emission(?float $co2Emission = null): self
+    {
+        // validation for constraint: float
+        if (!is_null($co2Emission) && !(is_float($co2Emission) || is_numeric($co2Emission))) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a float value, %s given', var_export($co2Emission, true), gettype($co2Emission)), __LINE__);
+        }
+        $this->co2Emission = $co2Emission;
         
         return $this;
     }

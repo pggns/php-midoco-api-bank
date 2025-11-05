@@ -225,6 +225,11 @@ class MidocoSellItemType extends SellItemDTO
      */
     protected ?int $billingStatus = null;
     /**
+     * The hasPreparedRevenueBookings
+     * @var bool|null
+     */
+    protected ?bool $hasPreparedRevenueBookings = null;
+    /**
      * The incomingInvoiceStatus
      * @var int|null
      */
@@ -271,6 +276,7 @@ class MidocoSellItemType extends SellItemDTO
      * @uses MidocoSellItemType::setUnitAlias()
      * @uses MidocoSellItemType::setIsPackageChild()
      * @uses MidocoSellItemType::setBillingStatus()
+     * @uses MidocoSellItemType::setHasPreparedRevenueBookings()
      * @uses MidocoSellItemType::setIncomingInvoiceStatus()
      * @uses MidocoSellItemType::setIs_deletable()
      * @uses MidocoSellItemType::setDisplayedItemPrice()
@@ -300,12 +306,13 @@ class MidocoSellItemType extends SellItemDTO
      * @param string $unitAlias
      * @param bool $isPackageChild
      * @param int $billingStatus
+     * @param bool $hasPreparedRevenueBookings
      * @param int $incomingInvoiceStatus
      * @param bool $is_deletable
      * @param float $displayedItemPrice
      * @param string $displayedCurrency
      */
-    public function __construct(?array $midocoPriceDetail = null, ?array $midocoOnlinePaymentTransaction = null, ?array $midocoSellPassenger = null, ?array $midocoSellRemark = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoDocumentItem $midocoDocumentItem = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoTravelItemType $midocoTravelItem = null, ?\Pggns\MidocoApi\Bank\StructType\ManualitemDTO $midocoManualItem = null, ?\Pggns\MidocoApi\Bank\StructType\CalcitemDTO $midocoCalcItem = null, ?\Pggns\MidocoApi\Bank\StructType\PackageitemDTO $midocoPackageInfo = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoSellItemPricing $midocoSellItemPricing = null, ?array $midocoSellItemError = null, ?array $midocoSellItem = null, ?array $revenueBookingInfo = null, ?array $midocoSellItemAttribute = null, ?array $midocoSellItemVatDivision = null, ?array $midocoSellDetailsPrice = null, ?\Pggns\MidocoApi\Bank\StructType\SellItemItemDTO $midocoSellItemItem = null, ?array $midocoSellItemSaving = null, ?\Pggns\MidocoApi\Bank\StructType\SellItemEinvoiceDTO $midocoSellItemEinvoice = null, ?\Pggns\MidocoApi\Bank\StructType\EnrichmentCreditCardDTO $midocoEnrichmentCreditCard = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoMilesAndMoreEarnInfoType $midocoMilesAndMoreEarnInfo = null, ?array $midocoOrderNotice = null, ?string $unitAlias = null, ?bool $isPackageChild = null, ?int $billingStatus = null, ?int $incomingInvoiceStatus = null, ?bool $is_deletable = null, ?float $displayedItemPrice = null, ?string $displayedCurrency = null)
+    public function __construct(?array $midocoPriceDetail = null, ?array $midocoOnlinePaymentTransaction = null, ?array $midocoSellPassenger = null, ?array $midocoSellRemark = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoDocumentItem $midocoDocumentItem = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoTravelItemType $midocoTravelItem = null, ?\Pggns\MidocoApi\Bank\StructType\ManualitemDTO $midocoManualItem = null, ?\Pggns\MidocoApi\Bank\StructType\CalcitemDTO $midocoCalcItem = null, ?\Pggns\MidocoApi\Bank\StructType\PackageitemDTO $midocoPackageInfo = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoSellItemPricing $midocoSellItemPricing = null, ?array $midocoSellItemError = null, ?array $midocoSellItem = null, ?array $revenueBookingInfo = null, ?array $midocoSellItemAttribute = null, ?array $midocoSellItemVatDivision = null, ?array $midocoSellDetailsPrice = null, ?\Pggns\MidocoApi\Bank\StructType\SellItemItemDTO $midocoSellItemItem = null, ?array $midocoSellItemSaving = null, ?\Pggns\MidocoApi\Bank\StructType\SellItemEinvoiceDTO $midocoSellItemEinvoice = null, ?\Pggns\MidocoApi\Bank\StructType\EnrichmentCreditCardDTO $midocoEnrichmentCreditCard = null, ?\Pggns\MidocoApi\Bank\StructType\MidocoMilesAndMoreEarnInfoType $midocoMilesAndMoreEarnInfo = null, ?array $midocoOrderNotice = null, ?string $unitAlias = null, ?bool $isPackageChild = null, ?int $billingStatus = null, ?bool $hasPreparedRevenueBookings = null, ?int $incomingInvoiceStatus = null, ?bool $is_deletable = null, ?float $displayedItemPrice = null, ?string $displayedCurrency = null)
     {
         $this
             ->setMidocoPriceDetail($midocoPriceDetail)
@@ -333,6 +340,7 @@ class MidocoSellItemType extends SellItemDTO
             ->setUnitAlias($unitAlias)
             ->setIsPackageChild($isPackageChild)
             ->setBillingStatus($billingStatus)
+            ->setHasPreparedRevenueBookings($hasPreparedRevenueBookings)
             ->setIncomingInvoiceStatus($incomingInvoiceStatus)
             ->setIs_deletable($is_deletable)
             ->setDisplayedItemPrice($displayedItemPrice)
@@ -1398,6 +1406,29 @@ class MidocoSellItemType extends SellItemDTO
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($billingStatus, true), gettype($billingStatus)), __LINE__);
         }
         $this->billingStatus = $billingStatus;
+        
+        return $this;
+    }
+    /**
+     * Get hasPreparedRevenueBookings value
+     * @return bool|null
+     */
+    public function getHasPreparedRevenueBookings(): ?bool
+    {
+        return $this->hasPreparedRevenueBookings;
+    }
+    /**
+     * Set hasPreparedRevenueBookings value
+     * @param bool $hasPreparedRevenueBookings
+     * @return \Pggns\MidocoApi\Bank\StructType\MidocoSellItemType
+     */
+    public function setHasPreparedRevenueBookings(?bool $hasPreparedRevenueBookings = null): self
+    {
+        // validation for constraint: boolean
+        if (!is_null($hasPreparedRevenueBookings) && !is_bool($hasPreparedRevenueBookings)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a bool, %s given', var_export($hasPreparedRevenueBookings, true), gettype($hasPreparedRevenueBookings)), __LINE__);
+        }
+        $this->hasPreparedRevenueBookings = $hasPreparedRevenueBookings;
         
         return $this;
     }

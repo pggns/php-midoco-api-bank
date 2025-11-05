@@ -30,6 +30,11 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
      */
     protected ?int $commissionMode = null;
     /**
+     * The creationTimestamp
+     * @var string|null
+     */
+    protected ?string $creationTimestamp = null;
+    /**
      * The currency
      * @var string|null
      */
@@ -145,6 +150,11 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
      */
     protected ?string $paymentType = null;
     /**
+     * The qrInvoiceRefNo
+     * @var string|null
+     */
+    protected ?string $qrInvoiceRefNo = null;
+    /**
      * The receiptNo
      * @var string|null
      */
@@ -244,6 +254,7 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
      * @uses AdviceSettlemDetailDTO::setBookingId()
      * @uses AdviceSettlemDetailDTO::setCalculatedRevenue()
      * @uses AdviceSettlemDetailDTO::setCommissionMode()
+     * @uses AdviceSettlemDetailDTO::setCreationTimestamp()
      * @uses AdviceSettlemDetailDTO::setCurrency()
      * @uses AdviceSettlemDetailDTO::setCustomerName()
      * @uses AdviceSettlemDetailDTO::setDestination()
@@ -267,6 +278,7 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
      * @uses AdviceSettlemDetailDTO::setNettoAmount()
      * @uses AdviceSettlemDetailDTO::setNumberOfPersons()
      * @uses AdviceSettlemDetailDTO::setPaymentType()
+     * @uses AdviceSettlemDetailDTO::setQrInvoiceRefNo()
      * @uses AdviceSettlemDetailDTO::setReceiptNo()
      * @uses AdviceSettlemDetailDTO::setRevenueId()
      * @uses AdviceSettlemDetailDTO::setSettlementId()
@@ -289,6 +301,7 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
      * @param string $bookingId
      * @param float $calculatedRevenue
      * @param int $commissionMode
+     * @param string $creationTimestamp
      * @param string $currency
      * @param string $customerName
      * @param string $destination
@@ -312,6 +325,7 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
      * @param float $nettoAmount
      * @param int $numberOfPersons
      * @param string $paymentType
+     * @param string $qrInvoiceRefNo
      * @param string $receiptNo
      * @param int $revenueId
      * @param int $settlementId
@@ -332,12 +346,13 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
      * @param float $vatInsurance
      * @param float $vatPercent
      */
-    public function __construct(?string $bookingId = null, ?float $calculatedRevenue = null, ?int $commissionMode = null, ?string $currency = null, ?string $customerName = null, ?string $destination = null, ?int $detailId = null, ?bool $entryRestAsProv = null, ?float $exchangeRate = null, ?bool $executed = null, ?string $extId = null, ?float $feeAmount = null, ?float $grantedRevenue = null, ?bool $inPackage = null, ?float $inkassoPrice = null, ?string $invoiceDate = null, ?bool $isCollective = null, ?bool $isDeposit = null, ?bool $isInsurance = null, ?int $itemId = null, ?string $modifyDate = null, ?int $modifyUser = null, ?bool $needsVatDivision = null, ?float $nettoAmount = null, ?int $numberOfPersons = null, ?string $paymentType = null, ?string $receiptNo = null, ?int $revenueId = null, ?int $settlementId = null, ?string $settlementType = null, ?string $settlementTypeDebit = null, ?string $status = null, ?float $supplierDiAmount = null, ?string $supplierId = null, ?float $supplierInvoice = null, ?float $totalPrice = null, ?float $travelPrice = null, ?string $traveldate = null, ?string $traveltype = null, ?string $unitName = null, ?float $vatAmount = null, ?float $vatFreeAmount = null, ?float $vatInclAmount = null, ?float $vatInsurance = null, ?float $vatPercent = null)
+    public function __construct(?string $bookingId = null, ?float $calculatedRevenue = null, ?int $commissionMode = null, ?string $creationTimestamp = null, ?string $currency = null, ?string $customerName = null, ?string $destination = null, ?int $detailId = null, ?bool $entryRestAsProv = null, ?float $exchangeRate = null, ?bool $executed = null, ?string $extId = null, ?float $feeAmount = null, ?float $grantedRevenue = null, ?bool $inPackage = null, ?float $inkassoPrice = null, ?string $invoiceDate = null, ?bool $isCollective = null, ?bool $isDeposit = null, ?bool $isInsurance = null, ?int $itemId = null, ?string $modifyDate = null, ?int $modifyUser = null, ?bool $needsVatDivision = null, ?float $nettoAmount = null, ?int $numberOfPersons = null, ?string $paymentType = null, ?string $qrInvoiceRefNo = null, ?string $receiptNo = null, ?int $revenueId = null, ?int $settlementId = null, ?string $settlementType = null, ?string $settlementTypeDebit = null, ?string $status = null, ?float $supplierDiAmount = null, ?string $supplierId = null, ?float $supplierInvoice = null, ?float $totalPrice = null, ?float $travelPrice = null, ?string $traveldate = null, ?string $traveltype = null, ?string $unitName = null, ?float $vatAmount = null, ?float $vatFreeAmount = null, ?float $vatInclAmount = null, ?float $vatInsurance = null, ?float $vatPercent = null)
     {
         $this
             ->setBookingId($bookingId)
             ->setCalculatedRevenue($calculatedRevenue)
             ->setCommissionMode($commissionMode)
+            ->setCreationTimestamp($creationTimestamp)
             ->setCurrency($currency)
             ->setCustomerName($customerName)
             ->setDestination($destination)
@@ -361,6 +376,7 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
             ->setNettoAmount($nettoAmount)
             ->setNumberOfPersons($numberOfPersons)
             ->setPaymentType($paymentType)
+            ->setQrInvoiceRefNo($qrInvoiceRefNo)
             ->setReceiptNo($receiptNo)
             ->setRevenueId($revenueId)
             ->setSettlementId($settlementId)
@@ -447,6 +463,29 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide an integer value, %s given', var_export($commissionMode, true), gettype($commissionMode)), __LINE__);
         }
         $this->commissionMode = $commissionMode;
+        
+        return $this;
+    }
+    /**
+     * Get creationTimestamp value
+     * @return string|null
+     */
+    public function getCreationTimestamp(): ?string
+    {
+        return $this->creationTimestamp;
+    }
+    /**
+     * Set creationTimestamp value
+     * @param string $creationTimestamp
+     * @return \Pggns\MidocoApi\Bank\StructType\AdviceSettlemDetailDTO
+     */
+    public function setCreationTimestamp(?string $creationTimestamp = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($creationTimestamp) && !is_string($creationTimestamp)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($creationTimestamp, true), gettype($creationTimestamp)), __LINE__);
+        }
+        $this->creationTimestamp = $creationTimestamp;
         
         return $this;
     }
@@ -976,6 +1015,29 @@ class AdviceSettlemDetailDTO extends AbstractStructBase
             throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($paymentType, true), gettype($paymentType)), __LINE__);
         }
         $this->paymentType = $paymentType;
+        
+        return $this;
+    }
+    /**
+     * Get qrInvoiceRefNo value
+     * @return string|null
+     */
+    public function getQrInvoiceRefNo(): ?string
+    {
+        return $this->qrInvoiceRefNo;
+    }
+    /**
+     * Set qrInvoiceRefNo value
+     * @param string $qrInvoiceRefNo
+     * @return \Pggns\MidocoApi\Bank\StructType\AdviceSettlemDetailDTO
+     */
+    public function setQrInvoiceRefNo(?string $qrInvoiceRefNo = null): self
+    {
+        // validation for constraint: string
+        if (!is_null($qrInvoiceRefNo) && !is_string($qrInvoiceRefNo)) {
+            throw new InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export($qrInvoiceRefNo, true), gettype($qrInvoiceRefNo)), __LINE__);
+        }
+        $this->qrInvoiceRefNo = $qrInvoiceRefNo;
         
         return $this;
     }
